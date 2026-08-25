@@ -158,6 +158,29 @@ const config: Config = {
       },
     ],
   ],
+  themes: [
+    [
+      "@easyops-cn/docusaurus-search-local",
+      {
+        // Generate a content-hashed search index so browsers can
+        // cache the index safely between documentation deployments.
+        hashed: true,
+
+        // CTX documentation is served from the site root.
+        // This must match the Docusaurus docs routeBasePath.
+        docsRouteBasePath: "/",
+
+        // CTX documentation is written in English.
+        language: ["en"],
+
+        // Make it easier to understand where a search result came from.
+        explicitSearchResultPath: true,
+
+        // Highlight the searched terms after opening a result.
+        highlightSearchTermsOnTargetPage: true,
+      },
+    ],
+  ],
 };
 
 export default config;
