@@ -33,7 +33,7 @@ jobs:
             # fetch-depth: 0 is intentional. It allows Docusaurus to access
             # Git history when features such as last-update timestamps are used.
             - name: Checkout repository
-              uses: actions/checkout@v5
+              uses: actions/checkout@v4
               with:
                   fetch-depth: 0
 
@@ -41,7 +41,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v6
               with:
-                  node-version: 20
+                  node-version: 22
                   cache: npm
 
             # Install exactly the dependencies recorded in package-lock.json.
