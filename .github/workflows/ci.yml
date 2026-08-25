@@ -1,0 +1,89 @@
+name: Deploy Documentation
+
+on:
+    # Validate pull requests without deploying them.
+    pull_request:
+
+    # Build and deploy whenever the stable documentation branch changes.
+    push:
+        branches:
+            - main
+
+# Prevent multiple deployments from running at the same time.
+# If another push reaches main while a deployment is running,
+# GitHub will cancel the older in-progress deployment.
+concurrency:
+    group: github-pages
+    cancel-in-progress: true
+
+# GitHub Pages deployment requires these permissions.
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+jobs:
+    build:
+        name: Build documentation
+        runs-on: ubuntu-latest
+
+        steps:
+            # Checkout the complete repository.
+            #
+            # fetch-depth: 0 is intentional. It allows Docusaurus to access
+            # Git history when features such as last-update timestamps are used.
+            - name: Checkout repository
+              uses: actions/checkout@v5
+              with:
+                  fetch-depth: 0
+
+            # Use the Node.js version expected by this project.
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: 20
+                  cache: npm
+
+            # Install exactly the dependencies recorded in package-lock.json.
+            - name: Install dependencies
+              run: npm ci
+
+            # Run the production Docusaurus build.
+            #
+            # This generates the complete static website, including:
+            # - documentation pages
+            # - versioned documentation
+            # - SEO metadata
+            # - search assets
+            # - Markdown/LLM resources
+            - name: Build documentation
+              run: npm run build
+
+            # Tell GitHub Pages that the build directory is a deployable
+            # static site artifact.
+            - name: Configure GitHub Pages
+              uses: actions/configure-pages@v5
+
+            # Upload the generated Docusaurus site for the deployment job.
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@v4
+              with:
+                  path: ./build
+
+    deploy:
+        name: Deploy to GitHub Pages
+        runs-on: ubuntu-latest
+
+        # Only deploy after the build has succeeded.
+        needs: build
+
+        # GitHub Pages deployments use the github-pages environment.
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            # Publish the artifact produced by the build job.
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4
