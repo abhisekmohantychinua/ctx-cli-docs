@@ -145,6 +145,19 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
   } satisfies Preset.ThemeConfig,
+
+  plugins: [
+    [
+      "@writechoice/docusaurus-plugin-llms-txt",
+      {
+        generateLlmsTxt: true,
+        generateLlmsFullTxt: true,
+        generateMarkdownFiles: true,
+        description:
+          "CTX CLI is a command-line tool for working with project context from the terminal.",
+      },
+    ],
+  ],
 };
 
 export default config;
