@@ -50,14 +50,10 @@ jobs:
             - name: Build documentation
               run: npm run build
 
-            # Tell GitHub Pages that the build directory is a deployable
-            # static site artifact.
-            - name: Configure GitHub Pages
-              uses: actions/configure-pages@v5
-
             # Upload the generated Docusaurus site so the deployment workflow
-            # can retrieve the artifact after CI succeeds on main.
-            - name: Upload Pages artifact
-              uses: actions/upload-pages-artifact@v4
+            # can retrieve the build produced by the successful CI run.
+            - name: Upload documentation artifact
+              uses: actions/upload-artifact@v4
               with:
+                  name: docusaurus-build
                   path: ./build

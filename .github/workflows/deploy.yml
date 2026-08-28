@@ -39,24 +39,28 @@ jobs:
             url: ${{ steps.deployment.outputs.page_url }}
 
         steps:
-            # Download the Pages artifact produced by the specific CI run
-            # that triggered this deployment workflow.
-            - name: Download Pages artifact
+            # Download the normal documentation artifact produced by
+            # the specific CI run that triggered this deployment.
+            - name: Download documentation artifact
               uses: actions/download-artifact@v5
               with:
-                  name: github-pages
-                  path: ./artifact
+                  name: docusaurus-build
+                  path: ./build
                   github-token: ${{ secrets.GITHUB_TOKEN }}
                   run-id: ${{ github.event.workflow_run.id }}
 
-            # Re-upload the downloaded artifact into the current workflow
-            # so the GitHub Pages deployment action can publish it.
-            - name: Prepare Pages artifact
+            # Configure GitHub Pages for this deployment.
+            - name: Configure GitHub Pages
+              uses: actions/configure-pages@v5
+
+            # Package the actual Docusaurus output as the special
+            # GitHub Pages artifact expected by deploy-pages.
+            - name: Upload Pages artifact
               uses: actions/upload-pages-artifact@v4
               with:
-                  path: ./artifact
+                  path: ./build
 
-            # Publish the artifact produced by the successful CI run.
+            # Publish the Pages artifact.
             - name: Deploy to GitHub Pages
               id: deployment
               uses: actions/deploy-pages@v4
