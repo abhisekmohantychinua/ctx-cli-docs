@@ -42,7 +42,7 @@ jobs:
             # Download the normal documentation artifact produced by
             # the specific CI run that triggered this deployment.
             - name: Download documentation artifact
-              uses: actions/download-artifact@v5
+              uses: actions/download-artifact@v7
               with:
                   name: docusaurus-build
                   path: ./build
