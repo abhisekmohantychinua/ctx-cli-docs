@@ -1,0 +1,62 @@
+name: Deploy Documentation
+
+on:
+    # Deploy only after the CI workflow completes successfully on main.
+    workflow_run:
+        workflows:
+            - CI
+        types:
+            - completed
+        branches:
+            - main
+
+# Prevent multiple deployments from running at the same time.
+# If another push reaches main while a deployment is running,
+# GitHub will cancel the older in-progress deployment.
+concurrency:
+    group: github-pages
+    cancel-in-progress: true
+
+# GitHub Pages deployment requires these permissions.
+permissions:
+    contents: read
+    actions: read
+    pages: write
+    id-token: write
+
+jobs:
+    deploy:
+        name: Deploy to GitHub Pages
+
+        # Only deploy when the CI workflow completed successfully.
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+        runs-on: ubuntu-latest
+
+        # GitHub Pages deployments use the github-pages environment.
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            # Download the Pages artifact produced by the specific CI run
+            # that triggered this deployment workflow.
+            - name: Download Pages artifact
+              uses: actions/download-artifact@v5
+              with:
+                  name: github-pages
+                  path: ./artifact
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  run-id: ${{ github.event.workflow_run.id }}
+
+            # Re-upload the downloaded artifact into the current workflow
+            # so the GitHub Pages deployment action can publish it.
+            - name: Prepare Pages artifact
+              uses: actions/upload-pages-artifact@v4
+              with:
+                  path: ./artifact
+
+            # Publish the artifact produced by the successful CI run.
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v4

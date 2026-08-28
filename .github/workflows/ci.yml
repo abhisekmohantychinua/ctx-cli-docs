@@ -1,26 +1,17 @@
-name: Deploy Documentation
+name: CI
 
 on:
     # Validate pull requests without deploying them.
     pull_request:
 
-    # Build and deploy whenever the stable documentation branch changes.
+    # Validate changes whenever the stable documentation branch changes.
     push:
         branches:
             - main
 
-# Prevent multiple deployments from running at the same time.
-# If another push reaches main while a deployment is running,
-# GitHub will cancel the older in-progress deployment.
-concurrency:
-    group: github-pages
-    cancel-in-progress: true
-
-# GitHub Pages deployment requires these permissions.
+# CI only needs to read the repository and upload its build artifact.
 permissions:
     contents: read
-    pages: write
-    id-token: write
 
 jobs:
     build:
@@ -64,26 +55,9 @@ jobs:
             - name: Configure GitHub Pages
               uses: actions/configure-pages@v5
 
-            # Upload the generated Docusaurus site for the deployment job.
+            # Upload the generated Docusaurus site so the deployment workflow
+            # can retrieve the artifact after CI succeeds on main.
             - name: Upload Pages artifact
               uses: actions/upload-pages-artifact@v4
               with:
                   path: ./build
-
-    deploy:
-        name: Deploy to GitHub Pages
-        runs-on: ubuntu-latest
-
-        # Only deploy after the build has succeeded.
-        needs: build
-
-        # GitHub Pages deployments use the github-pages environment.
-        environment:
-            name: github-pages
-            url: ${{ steps.deployment.outputs.page_url }}
-
-        steps:
-            # Publish the artifact produced by the build job.
-            - name: Deploy to GitHub Pages
-              id: deployment
-              uses: actions/deploy-pages@v4
