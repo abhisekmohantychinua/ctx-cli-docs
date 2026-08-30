@@ -143,6 +143,12 @@ The logs answer:
 
 This separation keeps tasks lightweight while still preserving the details of execution.
 
+:::note
+
+**Tasks describe the work. Logs describe its evolution.**
+
+:::
+
 ## Logs and Decisions
 
 Logs and decisions both preserve information that is useful later, but they represent different kinds of context.
@@ -261,7 +267,7 @@ Fixed the authentication redirect.
 Task: Implement OAuth callback
 ```
 
-The default view prioritizes the log content and the context that is most useful during normal work.
+The default view prioritizes the log content and the context that is most useful during normal use.
 
 ### Verbose View
 
