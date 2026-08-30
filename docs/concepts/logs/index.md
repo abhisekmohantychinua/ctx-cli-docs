@@ -234,6 +234,10 @@ This makes logs useful as **dynamic execution context** rather than static docum
 
 AI can also create logs when it makes meaningful progress or discovers relevant information. The goal is not for AI to record every command or code change, but to preserve information that is useful for future work.
 
+{/*
+<!-- TODO: MOVE THE VIEW TO PRESENTATION PAGE. HOWEVER A SMALL VIEW SHOULD BE HERE. -->
+*/}
+
 ## Viewing Logs
 
 CTX provides multiple levels of detail when displaying logs.

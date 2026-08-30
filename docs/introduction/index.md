@@ -16,7 +16,6 @@ CTX keeps track of the important parts of ongoing development work. Everything i
 2. **Sessions** - when a period of work started and ended
 3. **Logs** - short notes about events, ideas, issues, observations, and attempts
 4. **Decisions** - important decisions and the reasoning behind them
-5. **Snapshots** - an optional view of the accumulated work and its metrics
 
 ## Why CTX CLI?
 
@@ -39,7 +38,7 @@ CTX follows a simple cycle:
 
 ### Capture
 
-As work happens, the developer or AI can record the parts of the process that are worth keeping. You can start and stop sessions, create and update tasks, record a quick log, capture a decision, or mark a task as blocked.
+As work happens, CTX lets you capture the parts of the execution process that are worth preserving. The work being performed, the period in which it happened, meaningful events and observations, and decisions that establish direction.
 
 Most of these actions are deliberately small. You should be able to record something useful without interrupting the work itself. For example, a log might simply capture an observation:
 

@@ -64,6 +64,10 @@ When a session ends, CTX:
 
 An ended session is not deleted.
 
+{/*
+<!-- TODO: MOVE DATA MODEL TO REFERENCES. -->
+*/}
+
 ## Session Data Model
 
 A session contains the information required to identify and describe a period of project activity.
@@ -108,9 +112,9 @@ Session notes are limited to **300 characters**.
 
 ## Sessions and Tasks
 
-Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A task can continue across multiple sessions. Similarly a task can be completed in multiple sessions.
+Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A session can continue across multiple tasks. Similarly a task can be completed in multiple sessions.
 
-The session does not own the task neither the session owns the task. Instead, they provide temporal context about what is being worked on. In simple terms, session answers "When did I work?". While task answers "What am I working on?".
+The session does not own the task neither the task owns the session. Instead, they provide temporal context about what is being worked on. In simple terms, session answers "When did I work?". While task answers "What am I working on?".
 
 ## Sessions and Logs
 
@@ -157,6 +161,10 @@ Session 4    Friday      2h 10m
 ```
 
 Each session represents an independent period of active work while remaining part of the same project's execution history. The accumulated session history provides a foundation for understanding project activity over time.
+
+{/*
+<!-- TODO: MOVE THE VIEW TO PRESENTATION PAGE. HOWEVER A SMALL VIEW SHOULD BE HERE. -->
+*/}
 
 ## Viewing Sessions
 

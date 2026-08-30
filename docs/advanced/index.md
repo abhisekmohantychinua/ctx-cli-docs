@@ -10,6 +10,10 @@ The **Advanced** section covers capabilities that are not part of the basic exec
 
 ## Advanced Capabilities
 
+{/*
+<!-- TODO: QUERY ISN'T A PRIMARY FEATURE SO MOVE BELOW -->
+*/}
+
 ### [Querying](./querying/)
 
 Learn how to search and retrieve project records using CTX's query system.
@@ -39,6 +43,10 @@ This section also explains how the `ctx instruction` command generates instructi
 Learn how logs and decisions can be connected to the execution context they belong to.
 
 References allow logs and decisions to point to a specific session or task, making otherwise independent records easier to understand and retrieve as part of a larger piece of work.
+
+{/*
+<!-- TODO: SNAPSHOT SHOULD BE ADDED HERE -->
+*/}
 
 ## Why Advanced?
 

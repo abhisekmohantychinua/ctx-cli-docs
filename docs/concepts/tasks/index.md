@@ -80,6 +80,10 @@ When the work represented by a task is finished, CTX:
 
 A completed task remains available as part of the project's execution history.
 
+{/*
+<!-- TODO: MOVE DATA MODEL TO REFERENCES. -->
+*/}
+
 ## Task Data Model
 
 CTX uses three related representations when working with tasks:
@@ -255,6 +259,10 @@ The result is a more complete picture of the work than the task record alone can
 :::note
 CTX deliberately keeps the current task state separate from its execution context. This separation keeps the task itself lightweight while allowing the project's execution history to retain the context that would otherwise be lost.
 :::
+
+{/*
+<!-- TODO: MOVE THE VIEW TO PRESENTATION PAGE. HOWEVER A SMALL VIEW SHOULD BE HERE. -->
+*/}
 
 ## Viewing Tasks
 

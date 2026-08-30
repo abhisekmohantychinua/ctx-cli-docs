@@ -50,6 +50,10 @@ Reasoning   Keeps CTX portable, fast, Git-friendly, and independent of an extern
 
 The decision records the choice, while the reasoning explains the thinking behind it.
 
+{/*
+<!-- TODO: MOVE DATA MODEL TO REFERENCES. -->
+*/}
+
 ## Decision Data Model
 
 A decision contains the information needed to identify the choice and understand its context.
@@ -278,6 +282,10 @@ For example, before proposing a different persistence strategy, an AI agent can 
 This allows AI to reason from the project's existing decisions rather than treating every problem as a new problem.
 
 AI can also record decisions when it makes a meaningful choice during execution. Such write-back should preserve important choices rather than every small implementation detail.
+
+{/*
+<!-- TODO: MOVE THE VIEW TO PRESENTATION PAGE. HOWEVER A SMALL VIEW SHOULD BE HERE. -->
+*/}
 
 ## Viewing Decisions
 
