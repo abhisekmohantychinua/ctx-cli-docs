@@ -18,10 +18,6 @@ The section covers capabilities that are not part of the basic execution workflo
 
 Learn how CTX works with AI agents through instructions. Instructions provide static project knowledge such as architecture rules, constraints, coding standards, and system design decisions. They are kept separate from dynamic execution context so that AI agents can use both types of information independently.
 
-{/*
-<!-- TODO: UPDATE THE NAMING TO OUTPUT DIRECTION INSTEAD PRESENTATION -->
-*/}
-
 ### [Views](./views/)
 
 Learn how CTX presents project records through its different views. This covers the views available for sessions, tasks, logs, and decisions, as well as the task-specific list and tree views. These views are designed for different levels of detail and different ways of understanding project execution.
@@ -43,8 +39,8 @@ Learn how logs and decisions can be connected to the execution context they belo
 Advanced features are independent. You do not need to learn or use all of them to use CTX effectively. You can use them when a particular need arises:
 
 - **Instruction** - To provide project rules to an AI agent.
-- **Presentation** - More detail from a record.
-- **Querying** - To find a specific record.
+- **Views** - To display project records in different formats.
+- **Querying** - To find specific records.
 - **Reference** - To associate a log or decision to task or session.
 
 Together, these capabilities extend CTX from a lightweight execution tracker into a richer project context system while keeping the everyday workflow simple.

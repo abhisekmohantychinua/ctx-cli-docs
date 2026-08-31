@@ -44,7 +44,7 @@ ctx log query
 ctx dec query
 ```
 
-The query command accepts the same common query controls across these domains:
+The query command accepts the same common query controls and the same output view controls across these domains:
 
 | Option | Purpose |
 | --- | --- |
@@ -54,7 +54,10 @@ The query command accepts the same common query controls across these domains:
 | `--size` | Number of records in a page. Defaults to `10`. |
 | `--sort-by` | Field used to sort the matching records. Each domain provides its own default. |
 | `--sort` | Sort direction: `ASC` or `DESC`. Defaults to `DESC`. |
-| `--verbose`, `-vb` | Controls the level of detail used when presenting matching records. |
+| `-v`, `--verbose` | Display the full detailed record view for each result. |
+| `-s`, `--short`, `--oneline` | Display each matching record in the compact single-line view. |
+| `--json` | Output each matching record as compact JSON. |
+| `--pretty-json` | Output each matching record as formatted pretty JSON. |
 
 For example:
 
@@ -68,14 +71,11 @@ This asks CTX to find tasks whose `status` is `BLOCKED`.
 
 A query can be understood as four separate decisions:
 
-```text
-Field
-  ↓
-Expression
-  ↓
-Matching records
-  ↓
-Pagination + Sorting
+```mermaid
+flowchart TD
+    A[Field] --> B[Expression]
+    B --> C[Matching records]
+    C --> D[Pagination + Sorting]
 ```
 
 For example:
@@ -101,70 +101,62 @@ Fields are defined by each domain and are validated before the query is executed
 
 Session queries support:
 
-```text
-id
-status
-createdAt
-endedAt
-notes
-```
+| Field | Expression type |
+| --- | --- |
+| `id` | String expression |
+| `status` | Enum expression |
+| `createdAt` | Date expression |
+| `endedAt` | Date expression |
+| `notes` | String expression |
 
-The default filter field is `status`.
-
-The default sort field is `createdAt`.
+The default filter field is `status`. The default sort field is `createdAt`.
 
 ### Tasks
 
 Task queries support:
 
-```text
-id
-task
-description
-status
-createdAt
-completedAt
-blockReason
-```
+| Field | Expression type |
+| --- | --- |
+| `id` | String expression |
+| `task` | String expression |
+| `description` | String expression |
+| `status` | Enum expression |
+| `createdAt` | Date expression |
+| `completedAt` | Date expression |
+| `blockReason` | String expression |
 
-The default filter field is `status`.
-
-The default sort field is `createdAt`.
+The default filter field is `status`. The default sort field is `createdAt`.
 
 ### Logs
 
 Log queries support:
 
-```text
-id
-note
-timestamp
-tag
-referenceType
-referenceIdentifier
-```
+| Field | Expression type |
+| --- | --- |
+| `id` | String expression |
+| `note` | String expression |
+| `timestamp` | Date expression |
+| `tag` | Enum expression |
+| `referenceType` | String expression |
+| `referenceIdentifier` | String expression |
 
-The default filter field is `tag`.
-
-The default sort field is `timestamp`.
+The default filter field is `tag`. The default sort field is `timestamp`.
 
 ### Decisions
 
 Decision queries support:
 
-```text
-id
-topic
-reasoning
-timestamp
-tags
-referenceType
-referenceIdentifier
-```
+| Field | Expression type |
+| --- | --- |
+| `id` | String expression |
+| `topic` | String expression |
+| `reasoning` | String expression |
+| `timestamp` | Date expression |
+| `tags` | String expression |
+| `referenceType` | String expression |
+| `referenceIdentifier` | String expression |
 
-The default filter field is `topic`.
-
-The default sort field is `timestamp`.
+The default filter field is `topic`. The default sort field is `timestamp`.
 
 :::tip
 
@@ -561,35 +553,17 @@ This type-aware behavior is important because the query language is not simply a
 
 At a high level, a domain query follows this process:
 
-```text
-CLI options
-    │
-    ▼
-Validate query parameters
-    │
-    ▼
-Resolve domain field metadata
-    │
-    ▼
-Identify field type
-    │
-    ▼
-Parse linguistic expression
-    │
-    ▼
-Build predicate
-    │
-    ▼
-Filter records
-    │
-    ▼
-Sort matching records
-    │
-    ▼
-Apply pagination
-    │
-    ▼
-Return query result
+```mermaid
+flowchart TD
+    A[CLI options] --> B[Validate query parameters]
+    B --> C[Resolve domain field metadata]
+    C --> D[Identify field type]
+    D --> E[Parse linguistic expression]
+    E --> F[Build predicate]
+    F --> G[Filter records]
+    G --> H[Sort matching records]
+    H --> I[Apply pagination]
+    I --> J[Return query result]
 ```
 
 The query layer is shared across the application rather than implemented separately for every resource.
@@ -598,22 +572,13 @@ The persistence layer supplies metadata describing queryable fields and their ty
 
 ## Querying Across Domains
 
-The query system is intentionally consistent, but it does not treat every domain as identical.
+CTX uses one query model across domains, but each domain remains independent.
 
-For example:
+:::warning
+Cross-domain queries are not supported. A query is always scoped to one domain, such as a session, task, log, or decision. The fields available to that query are determined by that domain alone.
+:::
 
-```text
-Sessions   → status, createdAt, endedAt, notes
-Tasks      → status, createdAt, completedAt, blockReason
-Logs       → tag, timestamp, referenceType
-Decisions  → topic, timestamp, tags, referenceType
-```
-
-The common query mechanism provides the same way to express filtering, pagination, and sorting, while domain-specific metadata determines which fields are valid.
-
-This gives CTX a useful balance:
-
-> **One query language, with fields appropriate to each domain.**
+This is intentional: CTX keeps the query language consistent while still enforcing the metadata and field rules that belong to each record type.
 
 ## Query Results
 
@@ -633,27 +598,15 @@ The query result conceptually contains:
 
 The exact human-readable arrangement of these values is intentionally documented separately.
 
-## Query Result Presentation
+## Query Result Views
 
-> **Placeholder:** Query result presentation will be documented in the dedicated presentation documentation.
->
-> This section will cover how query results are arranged and displayed in normal, verbose, and machine-readable output without changing the query semantics described here.
+Query results follow the same presentation model as other CTX records, with query-specific metadata layered on top. The query semantics remain the same; only the output format changes.
+
+See [Query Views](../views/index.md#query-views) for the default, JSON, and pretty JSON presentations of a query result.
 
 ## When to Use Querying
 
-Use normal view commands when you want to understand the current state of the project quickly.
-
-Use querying when you need to retrieve a particular subset of project history.
-
-For example:
-
-```text
-View
-→ Where am I right now?
-
-Query
-→ Find the records matching this condition.
-```
+Use normal view commands when you want to understand the current state of the project quickly. Use querying when you need to retrieve a particular subset of project history.
 
 This distinction keeps CTX's everyday workflow simple while still providing a powerful mechanism for users who need precise access to their execution history.
 
