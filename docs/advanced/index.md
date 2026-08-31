@@ -10,13 +10,9 @@ The section covers capabilities that are not part of the basic execution workflo
 
 ## Advanced Capabilities
 
-{/*
-<!-- TODO: INSTRUCTION IS ENTIRELY MISLEADING FIX IT. -->
-*/}
-
 ### [Instruction](./instruction/)
 
-Learn how CTX works with AI agents through instructions. Instructions provide static project knowledge such as architecture rules, constraints, coding standards, and system design decisions. They are kept separate from dynamic execution context so that AI agents can use both types of information independently.
+Learn how CTX gives AI agents a stable way to access project context. The generated instruction explains how to use CTX, while the actual execution context remains dynamic and lives in CTX itself. This keeps project guidance separate from sessions, tasks, logs, and decisions so the agent can retrieve the current state when it is needed.
 
 ### [Views](./views/)
 

@@ -4,100 +4,63 @@ sidebar_position: 1
 
 # Instruction
 
-Instructions are the static project knowledge that tells an AI agent how the project should be understood and worked on.
+CTX can generate an instruction file that teaches an AI agent how to use CTX while working on a project.
 
-Unlike sessions, tasks, logs, and decisions, instructions are not execution state. They describe the rules, conventions, constraints, and expectations that should remain available across different working sessions and AI agents.
+The generated instructions do not contain the project's execution context. Instead, they explain how the agent can retrieve that context from CTX when it needs it.
 
-## Why Instructions Matter
+This keeps the instructions stable while the project context continues to change through sessions, tasks, logs, and decisions.
 
-AI agents are effective at working with a project, but they do not automatically know the project's conventions or decisions.
+## What Is `instructions.md`?
 
-A project may have rules such as:
+An instruction file is a Markdown file containing persistent guidance for an AI development environment.
 
-- Which technologies and frameworks should be used
-- How the codebase is structured
-- Which architectural patterns should be followed
-- Which coding conventions should be followed
-- Which approaches should be avoided
-- What constraints the project has
-- How particular parts of the system are expected to work
+AI coding tools commonly use project instruction files to provide information that should remain available while the agent works on a project. For example, GitHub Copilot supports repository-wide instruction files such as `.github/copilot-instructions.md` and agent instruction files such as `AGENTS.md`. Cursor provides project rules through `.cursor/rules` and also supports `AGENTS.md`.
 
-Without these instructions, an AI agent may repeatedly rediscover or infer this information. Worse, it may make a technically valid change that does not fit the project's established way of working.
+These files are useful because the guidance is available without requiring the user to repeat the same instructions in every prompt.
 
-Instructions provide this information explicitly.
+In CTX, the generated instruction serves a more specific purpose. It tells the AI agent  that CTX is available in this project. Use it to retrieve the project's execution context when that context is relevant to your work.
 
-They give an AI agent a stable project-level reference that is separate from the project's changing execution context.
+The instruction file therefore acts as the connection between an AI agent and the dynamic context maintained by CTX.
 
-## Instructions and Execution Context
+## The Role of the Generated Instruction
 
-CTX maintains two different kinds of project knowledge.
+The generated instruction provides a simple workflow for an AI agent:
 
-### Instructions
-
-Instructions describe **how the project should be worked on**.
-
-Examples:
-
-- Use Java 25.
-- Use Gradle for builds.
-- Follow the repository's service-layer architecture.
-- Do not introduce a database dependency.
-- Keep commands compatible with the existing CLI conventions.
-
-### Execution Context
-
-Execution context describes **what is currently happening in the project**.
-
-Examples:
-
-- The current session is working on authentication.
-- A task is blocked because a test is failing.
-- A decision was made to use a particular implementation.
-- A recent log records an attempted approach.
-
-This distinction is important.
-
-Instructions are relatively stable project knowledge, while sessions, tasks, logs, and decisions evolve as work progresses.
-
-## Instruction Files
-
-CTX does not store instructions inside the `.ctxcli` execution data.
-
-Instead, instructions are written to a Markdown file in the project.
-
-This keeps static project knowledge independent from dynamic execution state.
-
-For example:
-
-```text
-project/
-├── .ctxcli/
-│   ├── metadata.json
-│   ├── sessions.json
-│   ├── tasks.json
-│   ├── logs.json
-│   └── decisions.json
-│
-└── instructions.md
+```mermaid
+flowchart TD
+    A[AI Agent] -->|reads| B[CTX Instructions]
+    B -->|learns how to use CTX| C[CTX CLI]
+    C -->|retrieves| D[Project Execution Context]
+    D -->|contains| E[Sessions]
+    D -->|contains| F[Tasks]
+    D -->|contains| G[Logs]
+    D -->|contains| H[Decisions]
 ```
 
-The instruction file can be committed to the repository and shared with other developers and AI agents.
+This means CTX does not need to copy its entire context into the instruction file. The instruction remains stable while the execution context remains dynamic. When the agent needs more information, it can use CTX to obtain the current state.
 
-## Working with AI Agents
+## Generated Instructions Are Not Project Context
 
-AI coding agents commonly support project-specific instruction files.
+CTX does not generate a file containing the current task, recent logs, previous sessions, project decisions or the current project state.
 
-These files are read by the agent as part of its project context and influence how it performs its work.
+Those records remain inside the project's CTX context. Instead, the generated instruction explains how an AI agent can access them.
 
-Different environments use different instruction file conventions.
+As the project changes, the execution context changes. The generated instructions do not need to be regenerated simply because a task, session, log, or decision changed.
 
-CTX's instruction command provides presets for supported environments so that the same project knowledge can be placed where the selected environment expects it.
+:::note
+**Instructions teach the AI how to access CTX.**  
+**CTX provides the project's changing execution context.**
+:::
 
-Supported presets include:
+## Working with AI Environments
+
+Different AI environments use different instruction-file conventions.
+
+CTX provides presets that place its generated instruction in a location recognized by the selected environment.
 
 | Preset | Instruction File |
 | --- | --- |
-| `firebase` | `airrules.md` |
+| `firebase` | `airules.md` |
 | `copilot` | `.github/copilot-instructions.md` |
 | `cursor` | `.cursor/rules/instructions.md` |
 | `jetbrains` | `.junie/guidelines.md` |
@@ -106,23 +69,26 @@ Supported presets include:
 | `codex` | `AGENTS.md` |
 | `claude` | `CLAUDE.md` |
 
-The exact location is selected by the environment preset.
+These presets only determine **where the generated instructions are written**. The generated content remains focused on making CTX available to the AI workflow.
 
-This allows project instructions to become part of the normal working context of an AI agent without requiring CTX itself to remain running.
+AI environments increasingly support persistent project-level instruction mechanisms, but the location and format vary between environments. CTX uses presets so users do not need to manually determine the appropriate destination for each supported environment.
 
 ## Generating Instructions
 
-The `instruction` command generates project instructions and writes them to a Markdown file.
+Use the `instruction` command to generate the CTX instructions.
 
 ```bash
 ctx generate instruction
 ```
 
-The command requires either an instruction preset or a custom path.
+The command requires exactly one destination source:
+
+- an environment preset
+- a custom path
 
 ### Using a Preset
 
-A preset selects the appropriate instruction file for an AI environment.
+A preset selects the destination associated with a supported AI environment.
 
 For example:
 
@@ -130,260 +96,168 @@ For example:
 ctx generate instruction --preset codex
 ```
 
-This writes the generated instructions to:
-
-```text
-AGENTS.md
-```
+writes the instructions to the location associated with the `codex` preset.
 
 Another example:
 
 ```bash
-ctx generate instruction --preset cursor
+ctx generate instruction --preset claude
 ```
 
-This writes the instructions to:
+writes the instructions to the location associated with the `claude` preset.
 
-```text
-.cursor/rules/instructions.md
-```
+The generated content is obtained from CTX's versioned instruction specification so that the instructions can remain aligned with the current CTX command and context model.
+
+The command does not require the user to manually maintain a copy of the CTX instruction specification.
 
 ### Using a Custom Path
 
-Instructions can also be written to a specific relative Markdown path.
-
-```bash
-ctx generate instruction --path docs/instructions.md
-```
-
-The path must be relative and must end with `.md`.
-
-This allows users to control where the generated instructions are stored instead of relying on a predefined environment.
-
-## Presets
-
-A preset is a convenient way to select an instruction destination.
-
-The currently supported presets are:
-
-```text
-firebase
-copilot
-cursor
-jetbrains
-vscode
-windsurf
-codex
-claude
-```
-
-Each preset maps to a predefined instruction file location.
-
-The generated file path is determined by the selected preset.
-
-## Custom Paths
-
-A custom path provides full control over the destination.
+A custom path can be used when the target environment or workflow does not use one of the predefined presets.
 
 For example:
 
 ```bash
-ctx instruction --path instructions.md
+ctx generate instruction --path instructions.md
 ```
 
 or:
 
 ```bash
-ctx instruction --path docs/ai/project-instructions.md
+ctx generate instruction --path docs/ai/ctx.md
 ```
 
-The path must:
+The path must be:
 
-- Be relative to the project
-- End with `.md`
-- Not navigate outside the project using `..`
-- Not exceed the supported path length
+- relative to the project
+- a Markdown file
+- within the project directory
 
-CTX creates missing parent directories when necessary.
+This allows the user to decide exactly where the CTX instructions should live.
 
-## Updating an Existing Instruction File
+### Presets and Custom Paths
 
-If the target instruction file already exists, CTX does not overwrite it by default.
+Presets and custom paths solve the same problem in different ways. A preset is convenient when the target environment is already supported. Where as a custom path provides direct control. Only one is required for each generation.
 
-Instead, the newly generated instructions are appended to the existing content.
-
-A Markdown divider separates the existing content from the newly generated instructions:
-
-```markdown
-Existing instructions...
-
----
-
-Newly generated instructions...
-```
-
-This allows existing project-specific instructions to remain intact.
-
----
-
-## Overwriting Instructions
-
-To replace the existing instruction file completely, use `--overwrite`.
-
-```bash
-ctx generate instruction --preset codex --overwrite
-```
-
-With `--overwrite`, the existing content is replaced by the generated instructions.
-
-This gives the user explicit control over whether generated instructions should be appended or replace the existing file.
-
-## Instruction Generation
-
-CTX obtains the instruction content from its configured instruction source and writes the returned Markdown to the selected destination.
-
-The generated content is not embedded into the CTX executable.
-
-The command therefore has two distinct responsibilities:
-
-1. Determine where the instructions should be written.
-2. Retrieve and persist the instruction content.
-
-The resulting file is an ordinary Markdown file and can be inspected, edited, committed, or shared like any other project documentation.
-
-## Instruction Command Options
-
-| Option | Required | Type | Description |
-| --- | --- | --- | --- |
-| `--preset` | No* | String | Selects a supported AI environment preset. |
-| `--path` | No* | Path | Relative Markdown file path where instructions should be written. |
-| `--overwrite` | No | Boolean | Replaces the existing instruction file instead of appending to it. |
-
-Either `--preset` or `--path` must be provided.
-
-## Generated Instructions and CTX Context
-
-Instructions complement CTX's dynamic execution context.
-
-A typical project can therefore contain:
-
-```text
-Project
-│
-├── Static project knowledge
-│   └── instructions.md
-│
-└── Dynamic execution context
-    └── .ctxcli/
-        ├── metadata.json
-        ├── sessions.json
-        ├── tasks.json
-        ├── logs.json
-        └── decisions.json
-```
-
-The two layers answer different questions.
-
-**Instructions:**
-
-> How should this project be worked on?
-
-**Execution context:**
-
-> What has been happening in this project?
-
-Together they provide an AI agent with both the stable rules of the project and its current execution state.
-
-## Instructions in Context Export
-
-Instruction files are part of the broader project context and can be included when context is exported.
-
-This allows static project knowledge to accompany the dynamic information maintained by CTX when context is prepared for external use.
-
-## When to Use Instructions
-
-Instructions are particularly useful when a project has knowledge that should persist across sessions.
-
-Good candidates include:
-
-- Architecture rules
-- Technology constraints
-- Coding standards
-- Naming conventions
-- Testing requirements
-- Design decisions that should remain stable
-- Repository conventions
-- Development workflows
-- AI-specific working guidelines
-
-They should describe stable expectations rather than temporary execution details.
-
-For example, a task such as:
-
-> Fix the authentication test failing on CI.
-
-belongs in the execution context.
-
-A rule such as:
-
-> Authentication must be implemented through the project's existing service layer.
-
-belongs in instructions.
-
-## Instruction Command
-
-The command is available through:
+The command therefore rejects:
 
 ```bash
 ctx generate instruction
 ```
 
-It can also be invoked through its short alias:
-
 ```bash
-ctx g i
+ctx generate instruction --preset codex --path instructions.md
 ```
 
-The command supports both environment presets and custom paths.
+### Updating an Existing Instruction File
 
-Examples:
+CTX preserves existing instruction content unless explicitly instructed to overwrite it.
 
-```bash
-ctx g i --preset codex
-```
+When the target file already contains content and `--overwrite` is not provided, CTX appends the newly generated CTX instructions to the existing file.
 
-```bash
-ctx g i --preset claude
-```
+This allows project-specific instructions to remain intact while adding or refreshing CTX integration guidance.
 
-```bash
-ctx g i --preset cursor
-```
+For example:
 
-```bash
-ctx g i --path instructions.md
-```
+```markdown
+# Project Guidelines
 
-To replace an existing file:
-
-```bash
-ctx g i --preset codex --overwrite
-```
+Use the existing service-layer architecture.
 
 ---
 
+# CTX
+
+Use CTX to retrieve project execution context when required.
+```
+
+The user remains in control of the resulting Markdown file and can edit it after generation.
+
+### Overwriting an Existing Instruction File
+
+Use `--overwrite` when the existing file should be replaced by the newly generated CTX instructions.
+
+```bash
+ctx generate instruction --preset codex --overwrite
+```
+
+Without `--overwrite`, existing content is preserved. With `--overwrite`, the existing content is replaced.
+
+This makes replacement an explicit action rather than a side effect of instruction generation.
+
+### Keeping Instructions Up to Date
+
+CTX retrieves the generated instruction content from its versioned instruction specification rather than embedding a fixed copy into the executable. This allows the instruction content to evolve with CTX.
+
+When CTX's command surface, context model, or recommended AI workflow changes, a newly generated instruction can reflect the corresponding specification.
+
+The user does not need to manually track the location or version of the instruction specification.
+
+### Instructions Are Versioned
+
+Generated instructions are based on a versioned CTX instruction specification.
+
+This provides two benefits:
+
+- The generated content can evolve with CTX.
+- Projects can regenerate instructions using the instruction model appropriate to the installed CTX version.
+
+The versioned specification is an implementation detail of how CTX keeps generated instructions current. Users only need to select the desired preset or path.
+
+## Instruction Command Options
+
+| Option | Required | Type | Description |
+| --- | --- | --- | --- |
+| `--preset` | No* | string | Select a supported AI environment preset. |
+| `--path` | No* | path | Specify a relative Markdown file path. |
+| `--overwrite` | No | boolean | Replace the existing instruction file. |
+
+\* Exactly one of `--preset` or `--path` must be provided.
+
+## Common Use Cases
+
+### Make an AI Agent Aware of CTX
+
+A project already uses CTX and you want a supported AI environment to understand how to access it.
+
+```bash
+ctx generate instruction --preset codex
+```
+
+### Use CTX with a Different AI Environment
+
+The environment is not represented by a preset, or you prefer to control the location yourself.
+
+```bash
+ctx generate instruction --path docs/ai/ctx.md
+```
+
+### Refresh Existing CTX Instructions
+
+Generate the current instruction specification while preserving the existing file content.
+
+```bash
+ctx generate instruction --preset codex
+```
+
+### Replace Existing Generated Content
+
+Replace the existing file with the newly generated instructions.
+
+```bash
+ctx generate instruction --preset codex --overwrite
+```
+
 ## Summary
 
-Instructions provide CTX with a place for **stable project knowledge** that should guide humans and AI agents across working sessions.
+The CTX instruction feature makes CTX understandable and usable to AI agents without embedding dynamic project context inside the instruction file.
 
-They are:
+The generated instruction:
 
-- Project-specific
-- Persistent
-- Human-readable
-- Independent from execution state
-- Compatible with AI development environments
-- Controllable through presets or custom paths
-- Stored as ordinary Markdown files
-
-CTX's instruction command makes this knowledge easy to generate and place where the selected AI environment can use it.
+- tells an AI agent that CTX is available
+- explains how CTX can be used
+- teaches the agent how to retrieve execution context
+- remains separate from dynamic project data
+- can be placed using an environment preset or custom path
+- is generated from a versioned CTX instruction specification
+- can coexist with project-specific AI guidelines
+- remains an ordinary Markdown file that the user can inspect and edit
