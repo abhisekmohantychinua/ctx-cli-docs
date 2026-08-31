@@ -6,7 +6,7 @@ sidebar_position: 3
 
 CTX is designed to remain simple during everyday work while still providing deeper capabilities when you need more control, richer context, or detailed information.
 
-The **Advanced** section covers capabilities that are not part of the basic execution workflow but become useful when working with larger projects, historical context, AI agents, or more detailed project analysis.
+The section covers capabilities that are not part of the basic execution workflow but become useful when working with larger projects, historical context, AI agents, or more detailed project analysis.
 
 ## Advanced Capabilities
 
@@ -22,9 +22,9 @@ Learn how CTX works with AI agents through instructions. Instructions provide st
 <!-- TODO: UPDATE THE NAMING TO OUTPUT DIRECTION INSTEAD PRESENTATION -->
 */}
 
-### [Presentation](./presentation/)
+### [Views](./view/)
 
-Learn how CTX presents project records through its different views. Presentation covers the views available for sessions, tasks, logs, and decisions, as well as the task-specific list and tree views. These views are designed for different levels of detail and different ways of understanding project execution.
+Learn how CTX presents project records through its different views. This covers the views available for sessions, tasks, logs, and decisions, as well as the task-specific list and tree views. These views are designed for different levels of detail and different ways of understanding project execution.
 
 ### [Querying](./querying/)
 
