@@ -22,7 +22,7 @@ Learn how CTX works with AI agents through instructions. Instructions provide st
 <!-- TODO: UPDATE THE NAMING TO OUTPUT DIRECTION INSTEAD PRESENTATION -->
 */}
 
-### [Views](./view/)
+### [Views](./views/)
 
 Learn how CTX presents project records through its different views. This covers the views available for sessions, tasks, logs, and decisions, as well as the task-specific list and tree views. These views are designed for different levels of detail and different ways of understanding project execution.
 
