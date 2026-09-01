@@ -4,498 +4,451 @@ sidebar_position: 4
 
 # Reference
 
-A **Reference** connects a log or decision to another piece of project execution context.
+A **reference** connects a log or decision to the project context it belongs to.
 
-CTX currently allows logs and decisions to reference either:
+When you record something during development, the record does not always need to stand alone. A log may belong to the task you are currently working on, while a decision may belong to the session in which it was made.
 
-- A **Session**
-- A **Task**
+CTX lets you associate these records with either:
 
-References provide context without duplicating information. Instead of putting the session or task details inside a log or decision, CTX stores a relationship to the existing record.
+- a **Task**
+- a **Session**
 
-For example:
+A reference does not create another record or copy information. It simply connects the log or decision to an existing task or session.
 
-```text
-Task
-└── Implement authentication
-    │
-    ├── Log
-    │   └── OAuth provider returns 401
-    │
-    └── Decision
-        └── Keep server-side state validation
-```
+## Why Use References?
 
-The log and decision remain independent records, while their references identify the work they belong to.
+A log or decision is easier to understand when its surrounding context is known.
 
-## Why References Exist
-
-Logs and decisions are more useful when they can be understood in relation to the work that produced them.
-
-A log such as:
+Consider a log without a reference:
 
 ```text
-OAuth provider returns 401.
+ID               L2
+Timestamp        31 Aug 2026 11:35:55 AM IST
+Tag              ISSUE
+
+Note
+Payment API returns an invalid response.
 ```
 
-contains useful information, but its meaning becomes clearer when it is associated with:
+The log tells you what happened, but not where it happened.
+
+Now attach a task reference:
 
 ```text
-Task: Implement OAuth authentication
+T14      PENDING       Implement payment retry.
 ```
 
-Similarly, a decision such as:
+The same log now has execution context.
 
 ```text
-Keep server-side state validation.
+ID               L2
+Timestamp        31 Aug 2026 11:35:55 AM IST
+Tag              ISSUE
+Reference        TASK
+Reference ID     T14
+
+Note
+Payment API returns an invalid response.
 ```
 
-becomes more useful when it is connected to the task or session in which the decision was made.
+The same applies to decisions. A decision can be associated with the task it affects or the session in which it was made.
 
-References therefore provide an answer to:
+References therefore answer a simple question: **What part of the project execution does this record belong to?**
 
-> **What part of the project execution does this record belong to?**
+## Where References Are Used
+
+References are available when working with:
+
+- [Logs](../../concepts/logs)
+- [Decisions](../../concepts/decisions)
+
+A reference can be:
+
+- added when the record is created
+- changed after the record is created
+- removed when the record no longer needs a reference
+
+References are optional. A log or decision can exist without one.
 
 ## Reference Types
 
-CTX supports two reference types.
+CTX currently supports two reference types.
 
-### Session Reference
+### Task
 
-A session reference associates the record with a specific project session.
+A task reference associates a log or decision with a specific task. Use a task reference when the record belongs to a particular unit of work.
+
+For example, a task about implementing payment retry:
 
 ```text
-Reference Type
-SESSION
+Task         Implement payment retry.
+Status       PENDING
+Created      31 Aug 2026 11:40:13 AM IST
+
+Description
+--
 ```
+
+Can be associated with a log
+
+```text
+ID               L3
+Timestamp        31 Aug 2026 11:49:14 AM IST
+Tag              NOTE
+Reference        TASK
+Reference ID     T14
+
+Note
+Stripe timeout occurs after 10 seconds.
+```
+
+And a decision
+
+```text
+ID               D2
+Timestamp        31 Aug 2026 11:51:23 AM IST
+Topic            Use idempotency keys for retry protection.
+Reference        TASK
+Reference ID     T14
+
+Tags
+--
+
+Reasoning
+Use idempotency keys on retryable operations so repeated requests can be safely detected and prevented from causing duplicate side effects.
+```
+
+### Session
+
+A session reference associates a log or decision with a specific session. Use a session reference when the record belongs to a period of work rather than a specific task.
+
+For example, a session about implementing payment retry:
+
+```text
+ID           S2
+Status       ACTIVE
+Started      31 Aug 2026 11:54:38 AM IST
+Ended        --
+
+Session Notes
+Implementing payment retry feature.
+```
+
+Can be associated with a log
+
+```text
+ID               L4
+Timestamp        31 Aug 2026 11:55:12 AM IST
+Tag              NOTE
+Reference        SESSION
+Reference ID     S2
+
+Note
+Investigated webhook processing.
+```
+
+And a decision
+
+```text
+ID               D3
+Timestamp        31 Aug 2026 11:57:45 AM IST
+Topic            Use the provider's asynchronous webhook flow.
+Reference        SESSION
+Reference ID     S2
+
+Tags
+--
+
+Reasoning
+Use the provider's asynchronous webhook flow to handle real-time updates without blocking the main execution thread.
+```
+
+## One Reference at a Time
+
+A log or decision can have **one reference at a time**.
+
+The reference can point to either a `TASK` or a `SESSION`, but not both.
+
+When a record needs the context of both a task and a session, the task provides the more specific work context while the session remains part of the broader execution history.
+
+:::warning
+CTX does not support multiple references for a single record.
+:::
+
+## Adding a Reference
+
+A reference can be provided while creating a log or decision.
+
+The reference options are:
+
+| Option | Type | Description |
+| --- | --- | --- |
+| `--session`, `-S` | string | Reference a session. |
+| `--task`, `-T` | string | Reference a task. |
+
+The two options are mutually exclusive.
+
+You can provide either:
+
+- a reference option without a value
+- a reference option with an identifier
+- neither option
+
+You cannot provide both `--session` and `--task` for the same record.
+
+### Reference an Existing Record
+
+Provide the identifier when you want to reference a specific session or task.
 
 For example:
 
 ```text
-Decision
-├── Topic       Authentication
-├── Reference   SESSION
-└── Reference ID S2
+ctx log add --note "Investigated webhook processing." --task T5
 ```
 
-This is useful when the record describes something that happened during a particular period of work but is not specific to a task.
+creates a log associated with task `T5`.
 
-### Task Reference
-
-A task reference associates the record with a specific task.
+A decision can be associated in the same way:
 
 ```text
-Reference Type
-TASK
+ctx dec create --topic "Use the provider's asynchronous webhook flow." --session S2
 ```
+
+CTX validates the supplied identifier before attaching the reference.
+
+If the referenced record does not exist, the operation is rejected.
+
+### Reference the Active Record
+
+You can omit the identifier when the record should belong to the currently active task or session.
 
 For example:
 
 ```text
-Log
-├── Tag         ISSUE
-├── Reference   TASK
-└── Reference ID T14
+ctx log add --note "Investigated webhook processing." --task
 ```
 
-This is useful when the record describes an event, observation, attempt, or decision related to a particular unit of work.
-
-## A Reference Has One Target
-
-A log or decision can reference **one target at a time**.
-
-The target can be either:
-
-```text
-SESSION
-```
-
-or:
-
-```text
-TASK
-```
-
-A record cannot reference a session and a task simultaneously.
-
-This keeps the relationship unambiguous.
-
-For example:
-
-```text
-Valid
-
-Log
-└── Reference → TASK:T14
-```
-
-```text
-Valid
-
-Decision
-└── Reference → SESSION:S3
-```
-
-But not:
-
-```text
-Invalid
-
-Decision
-├── Reference → SESSION:S3
-└── Reference → TASK:T14
-```
-
-If a record needs to provide context from both a session and a task, the task can provide the more specific work context while the task itself exists within the broader project execution and session history.
-
-## Reference Identifier
-
-A reference consists of two pieces of information:
-
-```text
-Reference Type
-Reference ID
-```
-
-For example:
-
-```text
-Reference Type: TASK
-Reference ID: T14
-```
-
-The reference ID identifies an existing record in the selected domain.
-
-CTX validates explicit references before attaching them to a log or decision.
-
-If the referenced entity does not exist, the operation is rejected.
-
-## Creating a Reference
-
-A reference can be supplied when creating a log or decision.
-
-The reference type and identifier are optional.
-
-For example, a log can explicitly reference a task:
-
-```text
-ctx log add --note "OAuth provider returns 401" --task T14
-```
-
-A decision can explicitly reference a session:
-
-```text
-ctx dec create --topic "Authentication strategy" --session S3
-```
-
-When an explicit identifier is provided, CTX verifies that the referenced session or task exists before creating the record.
-
-## Referencing the Active Record
-
-The reference identifier does not always have to be supplied.
-
-You can provide only the reference type and allow CTX to resolve the current active record.
-
-For example:
-
-```text
-ctx log add --note "Started investigating callback failure" --task
-```
-
-CTX resolves `--task` to the currently active task.
+associates the new log with the active task.
 
 Similarly:
 
 ```text
-ctx dec create --topic "Authentication strategy" --session
+ctx dec create --topic "Use the provider's asynchronous webhook flow." --session
 ```
 
-resolves the reference to the current active session.
+associates the decision with the active session.
 
-This provides a shorter workflow when the record naturally belongs to the work currently being performed.
+This allows the current execution context to be reused without repeatedly copying identifiers into commands.
 
-## Explicit and Implicit References
+### No Reference
 
-There are therefore two ways to provide a reference.
+When neither `--session` nor `--task` is provided, the record remains unreferenced.
 
-### Explicit Reference
-
-Both the type and identifier are supplied.
+For example:
 
 ```text
-TASK:T14
+ctx log add --note "Investigated webhook processing."
 ```
 
-CTX validates that `T14` exists before creating or updating the reference.
+creates a standalone log.
 
-### Active Reference
+An unreferenced record is still part of the project's execution context.
 
-Only the reference type is supplied.
+## Reference Validation
+
+References are validated according to the option provided.
+
+For a task reference:
 
 ```text
-TASK
+--task T5
 ```
 
-CTX resolves the reference to the current active task.
+CTX verifies that task `T5` exists.
 
-This is useful when you are already working on the task and do not want to manually provide its identifier.
+For a session reference:
 
-## Missing Active Records
+```text
+--session S2
+```
 
-An active reference requires an active record of the selected type.
+CTX verifies that session `S2` exists.
 
-For example, if:
+When the identifier is omitted:
 
 ```text
 --task
 ```
 
-is provided but there is no active task, CTX cannot resolve the reference.
+CTX resolves the active task.
 
-The operation is therefore rejected rather than creating an incomplete reference.
-
-The same applies to sessions:
+When:
 
 ```text
 --session
 ```
 
-requires an active session when no explicit session identifier is provided.
+is used, CTX resolves the active session.
 
-This prevents references from silently pointing to an unknown target.
+If an active record is required but none exists, the operation is rejected.
 
-## Reference Validation
-
-References are validated according to the selected type.
-
-For a session reference:
-
-```text
-SESSION:S3
-```
-
-CTX verifies that session `S3` exists.
-
-For a task reference:
-
-```text
-TASK:T14
-```
-
-CTX verifies that task `T14` exists.
-
-Invalid identifiers are rejected before the log or decision is persisted.
-
-This keeps relationships between records valid and prevents dangling references.
-
-## References on Logs
-
-A log can optionally reference a session or task.
-
-For example:
-
-```text
-Log
-├── Note            Stripe returned an invalid payment payload.
-├── Tag             ISSUE
-├── Reference       TASK
-└── Reference ID    T21
-```
-
-The reference gives the event context without changing the log itself.
-
-A log can also remain unreferenced:
-
-```text
-Log
-├── Note            Investigating unexpected deployment behavior.
-├── Tag             ISSUE
-└── Reference       None
-```
-
-An unreferenced log is still part of the project's execution history.
-
-## References on Decisions
-
-A decision can optionally reference a session or task.
-
-For example:
-
-```text
-Decision
-├── Topic           Authentication
-├── Reasoning       Keep server-side state validation enabled.
-├── Reference       TASK
-└── Reference ID    T21
-```
-
-This connects the reasoning to the work where the decision matters.
-
-A decision can also exist without a reference when it represents broader project knowledge.
+This prevents records from being associated with an unknown or invalid context.
 
 ## Updating a Reference
 
-References can be changed after a log or decision has been created.
+A reference can be changed after a log or decision has been created.
 
 This is useful when:
 
-- the record was initially created without a reference
-- the record was associated with the wrong task
-- the record needs to be associated with a different task
-- the context of the record becomes clearer later
+- the record was created without a reference
+- the wrong task or session was selected
+- the record becomes relevant to different work later
+- the surrounding context becomes clearer after the record was created
+
+For example, a decision can be associated with a task:
+
+```text
+ctx decision update D1 ref --task T5
+```
+
+Or with a session:
+
+```text
+ctx decision update D1 ref --session S2
+```
+
+A log can be updated in the same way:
+
+```text
+ctx log update L1 ref --task T5
+```
+
+The same reference rules apply when updating:
+
+- `--task` and `--session` are mutually exclusive
+- an explicit identifier must exist
+- an option without an identifier resolves the active record
+- no reference options leave the record without a reference
+
+When an existing reference is changed, the previous reference is replaced.
+
+## Removing a Reference
+
+A reference can be removed from a log or decision when the association is no longer needed.
+
+Removing a reference does not delete the log, decision, task, or session.
+
+The record simply becomes unreferenced.
+
+This keeps the record itself independent from the relationship that was previously attached to it.
+
+## Logs and References
+
+References give logs additional execution context without changing what the log records.
 
 For example:
 
 ```text
-ctx log update <id> reference --task T21
+ID               L3
+Timestamp        31 Aug 2026 11:49:14 AM IST
+Tag              NOTE
+Reference        TASK
+Reference ID     T14
+
+Note
+Stripe timeout occurs after 10 seconds.
 ```
 
-or:
+The log still represents one event or observation.
+
+The reference simply identifies the task to which that event belongs.
+
+A log can also reference a session:
 
 ```text
-ctx dec update <id> reference --session S3
+ID               L4
+Timestamp        31 Aug 2026 11:55:12 AM IST
+Tag              NOTE
+Reference        SESSION
+Reference ID     S2
+
+Note
+Investigated webhook processing.
 ```
 
-When updating a reference with an explicit identifier, CTX validates the target before applying the change.
+A log can also remain unreferenced when it represents a standalone observation.
 
-A reference can also be resolved against the current active task or session by providing only the reference type.
+## Decisions and References
 
-## Changing Reference Type
-
-A reference can be moved from one supported type to another.
-
-For example, a decision initially referencing:
-
-```text
-TASK:T21
-```
-
-can later reference:
-
-```text
-SESSION:S3
-```
-
-The previous relationship is replaced by the new reference.
-
-Only one reference target remains associated with the record at a time.
-
-## References Do Not Copy Data
-
-A reference does not duplicate the referenced record.
-
-For example, when a log references:
-
-```text
-TASK:T21
-```
-
-the log does not contain a copy of the task title, description, or status.
-
-It only stores the relationship:
-
-```text
-Reference Type → TASK
-Reference ID   → T21
-```
-
-This means changes to the task remain reflected by the task itself rather than creating multiple copies of the same information.
-
-References therefore keep related records connected without increasing the amount of duplicated context.
-
-## References and Context Retrieval
-
-References become particularly useful when retrieving project context.
-
-A referenced log can be understood in relation to its task:
-
-```text
-Task: Implement payment retry
-
-├── ATTEMPT  Added exponential backoff
-├── ISSUE    Duplicate charge risk remains
-└── NOTE     Idempotency key required
-```
-
-Likewise, a decision can be retrieved as part of the same work:
-
-```text
-Task: Implement payment retry
-
-Decision
-└── Use idempotency keys for retry protection
-```
-
-References therefore allow CTX to reconstruct relationships between otherwise independent records.
-
-## References and AI
-
-References provide additional structure for AI agents working with CTX context.
-
-An AI agent can use a reference to understand which task or session an event or decision belongs to.
+References are especially useful for decisions because they preserve where a decision belongs in the execution history.
 
 For example:
 
 ```text
-Task: Implement payment retry
+ID               D2
+Timestamp        31 Aug 2026 11:51:23 AM IST
+Topic            Use idempotency keys for retry protection.
+Reference        TASK
+Reference ID     T14
 
-Logs:
-- Stripe timeout occurs after 10 seconds.
-- Exponential backoff still allows duplicate charge risk.
+Tags
+--
 
-Decision:
-- Use idempotency keys for retry protection.
+Reasoning
+Use idempotency keys on retryable operations so repeated requests can be safely detected and prevented from causing duplicate side effects.
 ```
 
-Without the references, these records would exist as independent pieces of information.
+A decision may also belong to a session:
 
-With references, the AI can associate them with the same unit of work and reason about them together.
+```text
+ID               D3
+Timestamp        31 Aug 2026 11:57:45 AM IST
+Topic            Use the provider's asynchronous webhook flow.
+Reference        SESSION
+Reference ID     S2
 
-This improves the quality of retrieved execution context without requiring the records themselves to contain duplicated task or session information.
+Tags
+--
 
-## Reference Command Options
+Reasoning
+Use the provider's asynchronous webhook flow to handle real-time updates without blocking the main execution thread.
+```
 
-The reference options used by logs and decisions are:
-
-| Option | Type | Description |
-| --- | --- | --- |
-| `--session` | String | Session reference identifier. |
-| `--task` | String | Task reference identifier. |
-
-Both options are optional, but they are mutually exclusive.
-
-When `--session` is provided with an identifier, that session is referenced explicitly.
-
-When `--session` is provided without an identifier, the active session is resolved.
-
-The same behavior applies to `--task`.
+A decision can also remain unreferenced when it represents broader project knowledge.
 
 ## Reference Rules
 
 References follow a small set of consistent rules:
 
-- A log or decision can reference a session or a task.
+- Logs and decisions can reference a task or a session.
 - A record can have only one reference at a time.
-- Session and task references are mutually exclusive.
+- `--task` and `--session` are mutually exclusive.
 - An explicit reference identifier must identify an existing record.
-- A reference type without an identifier resolves to the active record of that type.
-- An active reference fails when there is no active record of the selected type.
-- A record can exist without a reference.
-- Updating a reference replaces the previous reference.
-- References connect records without copying the referenced data.
+- A reference option without an identifier resolves the corresponding active record.
+- An active reference fails when no active record of that type exists.
+- A log or decision can remain unreferenced.
+- Updating a reference replaces the existing reference.
+- Removing a reference does not remove the record.
+- References do not copy data from the referenced record.
 
 ## Summary
 
-References connect logs and decisions to the project execution context where they belong.
+References provide a lightweight relationship between execution records.
 
-A reference:
+They allow a log or decision to say **This belongs to that task** or **This happened during that session**.
 
-- Identifies either a session or a task.
-- Can use an explicit identifier or the current active record.
-- Is validated before being attached.
-- Can be added when creating a log or decision.
-- Can be changed after creation.
-- Keeps related execution records connected without duplicating their data.
-- Helps humans and AI understand the context surrounding logs and decisions.
+Use an explicit identifier when you know the exact context:
 
-References therefore provide the relationship layer between CTX's execution records while keeping each record independent.
+```text
+--task T5
+--session S2
+```
+
+Use the option without an identifier when the record belongs to the active context:
+
+```text
+--task
+--session
+```
+
+Leave both options out when the record should remain independent.

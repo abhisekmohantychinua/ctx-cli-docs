@@ -64,53 +64,11 @@ When a session ends, CTX:
 
 An ended session is not deleted.
 
-## Session Data Model
-
-A session contains the information required to identify and describe a period of project activity.
-
-| Field | Description |
-| --- | --- |
-| id | Unique identifier for the session. |
-| notes | Optional description of the purpose or context of the session. |
-| createdAt | Timestamp at which the session started. |
-| endedAt | Timestamp at which the session ended. Stays `null` while active. |
-| status | Current state of the session: `ACTIVE` or `INACTIVE`. |
-
-### Active Session
-
-A project can have at most one active session at a time.
-
-When a session is active, it represents the work currently taking place on the project.
-
-An active session remains active until it is explicitly ended. If you attempt to start another session while a session is already active, CTX does not silently replace the existing session. You must either end the current session before starting a new one. Or explicitly request that the current session be ended as part of starting the new session.
-
-This ensures that the project's current execution state remains explicit and predictable.
-
-### Session Notes
-
-Session notes provide a short description of the purpose or context of a session.
-
-They are intended to provide enough context to understand what a session was about without requiring the reader to inspect every log associated with it.
-
-For example:
-
-```text
-Implementing OAuth authentication flow
-```
-
-or:
-
-```text
-Investigating intermittent API timeout
-```
-
-Session notes are limited to **300 characters**.
-
 ## Sessions and Tasks
 
-Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A task can continue across multiple sessions. Similarly a task can be completed in multiple sessions.
+Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A session can continue across multiple tasks. Similarly a task can be completed in multiple sessions.
 
-The session does not own the task neither the session owns the task. Instead, they provide temporal context about what is being worked on. In simple terms, session answers "When did I work?". While task answers "What am I working on?".
+The session does not own the task neither the task owns the session. Instead, they provide temporal context about what is being worked on. In simple terms, session answers "When did I work?". While task answers "What am I working on?".
 
 ## Sessions and Logs
 
@@ -157,71 +115,6 @@ Session 4    Friday      2h 10m
 ```
 
 Each session represents an independent period of active work while remaining part of the same project's execution history. The accumulated session history provides a foundation for understanding project activity over time.
-
-## Viewing Sessions
-
-CTX provides three levels of session detail:
-
-1. **Short view**
-2. **Default view**
-3. **Verbose view**
-
-Each view serves a different purpose, from quickly scanning session history to inspecting the complete session record.
-
-### Short View
-
-The short view is intended for lists and other situations where several sessions need to be displayed together. It contains only the information needed to identify a session at a glance. The short view prioritizes compactness and scanability.
-
-For example:
-
-```text
-S1  INACTIVE  29 Aug 2026 09:43:16 PM IST  1h 30m
-```
-
-### Default View
-
-The default view is designed for everyday use. It provides enough information to understand the session without exposing the complete record. It prioritizes situational awareness over completeness.
-
-For example:
-
-```text
-Status       INACTIVE
-Started      29 Aug 2026 09:43:16 PM IST
-Ended        29 Aug 2026 11:13:34 PM IST
-Duration     1h 30m
-
-Session Notes
-Working on MultiStack CLI
-```
-
-### Verbose View
-
-The verbose view provides the complete session information available to CTX. It includes the session identifier in addition to the information shown in the default view.
-
-The verbose view is useful when the exact session record is required, particularly when working with identifiers or inspecting session details.
-
-For example:
-
-```text
-ID           S1
-Status       INACTIVE
-Started      29 Aug 2026 09:43:16 PM IST
-Ended        29 Aug 2026 11:13:34 PM IST
-Duration     1h 30m
-
-Session Notes
-Working on MultiStack CLI
-```
-
-### Short, Default, and Verbose
-
-The three views serve different purposes. The short view prioritizes compactness, the default view prioritizes situational awareness, and the verbose view prioritizes completeness.
-
-| View | Purpose |
-| --- | --- |
-| Short | Quickly scan sessions in a list. |
-| Default | Understand a session during normal use. |
-| Verbose | Inspect the complete session record. |
 
 ## Summary
 
