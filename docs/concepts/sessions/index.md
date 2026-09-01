@@ -64,52 +64,6 @@ When a session ends, CTX:
 
 An ended session is not deleted.
 
-{/*
-<!-- TODO: MOVE DATA MODEL TO REFERENCES. -->
-*/}
-
-## Session Data Model
-
-A session contains the information required to identify and describe a period of project activity.
-
-| Field | Description |
-| --- | --- |
-| id | Unique identifier for the session. |
-| notes | Optional description of the purpose or context of the session. |
-| createdAt | Timestamp at which the session started. |
-| endedAt | Timestamp at which the session ended. Stays `null` while active. |
-| status | Current state of the session: `ACTIVE` or `INACTIVE`. |
-
-### Active Session
-
-A project can have at most one active session at a time.
-
-When a session is active, it represents the work currently taking place on the project.
-
-An active session remains active until it is explicitly ended. If you attempt to start another session while a session is already active, CTX does not silently replace the existing session. You must either end the current session before starting a new one. Or explicitly request that the current session be ended as part of starting the new session.
-
-This ensures that the project's current execution state remains explicit and predictable.
-
-### Session Notes
-
-Session notes provide a short description of the purpose or context of a session.
-
-They are intended to provide enough context to understand what a session was about without requiring the reader to inspect every log associated with it.
-
-For example:
-
-```text
-Implementing OAuth authentication flow
-```
-
-or:
-
-```text
-Investigating intermittent API timeout
-```
-
-Session notes are limited to **300 characters**.
-
 ## Sessions and Tasks
 
 Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A session can continue across multiple tasks. Similarly a task can be completed in multiple sessions.
