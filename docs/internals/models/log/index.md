@@ -13,10 +13,10 @@ The log data model contains the information CTX uses to describe the event, when
 | --- | --- | --- | --- |
 | id | String | Yes | Unique identifier for the log. |
 | note | String | Yes | The content of the log. |
-| timestamp | Date-Time | Yes | Timestamp at which the log was recorded. |
+| timestamp | Date | Yes | Timestamp at which the log was recorded. |
 | tag | Enum | Yes | Classification of the log. |
 | referenceType | Enum | No | Type of execution record referenced by the log. |
-| referenceId | UUID | No | Identifier of the referenced session or task. |
+| referenceId | String | No | Identifier of the referenced session or task. |
 
 ## Field Details
 

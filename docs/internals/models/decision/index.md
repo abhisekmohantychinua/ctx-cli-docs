@@ -15,9 +15,9 @@ The decision data model contains the information CTX uses to identify the decisi
 | topic | String | Yes | Subject or area to which the decision relates. |
 | reasoning | String | No | Explanation of the decision and the reasoning behind it. |
 | tags | List of String | No | Optional collection of tags used to classify the decision. |
-| timestamp | Date-Time | Yes | Timestamp at which the decision was recorded. |
+| timestamp | Date | Yes | Timestamp at which the decision was recorded. |
 | referenceType | Enum | No | Type of execution record referenced by the decision. |
-| referenceId | UUID | No | Identifier of the referenced session or task. |
+| referenceId | String | No | Identifier of the referenced session or task. |
 
 ## Field Details
 
@@ -29,7 +29,6 @@ The decision data model contains the information CTX uses to identify the decisi
 ### topic
 
 - `topic` identifies the subject or area of the decision.
-- A topic is useful for grouping and retrieving related decisions, but a decision can exist without one.
 - It is required and limited to **150 characters**.
 
 ### reasoning
