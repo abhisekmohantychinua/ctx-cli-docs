@@ -11,7 +11,7 @@ The session data model contains the information CTX uses to identify the session
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| id | String | Yes | Unique identifier for the session. |
+| id | [Identifier](../../identifier/) | Yes | Unique identifier for the session. |
 | notes | String | No | Short notes describing the purpose or context of the session. |
 | createdAt | Date | Yes | Timestamp at which the session started. |
 | endedAt | Date | No | Timestamp at which the session ended. `null` while the session is active. |
@@ -44,8 +44,10 @@ The session data model contains the information CTX uses to identify the session
 
 - The session status indicates whether the session is currently active.
 - Supported values are:
+
     | Value | Meaning |
     | --- | --- |
     | ACTIVE | The session is currently active. |
     | INACTIVE | The session has ended. |
+
 - A project can have at most one `ACTIVE` session at a time.
