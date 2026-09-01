@@ -11,13 +11,13 @@ The decision data model contains the information CTX uses to identify the decisi
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| id | String | Yes | Unique identifier for the decision. |
+| id | [Identifier](../../identifier/) | Yes | Unique identifier for the decision. |
 | topic | String | Yes | Subject or area to which the decision relates. |
 | reasoning | String | No | Explanation of the decision and the reasoning behind it. |
 | tags | List of String | No | Optional collection of tags used to classify the decision. |
 | timestamp | Date | Yes | Timestamp at which the decision was recorded. |
 | referenceType | Enum | No | Type of execution record referenced by the decision. |
-| referenceId | String | No | Identifier of the referenced session or task. |
+| referenceId | [Identifier](../../identifier/) | No | Identifier of the referenced session or task. |
 
 ## Field Details
 
@@ -53,10 +53,12 @@ The decision data model contains the information CTX uses to identify the decisi
 
 - `referenceType` identifies the type of project execution record referenced by the decision.
 - Supported values are:
+
     | Value | Meaning |
     | --- | --- |
     | SESSION | The decision references a project session. |
     | TASK | The decision references a task. |
+
 - The field is optional.
 
 ### referenceId

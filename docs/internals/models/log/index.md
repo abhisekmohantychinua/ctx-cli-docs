@@ -11,12 +11,12 @@ The log data model contains the information CTX uses to describe the event, when
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| id | String | Yes | Unique identifier for the log. |
+| id | [Identifier](../../identifier/) | Yes | Unique identifier for the log. |
 | note | String | Yes | The content of the log. |
 | timestamp | Date | Yes | Timestamp at which the log was recorded. |
 | tag | Enum | Yes | Classification of the log. |
 | referenceType | Enum | No | Type of execution record referenced by the log. |
-| referenceId | String | No | Identifier of the referenced session or task. |
+| referenceId | [Identifier](../../identifier/) | No | Identifier of the referenced session or task. |
 
 ## Field Details
 
@@ -40,22 +40,26 @@ The log data model contains the information CTX uses to describe the event, when
 
 - `tag` identifies the kind of information captured by the log.
 - Supported values are:
+
     | Value | Meaning |
     | --- | --- |
     | NOTE | A general observation or useful piece of information. |
     | IDEA | A possible improvement, approach, or thought worth preserving. |
     | ISSUE | A problem or unexpected behavior encountered during work. |
     | ATTEMPT | An approach that was tried during execution. |
+
 - The tag describes the nature of the message without changing its content.
 
 ### referenceType
 
 - `referenceType` identifies the kind of project record referenced by the log.
 - Supported values are:
+
     | Value | Meaning |
     | --- | --- |
     | SESSION | The log references a project session. |
     | TASK | The log references a task. |
+
 - The field is optional.
 
 ### referenceId

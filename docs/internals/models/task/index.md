@@ -20,7 +20,7 @@ These representations serve different purposes. A task contains its own informat
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| id | String | Yes | Unique identifier for the task. |
+| id | [Identifier](../../identifier/) | Yes | Unique identifier for the task. |
 | task | String | Yes | Short name identifying the work. |
 | description | String | No | Additional context describing the work. |
 | status | Enum | Yes | Current execution state of the task. |
@@ -56,6 +56,7 @@ The complete task is stored as a task record. Subtasks are not stored as complet
 
 - The status indicates the current execution state of the task.
 - Supported values are:
+
     | Value | Meaning |
     | --- | --- |
     | PENDING | The task exists but work has not started. |
@@ -91,7 +92,7 @@ A **TaskReference** is a lightweight reference to another task. It contains only
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| id | String | Yes | Unique identifier for the referenced task. |
+| id | [Identifier](../../identifier/) | Yes | Unique identifier for the referenced task. |
 
 The references do not contain copies of the referenced tasks. This is how CTX represents task hierarchy without embedding complete task records inside other tasks. For example, a parent task may contain references to T2 and T3, while the actual task records remain separate. This distinction is important because a reference answers which task is related to this task. But not what is that task.
 
