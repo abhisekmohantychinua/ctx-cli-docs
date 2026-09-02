@@ -23,7 +23,7 @@ const config: Config = {
         rel: "icon",
         id: "light-theme-favicon",
         type: "image/x-icon",
-        href: "/img/light-32x32.ico",
+        href: "/favicon.ico",
         media: "(prefers-color-scheme: light)",
       },
     },
@@ -33,7 +33,7 @@ const config: Config = {
         rel: "icon",
         id: "dark-theme-favicon",
         type: "image/x-icon",
-        href: "/img/dark-32x32.ico",
+        href: "/favicon-dark.ico",
         media: "(prefers-color-scheme: dark)",
       },
     },
@@ -105,11 +105,12 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "My Site",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/logo.png",
+        srcDark: "img/logo-dark.png",
       },
+      hideOnScroll: true,
       items: [
         {
           type: "docSidebar",
