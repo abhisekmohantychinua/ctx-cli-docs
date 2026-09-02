@@ -1,30 +1,46 @@
-/**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
- */
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap");
 
-/* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f6f3ec;
+
+  --ifm-font-color-base: #0f1115;
+
+  --ifm-color-primary: #824d00;
+  --ifm-color-primary-dark: #7d4900;
+  --ifm-color-primary-darker: #754400;
+  --ifm-color-primary-darkest: #6a3d00;
+  --ifm-color-primary-light: #8b5500;
+  --ifm-color-primary-lighter: #955d00;
+
+  --ifm-color-primary-lightest: #9c6200;
+
+  --ifm-font-family-base: "Geist", monospace;
+  --ifm-font-family-monospace: "Geist Mono", monospace;
+}
+/* CTX typography */
+
+[data-theme="dark"] {
+  --ifm-background-color: #1a1d22;
+  --ifm-background-surface-color: #0f1115;
+
+  --ifm-font-color-base: #f6f3ec;
+
+  --ifm-color-primary: #f0b35a;
+  --ifm-color-primary-dark: #d99a3d;
+  --ifm-color-primary-darker: #c9872d;
+  --ifm-color-primary-darkest: #b8781f;
+  --ifm-color-primary-light: #f4c06e;
+  --ifm-color-primary-lighter: #f8d18f;
+  --ifm-color-primary-lightest: #fbe1b5;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+.navbar__logo {
+  height: 2.5rem;
+  margin-right: 0;
+}
+
+.sidebarLogo_isFc img {
+  height: 2.5rem !important;
+  margin-right: 0 !important;
 }

@@ -7,7 +7,37 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "My Site",
   tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  headTags: [
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        id: "site-favicon",
+        type: "image/x-icon",
+        href: "/favicon.ico",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        id: "light-theme-favicon",
+        type: "image/x-icon",
+        href: "/favicon.ico",
+        media: "(prefers-color-scheme: light)",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        id: "dark-theme-favicon",
+        type: "image/x-icon",
+        href: "/favicon-dark.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+    },
+  ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -75,11 +105,12 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: "My Site",
       logo: {
         alt: "My Site Logo",
-        src: "img/logo.svg",
+        src: "img/logo.png",
+        srcDark: "img/logo-dark.png",
       },
+      hideOnScroll: true,
       items: [
         {
           type: "docSidebar",
@@ -88,21 +119,16 @@ const config: Config = {
           label: "Docs",
         },
         { to: "/blog", label: "Blog", position: "left" },
-        {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
-          position: "right",
-        },
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: [
         {
           title: "Docs",
           items: [
             {
-              label: "Docs",
+              label: "Introduction",
               to: "/docs/introduction",
             },
           ],
@@ -138,11 +164,12 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Abhisek Mohanty. All rights reserved.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.gruvboxMaterialLight,
+      darkTheme: prismThemes.gruvboxMaterialDark,
+      additionalLanguages: ["java", "powershell", "json"],
     },
   } satisfies Preset.ThemeConfig,
 
