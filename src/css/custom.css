@@ -39,3 +39,8 @@
   height: 2.5rem;
   margin-right: 0;
 }
+
+.sidebarLogo_isFc img {
+  height: 2.5rem !important;
+  margin-right: 0 !important;
+}

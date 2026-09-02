@@ -119,21 +119,16 @@ const config: Config = {
           label: "Docs",
         },
         { to: "/blog", label: "Blog", position: "left" },
-        {
-          href: "https://github.com/facebook/docusaurus",
-          label: "GitHub",
-          position: "right",
-        },
       ],
     },
     footer: {
-      style: "dark",
+      style: "light",
       links: [
         {
           title: "Docs",
           items: [
             {
-              label: "Docs",
+              label: "Introduction",
               to: "/docs/introduction",
             },
           ],
@@ -169,7 +164,7 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Abhisek Mohanty. All rights reserved.`,
     },
     prism: {
       theme: prismThemes.gruvboxMaterialLight,
