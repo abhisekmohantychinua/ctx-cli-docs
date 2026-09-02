@@ -7,7 +7,37 @@ import type * as Preset from "@docusaurus/preset-classic";
 const config: Config = {
   title: "My Site",
   tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  headTags: [
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        id: "site-favicon",
+        type: "image/x-icon",
+        href: "/favicon.ico",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        id: "light-theme-favicon",
+        type: "image/x-icon",
+        href: "/img/light-32x32.ico",
+        media: "(prefers-color-scheme: light)",
+      },
+    },
+    {
+      tagName: "link",
+      attributes: {
+        rel: "icon",
+        id: "dark-theme-favicon",
+        type: "image/x-icon",
+        href: "/img/dark-32x32.ico",
+        media: "(prefers-color-scheme: dark)",
+      },
+    },
+  ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -141,8 +171,9 @@ const config: Config = {
       copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+      theme: prismThemes.gruvboxMaterialLight,
+      darkTheme: prismThemes.gruvboxMaterialDark,
+      additionalLanguages: ["java", "powershell", "json"],
     },
   } satisfies Preset.ThemeConfig,
 
