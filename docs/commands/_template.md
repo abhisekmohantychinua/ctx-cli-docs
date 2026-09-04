@@ -93,6 +93,7 @@ e.g.
 <!-- 
 1. One or more paragraph about how it works.
 2. Only list are allowed as other style than paragraph.
+3. If any relevant or detailed information is available under other pages. We can  place admonitions and a link to that page too.
  -->
 
 ## Examples
