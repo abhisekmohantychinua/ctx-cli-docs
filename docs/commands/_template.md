@@ -66,6 +66,7 @@ e.g.
 <!-- 
 1. This wil be a list of subcommands. We can remove the section entirely if has no subcommand.
 2. Commands will be written in specific format which links to that page. With the short description.
+3. Important link should be `./status/` instead of `../status/`
 
 e.g.
 ### Subcommands
