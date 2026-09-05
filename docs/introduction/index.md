@@ -17,6 +17,12 @@ CTX keeps track of the important parts of ongoing development work. Everything i
 3. **Logs** - short notes about events, ideas, issues, observations, and attempts
 4. **Decisions** - important decisions and the reasoning behind them
 
+{/*
+<!-- 
+TODO: Whats an execution context? With admonitions.
+ -->
+*/}
+
 ## Why CTX CLI?
 
 Software development produces much more than code.
