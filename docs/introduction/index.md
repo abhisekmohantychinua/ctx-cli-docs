@@ -17,11 +17,22 @@ CTX keeps track of the important parts of ongoing development work. Everything i
 3. **Logs** - short notes about events, ideas, issues, observations, and attempts
 4. **Decisions** - important decisions and the reasoning behind them
 
-{/*
-<!-- 
-TODO: Whats an execution context? With admonitions.
- -->
-*/}
+## What Is an Execution Context?
+
+Execution context is the information around the work that helps explain what is happening in a project.
+
+It is not the source code itself. It is the surrounding context that gives the work meaning: what you are working on, when you started working on it, what you tried, what happened, what problems you encountered, and why you made certain decisions.
+
+For example, knowing that a project has a task called **Move validation into the domain layer** tells you what needs to be done. Knowing that the task is currently in progress, that a particular approach was already tried and did not work, and that a decision was made to keep validation inside the domain layer tells you much more about the actual state of the work.
+
+:::tip[Think of it as the context around the code]
+**Source code tells you what the project is.**  
+**Execution context tells you what is happening with the project.**
+:::
+
+Execution context is naturally produced while development happens. It changes as work progresses, sessions begin and end, approaches are tried, problems are discovered, and decisions are made.
+
+That connected information forms the project's execution context, a record of the work that is happening around the code, not a replacement for the code itself.
 
 ## Why CTX CLI?
 
