@@ -10,6 +10,10 @@ The code returned by CTX is the same code used to identify the error. This makes
 
 A successful command returns `0`. When a command fails, CTX returns a non-zero code that identifies the reason for the failure.
 
+:::info
+**Error code** identifies what went wrong. **Exit code** is the value returned to the shell after the command finishes. In CTX CLI, they are always the same.
+:::
+
 ## How Exit Codes Work
 
 Every CTX command ends with an exit code.
