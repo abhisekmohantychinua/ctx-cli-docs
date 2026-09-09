@@ -447,8 +447,6 @@ ctx task query -f status -x equals:PENDING --page 2 --size 20
 
 The default page is `1` and the default page size is `10`.
 
-Page numbers are one-based at the CLI level. CTX converts the requested page to the zero-based page representation used internally by the persistence layer.
-
 A page size must be greater than zero.
 
 Pagination is independent of filtering. CTX first determines the records matching the expression, then applies the requested page and size to that result set.
