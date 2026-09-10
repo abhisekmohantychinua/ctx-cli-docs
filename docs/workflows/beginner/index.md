@@ -32,7 +32,7 @@ flowchart TB
 
 Begin with the requirements of the project. Understand what the project needs to accomplish before deciding how the work will be implemented. At this stage, the requirements describe the desired outcome. The next step is to turn that understanding into concrete work.
 
-Decompose the requirements into tasks that represent meaningful pieces of work. For a beginner, keep the task structure flat. Avoid trying to model the entire project hierarchy in detail. For example:
+Decompose the requirements into tasks that represent meaningful pieces of work. Keep the initial task list simple. Each task should represent a meaningful piece of work that can be started and completed independently.For example:
 
 1. Build user authentication
 2. Add user registration
@@ -224,6 +224,6 @@ By the end of a project, CTX has accumulated a structured record of the work tha
 - which important decisions were made and why.
 - where unfinished work can be resumed.
 
-This gives the project an execution history alongside its source code and version-control history. More importantly, returning to the project does not require reconstructing everything from memory.
+This gives the project an execution history alongside its source code and version-control history. The result is a record of planned work, active work, completed work, work periods, useful observations, and important decisions. When work resumes later, that record provides the starting point for continuing the project.
 
 For a more robust workflow that uses the broader capabilities of CTX, continue with the [Intermediate Development Workflow](../intermediate/).
