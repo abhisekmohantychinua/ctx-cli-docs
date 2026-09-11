@@ -1,53 +1,25 @@
 ---
-title: First Project
+sidebar_position: 2
 description: Build a small Python CLI API uptime monitor with CTX and an AI coding agent.
 ---
 
 # First Project
 
-In this guide, you will build a small Python CLI called `apiwatch`.
-
-`apiwatch` checks whether configured API endpoints are healthy, records results, and prints a small report.
-
-But the real goal is bigger than the tool.
+In this guide, you will build a small Python CLI called `apiwatch` while working with CTX and an AI coding agent. `apiwatch` checks whether configured API endpoints are healthy, records results, and prints a small report. The tool is only part of the experience. The real goal is to see how a project moves through real work: planning, implementation, interruption, resumption, review, and completion.
 
 You will experience a realistic development flow where:
 
-- you start a project;
-- you initialize CTX;
-- you start and end work sessions;
-- you create tasks;
-- you ask AI to implement focused pieces of work;
-- you record logs, issues, attempts, and decisions;
-- you stop midway;
-- you resume later using project context instead of memory;
-- you finish with a readable history of the work.
+- you start a project
+- you initialize CTX
+- you start and end work sessions
+- you create tasks
+- you ask AI to implement focused pieces of work
+- you record logs, issues, attempts, and decisions
+- you stop midway
+- you resume later using project context instead of memory
+- you finish with a readable history of the work
 
-This is the kind of work CTX is designed for.
-
-Source code tells you what the project is. CTX tells you what is happening with the project.
-
-## Assumptions To Confirm
-
-This guide is based on the current CTX documentation at:
-
-- [Introduction](https://ctx.mohantyabhisek.com/docs/introduction)
-- [Commands](https://ctx.mohantyabhisek.com/docs/commands)
-- [AI](https://ctx.mohantyabhisek.com/docs/ai)
-- [Views](https://ctx.mohantyabhisek.com/docs/advanced/views)
-- [Querying](https://ctx.mohantyabhisek.com/docs/advanced/querying)
-
-Before publishing, confirm these assumptions:
-
-- `ctx init` initializes project context in the current project.
-- CTX stores project context in `.ctxcli`.
-- `ctx start` is the short form for starting a session.
-- `ctx session end` ends the active session.
-- `ctx task create`, `ctx task start`, `ctx task complete`, and `ctx task block` are the current task lifecycle commands.
-- `ctx log add` records notes, ideas, issues, and attempts.
-- `ctx decision create` records project decisions.
-- `ctx generate instruction --preset=codex` creates `AGENTS.md`.
-- A dedicated `ctx export` command is not currently listed in the command index. This guide therefore uses documented JSON and pretty JSON views for history export.
+This is the kind of work CTX is designed for. Source code tells you what the project is. CTX tells you what is happening with the project.
 
 ## What You Will Build
 
@@ -62,18 +34,21 @@ python -m apiwatch report
 
 The first version will:
 
-- store endpoints locally;
-- check each endpoint with a timeout;
-- treat HTTP `2xx` responses as healthy;
-- treat timeouts, connection errors, and non-`2xx` responses as unhealthy;
-- record check results in local history;
-- print a simple report;
-- include tests for the core behavior.
+- store endpoints locally
+- check each endpoint with a timeout
+- treat HTTP `2xx` responses as healthy
+- treat timeouts, connection errors, and non-`2xx` responses as unhealthy
+- record check results in local history
+- print a simple report
+- include tests for the core behavior
 
 Keep the project bounded. Do not add alerts, scheduling, authentication, dashboards, databases, deployment, or background workers.
 
-tip
-A good first project should be useful enough to feel real, but small enough that the workflow remains visible.
+:::tip[Why this project is intentionally small]
+
+The project is useful enough to involve real decisions, tests, failures, and follow-up work. It is still small enough that you can see the complete development process without spending days building infrastructure.
+
+:::
 
 ## Before You Start
 
@@ -125,8 +100,11 @@ At this point, CTX has created project context for `apiwatch`.
 
 CTX stores the execution context in the project itself, inside `.ctxcli`. That means the context can move with the project, be inspected with the project, and be used by both you and your AI agent.
 
-note
-Git records code history. CTX records execution context: sessions, tasks, logs, and decisions.
+:::note
+
+Git records changes to the code. CTX records the work around those changes: sessions, tasks, logs, and decisions.
+
+:::
 
 ## Generate AI Instructions
 
@@ -148,8 +126,9 @@ ctx generate instruction --path=.ai/ctx-instructions.md
 
 The instruction file does not contain the current project context. It teaches the AI agent how to retrieve that context from CTX while working.
 
-important
+:::important
 CTX instructions are stable guidance for the AI. The changing project context still lives in `.ctxcli`.
+:::
 
 ## Session 1: Start The Work
 
@@ -205,7 +184,7 @@ Add a short log:
 ctx log add --tag=NOTE --note="Starting with endpoint storage and add/list commands before implementing HTTP checks." --task
 ```
 
-## Ask AI To Scaffold The Project
+### Ask AI To Scaffold The Project
 
 Now ask your AI coding agent to implement only the active task.
 
@@ -243,10 +222,11 @@ Record that AI handoff in CTX:
 ctx log add --tag=ATTEMPT --note="Asked AI to scaffold apiwatch with add/list commands, local endpoint storage, and initial tests." --task
 ```
 
-note
+:::note
 This is where CTX starts to feel different from a normal chat. The AI prompt is no longer only buried in a conversation. A short record of the handoff now belongs to the task itself.
+:::
 
-## Review The Result
+### Review The Result
 
 After AI finishes, inspect the files.
 
@@ -314,7 +294,7 @@ git add .
 git commit -m "Scaffold apiwatch CLI"
 ```
 
-## Pause On Purpose
+### Pause On Purpose
 
 Stop here for a while.
 
@@ -322,8 +302,9 @@ Close the terminal, switch to another project, or take a break. This is part of 
 
 When you return, do not rely on the previous AI chat as your memory. Use CTX.
 
-tip
+:::tip
 The value of CTX is easier to feel after interruption. You should not need to reconstruct the project from scattered memory, old prompts, and half-remembered code.
+:::
 
 Research on developer work has repeatedly shown that interruptions and task switching create recovery cost. For example, Microsoft Research reported that developers often struggle with understanding code rationale and frequent task switching. Research on interrupted programming tasks also studied how developers use notes and activity cues to resume work.
 
@@ -380,10 +361,11 @@ Record the resumption:
 ctx log add --tag=NOTE --note="Resumed after a break by reading ctx status, task tree, recent logs, and decisions before asking AI to continue." --task
 ```
 
-important
+:::important
 This is the core experience: the project explains itself before you ask AI to continue.
+:::
 
-## Ask AI To Continue
+### Ask AI To Continue
 
 Prompt the AI:
 
@@ -429,7 +411,7 @@ Record the AI handoff:
 ctx log add --tag=ATTEMPT --note="Asked AI to implement check/report commands, health classification, result history, and tests." --task
 ```
 
-## Make A Real Product Decision
+### Make A Real Product Decision
 
 After the AI implements checks, review the behavior.
 
@@ -591,7 +573,7 @@ git add .
 git commit -m "Finish apiwatch v1"
 ```
 
-## Review The Project History
+### Review The Project History
 
 Now inspect what CTX captured.
 
@@ -643,7 +625,7 @@ View decisions:
 ctx decision query -f timestamp -x before::now --sort-by=timestamp --sort=DESC
 ```
 
-## Export The History
+### Export The History
 
 CTX commands support JSON and pretty JSON views for structured output.
 
@@ -668,30 +650,6 @@ ctx decision query -f timestamp -x before::now --sort-by=timestamp --sort=ASC --
 If you want to keep the complete CTX project context with the repository, preserve the `.ctxcli` directory according to your project policy.
 
 For example, you may choose to commit `.ctxcli` when the execution history should travel with the project, or ignore it when the context should remain local.
-
-warning
-A dedicated `ctx export` command is not listed in the current command documentation. If CTX later adds one, this section should be updated to use the official export command.
-
-## What You Should Feel At The End
-
-At the end of this guide, you should have more than a small Python CLI.
-
-You should have a project that can answer:
-
-- What was I building?
-- When did I work on it?
-- What task was active?
-- What did I ask AI to do?
-- What did I try?
-- What failed or needed correction?
-- What decisions shaped the final behavior?
-- Where did I stop?
-- How did I resume?
-- Why is the first version considered complete?
-
-That is the product experience.
-
-CTX is not trying to replace Git, your AI assistant, your editor, or your task manager. It gives the evolving execution context a place to live with the project.
 
 ## Recap
 
