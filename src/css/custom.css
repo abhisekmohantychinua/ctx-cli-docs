@@ -44,3 +44,7 @@
   height: 2.5rem !important;
   margin-right: 0 !important;
 }
+
+.inline-icon {
+  vertical-align: -0.125em;
+}
