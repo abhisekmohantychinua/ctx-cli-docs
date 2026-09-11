@@ -1,0 +1,231 @@
+---
+sidebar_position: 1
+toc_max_heading_level: 2
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import DownloadButton from "@site/src/components/DownloadButton";
+
+# Installation
+
+CTX CLI is distributed as a native executable. Download the archive for your operating system and CPU architecture, extract it, and add the directory containing `ctx` to your system `PATH`.
+
+## Supported Platforms
+
+| Operating system | Architecture          | Release archive          |
+| ---------------- | --------------------- | ------------------------ |
+| Linux            | AMD64                 | `ctx-linux-amd64.tar.gz` |
+| Linux            | ARM64                 | `ctx-linux-arm64.tar.gz` |
+| Windows          | AMD64                 | `ctx-windows-amd64.zip`  |
+| macOS            | AMD64 / Intel         | `ctx-macos-amd64.tar.gz` |
+| macOS            | ARM64 / Apple Silicon | `ctx-macos-arm64.tar.gz` |
+
+Windows ARM64 is not currently supported.
+
+## Download CTX
+
+Download the latest CTX CLI release for your operating system and CPU architecture.
+
+<DownloadButton />
+
+## Add CTX to PATH
+
+Adding CTX to `PATH` allows you to run `ctx` from any terminal without entering the full path to the executable.
+
+Choose your operating system below.
+
+<Tabs >
+  <TabItem  value="linux" label="Linux">
+    ### 1. Extract the archive
+
+    Extract the downloaded archive:
+
+    ```bash
+    tar -xzf ctx-linux-amd64.tar.gz
+    ```
+
+    For ARM64, use the ARM64 archive name instead.
+
+    ### 2. Move CTX to an installation directory
+
+    Create a local binary directory if it does not already exist:
+
+    ```bash
+    mkdir -p "$HOME/.local/bin"
+    ```
+
+    Move the executable into it:
+
+    ```bash
+    mv ctx "$HOME/.local/bin/ctx"
+    ```
+
+    Make the executable runnable:
+
+    ```bash
+    chmod +x "$HOME/.local/bin/ctx"
+    ```
+
+    ### 3. Add the directory to PATH
+
+    Add the following line to your shell configuration file.
+
+    For Bash:
+
+    ```bash
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.bashrc"
+    ```
+
+    For Zsh:
+
+    ```bash
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.zshrc"
+    ```
+
+    Reload your shell configuration:
+
+    ```bash
+    source "$HOME/.bashrc"
+    ```
+
+    Or, for Zsh:
+
+    ```bash
+    source "$HOME/.zshrc"
+    ```
+
+    If your shell already includes `$HOME/.local/bin` in `PATH`, no change is required.
+
+  </TabItem>
+
+  <TabItem value="windows" label="Windows">
+    ### 1. Extract the archive
+
+    Extract `ctx-windows-amd64.zip` into a directory of your choice.
+
+    For example:
+
+    ```text
+    C:\Tools\ctx
+    ```
+
+    The directory should contain:
+
+    ```text
+    C:\Tools\ctx\ctx.exe
+    ```
+
+    ### 2. Add the directory to PATH
+
+    1. Open the Windows Start menu.
+    2. Search for `Environment Variables`.
+    3. Select **Edit the system environment variables**.
+    4. Open **Environment Variables**.
+    5. Under **User variables**, select `Path`.
+    6. Select **Edit**.
+    7. Select **New**.
+    8. Add the directory containing `ctx.exe`.
+
+    For the example above, add:
+
+    ```text
+    C:\Tools\ctx
+    ```
+
+    9. Confirm the changes by selecting **OK**.
+
+    Close and reopen your terminal so it can use the updated `PATH`.
+
+  </TabItem>
+
+  <TabItem value="macos" label="macOS">
+    ### 1. Extract the archive
+
+    Extract the downloaded archive:
+
+    ```bash
+    tar -xzf ctx-macos-arm64.tar.gz
+    ```
+
+    Use `ctx-macos-amd64.tar.gz` for an Intel Mac.
+
+    ### 2. Move CTX to an installation directory
+
+    Create a local binary directory:
+
+    ```bash
+    mkdir -p "$HOME/.local/bin"
+    ```
+
+    Move the executable into it:
+
+    ```bash
+    mv ctx "$HOME/.local/bin/ctx"
+    ```
+
+    Make the executable runnable:
+
+    ```bash
+    chmod +x "$HOME/.local/bin/ctx"
+    ```
+
+    ### 3. Add the directory to PATH
+
+    macOS commonly uses Zsh. Add the following line to `~/.zshrc`:
+
+    ```bash
+    echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME/.zshrc"
+    ```
+
+    Reload the configuration:
+
+    ```bash
+    source "$HOME/.zshrc"
+    ```
+
+    If you use Bash instead, add the same line to `~/.bash_profile` and reload that file.
+
+  </TabItem>
+</Tabs>
+
+## Verify the Installation
+
+Open a new terminal and run:
+
+```bash
+ctx
+```
+
+CTX should display its startup information and version.
+
+```bash
+   ____ _______  __   ____ _     ___
+  / ___|_   _\ \/ /  / ___| |   |_ _|
+ | |     | |  \  /  | |   | |    | |
+ | |___  | |  /  \  | |___| |___ | |
+  \____| |_| /_/\_\  \____|_____|___|
+
+
+ctx v0.1.0-SNAPSHOT
+
+Project execution context for developers and AI.
+Keep your sessions, tasks, logs, and decisions together
+as persistent context for your work.
+
+For more information on how to use CTX CLI, visit: https://ctx.mohantyabhisek.com/docs/commands/ctx
+
+Run 'ctx --help' for usage information.
+```
+
+You can also display only the installed version:
+
+```bash
+ctx -V
+```
+
+If the version is displayed, CTX is installed and available through your terminal.
+
+```bash
+0.1.0-SNAPSHOT
+```
