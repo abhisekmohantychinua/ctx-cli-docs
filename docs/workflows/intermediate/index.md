@@ -2,342 +2,577 @@
 sidebar_position: 2
 ---
 
-# Intermediate
 
-## Development Workflow with CTX
+# Intermediate Development Workflow
 
-A robust development workflow for projects where the work evolves as development progresses.
+This workflow helps a small development team deliver a larger project that contains multiple requirements, connected parts, and changing priorities. It is useful when the work must be divided into several sections, completed across multiple sessions, and repeatedly reviewed as new information becomes available.
 
-At this level, CTX is used not only to record work, but to maintain a useful representation of what the project currently requires, what is being worked on, what has changed, and what happened during development.
+Unlike a small, straightforward project, the entire implementation is not planned and completed in one continuous sequence. The team works through manageable sections, keeps dependent tasks waiting, executes independent tasks separately, and evaluates the project before deciding what to do next.
 
-The task structure can evolve as understanding changes. Tasks can be reorganized, blocked, resumed, or completed. Sessions independently record the actual periods of work. Logs and decisions preserve useful context and can be linked to the task or session from which they originated.
-
-The workflow remains flexible. CTX does not prescribe how a project must be structured or how Git branches must map to tasks. The developer chooses the structure that best represents the project.
-
-The same workflow can be followed by both human and AI.
+## The Process
 
 ```mermaid
-flowchart TB
-    A[Requirements] --> B[Model the work]
-    B --> C[Create task structure]
-    C --> D[Start a session]
-    D --> E[Work on tasks]
-    E --> F{Something changes?}
-    F -->|No| E
-    F -->|New understanding| G[Create or reorganize tasks]
-    F -->|Blocked| H[Block task and continue elsewhere]
-    F -->|Useful context| I[Record log or decision]
-    G --> E
-    H --> E
-    I --> E
-    E --> J{Task complete?}
-    J -->|No| E
-    J -->|Yes| K[Complete task]
-    K --> E
-    E --> L[End session]
-    L --> M[Resume in another session]
-    M --> E
+flowchart TD
+    A[Establish project goal]
+    B[Break requirements into hierarchy]
+    C[Define technical direction]
+    D[Prepare a work section]
+    E[Execute independent tasks]
+    F[Integrate and validate]
+    G[Review section and feedback]
+    H[Evaluate project context]
+    I{Project complete?}
+    J[Prepare next section]
+    K[Release and handover]
+
+    A --> B
+    B --> C
+    C --> D
+    D --> E
+    E --> F
+    F --> G
+    G --> H
+    H --> I
+    I -- No --> J
+    J --> D
+    I -- Yes --> K
+
+    B -. Requirement changes .-> A
+    C -. Design uncertainty .-> B
+    E -. Blocker or discovery .-> D
+    F -. Integration issue .-> E
+    G -. New bug or rejected scope .-> B
+    H -. Unresolved decision .-> C
 ```
 
-## 1. Model the work
+### Establish the Project Goal
 
-Start with the project requirements and determine how the work should be represented.
+Start by understanding the broader outcome the team is trying to achieve.
 
-Unlike the beginner workflow, the task structure does not have to remain flat. A larger piece of work can be represented using parent and child tasks when the hierarchy makes the work easier to understand and manage.
+Identify:
 
-There is no single structure that fits every project.
+- The problem being solved
+- The intended users
+- The expected outcome
+- The major capabilities
+- The known constraints
+- The initial project boundaries
+- The questions that still need investigation
 
-For example, a feature might be organized by capability:
+Do not attempt to create every implementation task immediately. At this stage, the goal is to establish a shared direction and identify the areas that need further refinement.
 
-```text
-Authentication
-+-- Registration
-+-- Login
-+-- Password reset
-```
-
-Another project might be better represented by stages:
-
-```text
-Authentication
-+-- Design
-+-- Backend
-+-- Frontend
-+-- Testing
-```
-
-The important part is not the shape of the hierarchy. It is whether the structure provides a useful representation of the work.
-
-Create the initial tasks in CTX:
+If the project already uses CTX, begin by retrieving its current state:
 
 ```bash
-ctx task create -t="Authentication"
-ctx task create -t="Registration" <AUTHENTICATION-ID>
-ctx task create -t="Login" <AUTHENTICATION-ID>
-ctx task create -t="Password reset" <AUTHENTICATION-ID>
+ctx status
 ```
 
-The task tree now represents the current understanding of the work.
-
-The structure is not permanent. As development reveals more information, change it to reflect the new understanding.
-
-## 2. Start a session
-
-When beginning a period of work, start a session:
+Use focused commands only when the overview leaves an important question unanswered:
 
 ```bash
-ctx session start
+ctx task tree
+ctx logs --count=20
+ctx decision query -x contains:project
 ```
 
-A session represents the actual period in which work takes place.
-
-Sessions and tasks serve different purposes:
-
-- A task represents work that needs to be done.
-- A session represents a period of actual work.
-- A task can span multiple sessions.
-- A session can contain work on multiple tasks.
-
-A session is therefore not a container for tasks. It is part of the project's work history. For example, a task might begin during one session, continue during another, and be completed during a third. The task describes the work. The sessions describe when the work actually happened.
-
-## 3. Work through the task structure
-
-Choose the task you want to work on and start it:
+If the project does not yet have CTX context, initialize it explicitly:
 
 ```bash
-ctx task start <TASK-ID>
+ctx init
 ```
 
-Work normally using the tools appropriate for the project. As development progresses, the task structure should reflect the current state of the work rather than an outdated plan.
-
-For example, a task that initially looked simple may turn out to contain several distinct pieces of work. Create those tasks when the distinction becomes useful:
+Record important initial assumptions or project constraints as short logs. For example:
 
 ```bash
-ctx task create -t="Token validation" <AUTHENTICATION-ID>
-ctx task create -t="Session management" <AUTHENTICATION-ID>
+ctx log add --tag=NOTE --note="The first delivery must support existing users without changing the current API contract."
 ```
 
-Likewise, tasks can be moved when their relationship to the rest of the work becomes clearer:
+See the [context guide](../guides/context.md)  and [logging guide](../guides/logging.md) .
+
+The result of this stage should be a clear project goal and an initial understanding of the major areas of work.
+
+### Break Requirements into a Hierarchy
+
+Convert the broad project goal into requirements, capabilities, and executable tasks.
+
+A larger project should not become one flat task list. Use a hierarchy that reflects how the work is related:
+
+```txt
+Project
+├── Capability A
+│   ├── Requirement A1
+│   │   ├── Design
+│   │   ├── Implementation
+│   │   └── Validation
+│   └── Requirement A2
+├── Capability B
+│   ├── Requirement B1
+│   └── Requirement B2
+└── Shared Foundation
+    ├── Infrastructure
+    ├── Common rules
+    └── Integration support
+```
+
+For each requirement, clarify:
+
+- Expected behavior
+- Acceptance conditions
+- Scope boundaries
+- Dependencies
+- Priority
+- Whether the work can be delivered independently
+- Whether the requirement is ready for implementation
+
+Create parent tasks for meaningful requirements and child tasks for their deliverables:
 
 ```bash
-ctx task move <TASK-ID> <NEW-PARENT-ID>
+ctx task create --task="Implement account management"
+ctx task create --task="Add account persistence" --parent=<parent-task-id>
+ctx task create --task="Add account API" --parent=<parent-task-id>
+ctx task create --task="Add account validation" --parent=<parent-task-id>
 ```
 
-The goal is not to maintain a perfect plan from the beginning. The goal is to keep the task structure useful as the project evolves.
+Use [task management](../guides/tasks.md)  to review task creation, parent relationships, and task hierarchy.
 
-## 4. Manage changing work
+Do not force every future detail into the hierarchy. Requirements that are not yet understood can remain broad until their delivery section approaches.
 
-Development rarely follows the original plan exactly. A task may become larger than expected, a new piece of work may be discovered, or an existing task may belong somewhere else in the hierarchy. Update the task structure when that happens.
+A requirement may later be split, refined, deferred, rejected, or replaced. Preserve those changes rather than silently rewriting the original task.
 
-### Add newly discovered work
+The result should be a structured project backlog that shows how the major requirements relate to one another.
 
-If development reveals additional work, create a task for it instead of leaving it only in notes or memory:
+### Define the Technical Direction
 
-```bash
-ctx task create -t="Handle expired sessions" <PARENT-TASK-ID>
-```
+Before implementation begins, determine how the next set of requirements should fit into the existing system.
 
-### Reorganize existing work
+Review:
 
-If an existing task belongs under a different part of the project, move it:
+- Existing architecture
+- Affected modules
+- Data and API contracts
+- Integration points
+- Compatibility concerns
+- Technical risks
+- Reusable patterns
+- Alternatives and trade-offs
 
-```bash
-ctx task move <TASK-ID> <NEW-PARENT-ID>
-```
+Not every requirement needs a separate design phase. Simple work can follow an existing pattern. Work that affects architecture, shared contracts, data, or multiple components needs a clearer technical direction.
 
-### Update the task
-
-When the task itself needs clarification, update its name or description:
-
-```bash
-ctx task update <TASK-ID> -t="Handle session expiration"
-```
-
-The task structure should represent the current understanding of the work. It is normal for that structure to change during development.
-
-## 5. Handle blocked work
-
-Sometimes a task cannot continue.
-
-For example, Login may depend on a component that is not ready:
-
-```bash
-ctx task block <TASK-ID> -r="Waiting for the authentication service API"
-```
-
-Blocking makes the state explicit instead of leaving the task appearing to be ordinary unfinished work.
-
-A blocked task does not need to stop the entire development process. Continue with other work that can make progress.
-
-```text
-Authentication
-+-- Registration       COMPLETED
-+-- Login              BLOCKED
-+-- Password reset     IN_PROGRESS
-+-- Session management PENDING
-```
-
-When the reason for the block is resolved, return to the task and continue working on it.
-
-The purpose of blocking is not simply to mark a status. It allows the task structure to reflect what can and cannot currently move forward.
-
-## 6. Preserve context where it originates
-
-During development, useful information will appear. Not everything needs to be recorded. Preserve information when it is useful for understanding the work later. The important question is not only **what should be recorded**, but **where that context belongs**.
-
-Link a log or decision to the thing that best describes it or from which it originated.
-
-### Context from a task
-
-If something happened specifically while working on a task, link it to that task:
-
-```bash
-ctx log -k=ISSUE -n="Expired tokens are rejected by the authentication library" -T=<TASK-ID>
-```
-
-The task is the source of the context, so the task is the appropriate reference.
-
-### Context from a session
-
-If something describes the work performed during a particular period rather than a specific task, link it to the session:
-
-```bash
-ctx log -k=NOTE -n="Spent the session investigating authentication libraries" -S=<SESSION-ID>
-```
-
-The session is the source of the context, so the session is the appropriate reference.
-
-### Context without a specific origin
-
-Some information does not belong specifically to a task or session. In that case, leave it unlinked. The reference should describe the origin of the context, not simply provide a place to attach it.
-
-The same principle applies to decisions:
+Record decisions when they establish a direction or resolve a material trade-off:
 
 ```bash
 ctx decision create \
-  -t="Use session-based authentication" \
-  -r="The application is server-rendered and does not require a separate token-based API." \
-  -T=<TASK-ID>
+  --topic="Keep validation in the service layer" \
+  --reasoning="This preserves the existing architecture and keeps validation consistent across API consumers."
 ```
 
-A decision about the implementation of a particular task can be linked to that task. A decision arising from the broader development session can instead be linked to the session.
+Use [decision management](https://../guides/decisions.md)  for decisions that affect future work.
 
-## 7. Continue work across sessions
+A decision should explain:
 
-A task does not have to fit inside one session. When the working period ends, end the session:
+- The problem
+- The selected approach
+- The reason
+- Important consequences
+- The scope in which it applies
+
+Repeated discussions about naming, testing, error handling, task structure, or implementation standards should eventually become decisions or project guidelines.
+
+The result of this stage should be a viable technical direction for the next part of the project, with important decisions and risks recorded.
+
+### Prepare a Work Section
+
+Long projects should be divided into manageable sections.
+
+A section is a meaningful group of requirements that can be implemented, integrated, and reviewed without waiting for the entire project to finish.
+
+For example:
+
+```txt
+Section 1: Foundation
+Section 2: Core capability
+Section 3: Supporting capability
+Section 4: Integration
+Section 5: Release preparation
+```
+
+Before starting a section, define:
+
+- Its objective
+- The requirements it covers
+- The tasks included
+- The dependencies that must be satisfied
+- The expected completion conditions
+- The next section it enables
+
+Review the current task hierarchy and identify tasks that are ready to begin:
+
+```bash
+ctx task tree
+ctx task query -x equals:PENDING
+```
+
+Create additional tasks when the section reveals missing work:
+
+```bash
+ctx task create --task="Prepare integration test environment"
+ctx task create --task="Document the new configuration"
+```
+
+A task that depends on unfinished work should remain waiting. Do not start it merely to make the task list appear active.
+
+The result should be a bounded work section with clear tasks, dependencies, and completion conditions.
+
+### Execute Independent Tasks
+
+Start work on the tasks that are ready and can proceed independently.
+
+For example:
+
+```
+Persistence changes ───────┐
+                           ├── Integration
+API changes ───────────────┤
+                           │
+UI changes ────────────────┘
+
+Documentation ───────────────────
+Tests ────────────────────────────
+```
+
+Each developer or AI agent should work within a clear task boundary.
+
+Begin a substantive session by retrieving the current context:
+
+```bash
+ctx status
+```
+
+Start a session for the work:
+
+```bash
+ctx start --notes="Implementing persistence changes for the account capability."
+```
+
+Start the selected task:
+
+```bash
+ctx task start <task-id>
+```
+
+During the work, record only meaningful discoveries, issues, attempts, and milestones:
+
+```bash
+ctx log add \
+  --tag=ISSUE \
+  --note="The existing repository requires a migration before the new field can be persisted." \
+  --task=<task-id>
+```
+
+If the discovery affects another task, create or update the relevant task rather than keeping the information only in the current session.
+
+When the task is finished:
+
+```bash
+ctx task complete <task-id>
+```
+
+End the session when the work is complete or paused:
 
 ```bash
 ctx session end
 ```
 
-The unfinished task remains unfinished. When returning later, start another session:
+See [session management](../guides/sessions.md)  and [task lifecycle](../guides/tasks.md) .
+
+A task may continue across multiple sessions. A session may also contain work on more than one task. CTX preserves these as separate dimensions so the team can recover both what was worked on and when the work happened.
+
+The result should be completed work packages and enough context for another contributor to continue without repeating the investigation.
+
+### Manage Waiting and Blocked Work
+
+Some tasks cannot proceed immediately.
+
+A task may need to wait because:
+
+- Another task has not finished
+- A design decision is unresolved
+- An external dependency is unavailable
+- The requirement is unclear
+- The test environment is not ready
+- Another workstream has changed a shared contract
+
+Mark the task as blocked when the reason prevents progress:
 
 ```bash
-ctx session start
+ctx task block <task-id> \
+  --reason="Waiting for the updated API contract."
 ```
 
-Then continue the relevant task:
+Record the relevant issue:
 
 ```bash
-ctx task start <TASK-ID>
+ctx log add \
+  --tag=ISSUE \
+  --note="The API contract is required before the client integration can continue." \
+  --task=<task-id>
 ```
 
-The new session records a new period of work. The task continues to represent the same piece of work. This separation allows the project to retain both **the lifecycle of the work itself** and **the history of when the work was actually performed**. There is no requirement to summarize or reconcile the session before ending it. Context should be recorded when it occurs, and the session simply records the period of work.
+Use task queries to find work that can continue while the blocked task is waiting:
 
-## 8. Use Git with project context
+```bash
+ctx task query -x equals:BLOCKED
+ctx task query -x equals:PENDING
+```
 
-CTX can be used alongside Git without requiring a fixed relationship between branches and tasks. The project context that describes the work can evolve with the source code and can be version-controlled.
+Do not treat all inactive tasks as blocked. Distinguish between:
+
+- Pending: valid work that has not started
+- Blocked: work prevented by a known issue or dependency
+- Completed: work that satisfies its task conditions
+- Deferred: valid work intentionally postponed
+- Rejected: work that is no longer part of the project
+
+If a task is no longer required, preserve the reason for rejecting or deferring it. Do not delete the task merely because it is no longer active.
+
+The result should be a task state that explains why work is waiting and which other work can continue.
+
+### Integrate and Validate the Section
+
+When the independent tasks are ready, combine them and validate the section as a whole.
+
+Check:
+
+- Shared interfaces
+- Data flow
+- Component compatibility
+- Error handling
+- Configuration
+- Migrations
+- Unit behavior
+- Integration behavior
+- Regression behavior
+- Acceptance conditions
+
+Integration often exposes problems that were not visible when each task was developed independently.
 
 For example:
 
-```text
-.ctxcli/
-+--- config.json
-+-- tasks.json
-+-- logs.json
-+-- decisions.json
-+-- sessions.json
+- The API response does not match the client expectation
+- Two tasks use different assumptions
+- A shared model is insufficient
+- A new change breaks existing behavior
+- The selected design does not work across all requirements
+
+Create a follow-up task when the issue needs separate work:
+
+```bash
+ctx task create --task="Resolve account API and UI contract mismatch"
 ```
 
-A project may choose to version-control the project context while keeping session history local
+Record the discovery:
 
-```gitignore title=".gitignore"
-.ctxcli/sessions.json
+```bash
+ctx log add \
+  --tag=ISSUE \
+  --note="Integration exposed a mismatch between the API response and the UI model."
 ```
 
-This separates project context from personal work history.
+If the issue changes the technical direction, record a decision before continuing.
 
-Tasks, logs, and decisions can evolve with the project and move through Git history. Sessions describe local periods of work and do not need to follow branches or environments. How the remaining CTX files are versioned depends on how the project uses Git.
+The result should be an integrated section with known defects and follow-up work clearly identified.
 
-## 9. Establish a branch and context strategy
+### Review the Section and Process Feedback
 
-CTX does not require a particular relationship between branches and tasks.
+Review the completed section before starting the next one.
 
-A branch might represent a single feature, a larger work stream, a release, an experimental direction or  another unit of work meaningful to the project. The CTX structure should follow the way the project is being developed.
+Evaluate:
 
-For example, if a branch represents a feature, that feature can become the root of a task hierarchy:
+- Whether the intended outcome was achieved
+- Whether the acceptance conditions are still valid
+- Whether the implementation matches the technical direction
+- Whether the section introduced new risks
+- Whether user feedback changed the requirement
+- Whether the next section is still appropriate
 
-```text
-Authentication
-+-- Registration
-+-- Login
-+-- Password reset
+Testing or user feedback may reveal a new bug. Classify it before creating more work:
+
+- Bug in the current requirement
+- Missing acceptance condition
+- New requirement
+- Usability problem
+- Compatibility issue
+- Documentation issue
+- Technical debt
+- Out-of-scope request
+
+A feature may also be rejected after implementation begins. In that case, mark the work as rejected or deferred and preserve the reason:
+
+```bash
+ctx log add \
+  --tag=NOTE \
+  --note="The export option was rejected after review because it does not support the current user workflow."
 ```
 
-Another project might keep several work areas in the same branch.
+Do not treat rejected work as unfinished implementation. It is a project decision.
 
-When different branches contain substantially different CTX state, merging those changes can require the same kind of reconciliation as other project files.
+The result should be a reviewed section with accepted work, rejected or deferred scope, discovered bugs, and clearly classified follow-up tasks.
 
-The important practice is to decide what the branch represents and version the project context accordingly. CTX does not impose a branch model on the project.
+### Evaluate the Project Context
 
-## 10. Be aware of session references across environments
+After reviewing a section, evaluate the state of the whole project.
 
-Session history is intentionally different from project context. If `sessions.json` is not version-controlled, a session exists only in the environment where that work took place.
+Use CTX queries to inspect:
 
-This matters when other version-controlled context references a session.
+- Active tasks
+- Pending tasks
+- Blocked tasks
+- Completed tasks
+- Recent issues
+- Deferred work
+- Rejected requirements
+- Important decisions
+- Repeated problems
+- Work that has not progressed
 
 For example:
 
-```text
-logs.json
-+-- Log L42
-    +-- reference → Session S12
+```bash
+ctx status
+ctx task tree
+ctx task query -x equals:BLOCKED
+ctx log query -x equals:ISSUE
+ctx decision query -x contains:validation
 ```
 
-If `S12` exists only in another environment, that reference may not resolve there.
+Use [query and retrieval](../guides/query.md)  when the project state requires more focused inspection.
 
-This does not make session references invalid. It means that session references should be used with an understanding of where the referenced session exists.
+The purpose of querying is not only to retrieve records. It is to evaluate what the team should do next.
 
-When context needs to remain meaningful across branches or environments, consider whether it is better associated with the task or left unlinked instead.
+Possible outcomes include:
 
-## 11. Keep the model current
+- Continue the current section
+- Start the next section
+- Reopen a task
+- Split a task
+- Resolve a blocker
+- Record a decision
+- Refine a requirement
+- Reject obsolete work
+- Pause the project
+- Prepare the release
 
-Continue working through the project while allowing the CTX model to evolve with the work.
+The project is complete only when its project-level completion conditions are satisfied. Completing one section does not mean the entire project is complete.
 
-```mermaid
-flowchart LR
-    A["Current understanding"] --> B["Work"]
-    B --> C["Learn something"]
-    C --> D["Update CTX"]
-    D --> A
+The result should be a current project assessment and a clear next action.
+
+### Prepare the Next Section
+
+If the project is not complete, return to delivery planning.
+
+Review the remaining requirements and:
+
+1. Recheck the task hierarchy.
+2. Remove or classify obsolete work.
+3. Revisit dependencies.
+4. Add tasks created by bugs or feedback.
+5. Confirm that required decisions are resolved.
+6. Select the next meaningful section.
+7. Identify the tasks that are ready to begin.
+8. Start a new session from that section.
+
+```bash
+ctx status
+ctx task tree
+ctx start --notes="Starting the next project section."
 ```
 
-New work can be added. Existing tasks can be reorganized. Tasks can become blocked and later resume. Decisions can record important directions. Logs can preserve useful observations and events. Sessions continue recording the actual periods in which the work takes place. The task structure therefore remains a working representation of the project rather than a static plan created at the beginning.
+Do not simply continue with the next task in a flat list. A new section should have its own objective, scope, dependencies, and completion conditions.
 
-## What this workflow gives you
+This allows the team to pause a long project and resume later without reconstructing the entire project history.
 
-By using CTX this way, the project maintains several complementary views of development:
+### Release and Handover
 
-- **Tasks** describe the work and its current state.
-- **Task hierarchy** represents how the work is currently understood.
-- **Sessions** record the actual periods in which work happened.
-- **Logs** preserve useful events, observations, issues, ideas, and attempts.
-- **Decisions** preserve important choices and their reasoning.
-- **References** connect context to the task or session from which it originated.
-- **Git** preserves the evolution of project context alongside the source code.
+Move to release and handover only after project evaluation confirms that the required project scope is complete.
 
-The result is not a fixed project plan. It is a working model that can change as the project changes.
+Review:
 
-You can now use CTX not only to remember what happened, but to continuously maintain the context of an evolving development process.
+- Project completion conditions
+- Acceptance results
+- Test results
+- Documentation
+- Configuration
+- Migrations
+- Compatibility
+- Known limitations
+- Remaining deferred work
+- Handover information
 
-For workflows that extend CTX beyond the local development process and integrate it with other tools and infrastructure, continue with the [Advanced Development Workflow](../advanced/).
+Record the final state in CTX:
+
+```bash
+ctx log add \
+  --tag=NOTE \
+  --note="The project scope is complete. Remaining improvements are recorded as deferred follow-up work."
+```
+
+End the final session:
+
+```bash
+ctx session end
+```
+
+The final records should make it clear:
+
+- What was delivered
+- What was rejected
+- What was deferred
+- Which decisions were made
+- What limitations remain
+- Where future work should begin
+
+## What’s Better with CTX
+
+Long-running development work often becomes difficult to recover because its context is distributed across issue trackers, chat messages, terminal history, personal notes, and memory.
+
+CTX keeps the execution context alongside the project:
+
+- Sessions preserve when work happened.
+- Tasks preserve what needs to be done.
+- Parent and child tasks preserve how requirements are structured.
+- Logs preserve meaningful discoveries, issues, and attempts.
+- Decisions preserve why the team selected a direction.
+- Queries help evaluate the current project state.
+- Extracted context provides a readable project record without changing the original data.
+
+This makes it easier for a small team to:
+
+- Divide work between developers or AI agents
+- Continue tasks across multiple sessions
+- Find independent work while another task is blocked
+- Recover the reason behind a technical decision
+- Understand why a requirement was rejected or deferred
+- Connect bugs to the work that introduced them
+- Prepare the next project section
+- Resume work after an interruption
+
+## Completion
+
+The intermediate workflow is complete when the project has reached its agreed completion conditions and the team has recorded the final state.
+
+The team should have:
+
+- Established the project goal
+- Broken requirements into a hierarchy
+- Defined the technical direction
+- Prepared and completed multiple work sections
+- Executed independent tasks
+- Managed waiting and blocked work
+- Integrated and validated completed sections
+- Responded to bugs and changing requirements
+- Recorded important decisions and project practices
+- Evaluated the remaining project context
+- Released or handed over the completed project
+- Preserved deferred work and future follow-up items
+
+A project does not need to implement every idea discovered during development. It needs to complete the agreed scope and clearly record what happens to everything else.
