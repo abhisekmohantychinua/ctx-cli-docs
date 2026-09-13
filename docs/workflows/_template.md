@@ -7,7 +7,7 @@ One short paragraph explaining what this workflow helps the reader accomplish an
 ## The Process
 
 <!-- 
-1. An overview of the complete workflow in 5–10 stages.
+1. An overview of the complete workflow in 4–12 stages.
 2. A mermaid v11 diagram may be placed to make it look better. (Not necessary)
 -->
 
@@ -17,6 +17,7 @@ One short paragraph explaining what this workflow helps the reader accomplish an
 1. Explain what happens at this stage and what the developer is trying to achieve for each stages.
 2. Explain how CTX helps preserve or recover the relevant context.
 3. Multiple such sections to be placed based on available stages.
+4. Each stages should explain these implicitly: purpose of the stage, what to do in this stage, how to do it with ctx, a small opening to next stage
 -->
 
 ## When the Work Changes
