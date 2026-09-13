@@ -18,22 +18,17 @@ One short paragraph explaining what this workflow helps the reader accomplish an
 2. Explain how CTX helps preserve or recover the relevant context.
 3. Multiple such sections to be placed based on available stages.
 4. Each stages should explain these implicitly: purpose of the stage, what to do in this stage, how to do it with ctx, a small opening to next stage
+5. Relevant guides can be placed as links, commands can be placed as codeblocks, examples can be placed, 
 -->
 
-## When the Work Changes
+## What's better with CTX?
 
 <!-- 
-1. Briefly explain what to do when the scope changes, a blocker appears, or the work is interrupted.
+1. Briefly explain what is better with ctx than using a normal workflow.
 -->
 
 ## Completion
 
 <!-- 
 1. Describe what the developer should have achieved and what context should remain afterward.
--->
-
-## Related Guides
-
-<!-- 
-2. Links to smaller guides or command reference pages.
 -->

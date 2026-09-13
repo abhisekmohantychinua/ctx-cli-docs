@@ -2,228 +2,148 @@
 sidebar_position: 1
 ---
 
-# Beginner
+# Beginner Development Workflow with CTX
 
-## Development Workflow with CTX
+This workflow is for a small, clearly defined feature or change. It shows how a typical developer can use CTX to understand the goal, organise the work, implement it across one or more sessions, and review the result until it is complete.
 
-A straightforward development workflow for starting a new project from requirements and using CTX to preserve the context created while the work progresses.
-
-The workflow follows a normal development process. CTX provides a structured place to keep track of the work, the sessions in which it happens, and the useful context created along the way.
-
-The same workflows can be followed by both human and AI.
+## The Process
 
 ```mermaid
-flowchart TB
-    A[Requirements] --> B[Plan the work]
-    B --> C[Create tasks]
-    C --> D[Start a session]
-    D --> E[Work on a task]
-    E --> F[Capture useful context]
-    F --> G[Complete the task]
-    G --> H[Continue with the next task]
-    H --> E
-    G --> I[End the session]
-    I --> J[Start another session]
-    J --> E
-    G --> K[Project complete]
+flowchart LR
+    A[Understand the goal] --> B[Plan the feature]
+    B --> C[Implement the feature]
+    C --> D[Review the result]
+    D -->|Changes needed| B
+    D -->|Complete| E[Finish the work]
 ```
 
-### 1. Break the requirements into tasks
+### Understand the Goal
 
-Begin with the requirements of the project. Understand what the project needs to accomplish before deciding how the work will be implemented. At this stage, the requirements describe the desired outcome. The next step is to turn that understanding into concrete work.
+Begin by clarifying what needs to change and why.
 
-Decompose the requirements into tasks that represent meaningful pieces of work. Keep the initial task list simple. Each task should represent a meaningful piece of work that can be started and completed independently.For example:
+Understand the problem, the expected result, and the boundaries of the feature. Review the existing project context for related tasks, previous decisions, or useful information before making a plan.
 
-1. Build user authentication
-2. Add user registration
-3. Add login
-4. Add logout
-5. Add password reset
-
-The important part is that each task represents something that can actually be worked on and completed. Creating the tasks in CTX is part of the planning process.
-
-```bash
-ctx task create -t="Build user authentication"
-ctx task create -t="Add user registration"
-ctx task create -t="Add login"
-ctx task create -t="Add logout"
-ctx task create -t="Add password reset"
-```
-
-The task list now provides a working representation of the planned development work.
-
-:::important
-Creating a task, starting a session doesn't need ctx to be initialized. But viewing them requires ctx to be initialized. Make sure to initialize ctx before viewing anything.
+If the context has not been initialised yet, create it first:
 
 ```bash
 ctx init
 ```
 
-:::
-
-### 2. Start a session
-
-When beginning a period of work, start a session. A session represents a period of active work. It provides a boundary around the work being performed at a particular time. A task can span multiple sessions, and a session can contain work on multiple tasks. This makes it possible to distinguish the work itself from the period in which that work happened.
-
-```bash
-ctx session start
-```
-
-### 3. Start working on a task
-
-Choose a task and start working on it:
-
-```bash
-ctx task start <task-id>
-```
-
-At this point, CTX knows which task is currently being worked on within the active session.
-
-The current state can be checked when needed:
-
-```bash
-ctx status
-```
-
-There is no need to repeatedly inspect CTX while working. The purpose is to establish the context and then get back to the actual development work.
-
-### 4. Work normally
-
-Continue development as you normally would.
-
-Write code, run tests, inspect the application, review changes, make commits, and use the tools appropriate for the project.
-
-Git can be used normally alongside CTX. The beginner workflow does not require any special relationship between CTX and version control.
-
-### 5. Preserve useful context
-
-Not everything that happens during development needs to be recorded. When something is worth preserving, capture it in CTX. There are two common forms of useful context in the beginner workflow.
-
-#### Logs
-
-Use a log for useful observations, ideas, issues, or attempts. For example:
-
-```bash
-ctx log -k=ISSUE -n="Login fails when the refresh token is expired"
-```
-
-Or:
-
-```bash
-ctx log -k=IDEA -n="Move authentication validation into the domain layer"
-```
-
-A log should preserve something that may be useful later. It should not become a record of every action performed during development.
-
-#### Decisions
-
-Use a decision when an important choice is made and its reasoning is worth preserving.
+Break the feature into smaller tasks and add them to CTX. If the project already has practices, guidelines, or constraints that should influence the implementation, record them as decisions so the reasoning is available while you work.
 
 For example:
 
 ```bash
-ctx decision create \
-  -t="Use session-based authentication" \
-  -r="The application is server-rendered and does not require a separate token-based API."
+ctx task create --task "Add file locking"
+ctx task create --task "Handle lock acquisition failure"
+ctx task create --task "Add tests for concurrent access"
 ```
 
-A decision preserves both the choice and the reason behind it.
-
-This is different from a log. A log records something useful that happened; a decision records an important direction chosen for the project.
-
-### 6. Complete the task
-
-Continue working until the task is complete. When the work is finished:
+You can record an important practice or constraint as a decision:
 
 ```bash
-ctx task complete <task-id>
+ctx dec create
 ```
 
-The task is now part of the completed work rather than the remaining work. Start the next task when ready:
+The goal is not to document every thought. Preserve the decisions that explain how the feature should be approached.
+
+### Plan the Feature
+
+Organize the tasks into a practical order.
+
+Identify which task should be completed first, whether any task depends on another, and how you will verify the result. Keep the plan simple enough to follow, but detailed enough to make the next action clear.
+
+Use CTX to review the tasks and make the current plan visible:
 
 ```bash
-ctx task start <next-task-id>
+ctx task list
 ```
 
-The basic working rhythm is therefore:
+If the feature needs a particular structure or approach, record that reasoning in a decision. If the plan changes later, update the relevant task or decision rather than leaving the original plan as the only source of truth.
 
-```mermaid
-flowchart LR
-    A["Start session"] --> B["Start task"]
-    B --> C["Work"]
-    C --> D["Preserve useful context when needed"]
-    D --> E["Complete task"]
-    E --> F["Start next task"]
+At the end of this stage, you should know what the first task is and what a successful implementation should look like.
+
+### Implement the Feature
+
+Start a session and choose the next task.
+
+```bash
+ctx start --notes "Implement file locking"
 ```
 
-This cycle continues throughout the session.
+Start with the first task and work through it using the project’s existing tools, structure, and practices.
 
-### 7. End the session
+While implementing, use CTX to preserve useful information:
 
-When the working period is over, end the session:
+- Update tasks as their progress changes.
+- Record important discoveries or failed attempts as logs.
+- Review existing decisions when choosing between approaches.
+- Record blockers when progress cannot continue.
+
+For example, if you attempt to use an operating-system file lock and discover that the first approach does not work reliably, preserve that information:
+
+```bash
+ctx log add --note "Attempted OS-level file locking; behavior differs across platforms."
+```
+
+A log should capture information that may help you or someone else continue the work. It does not need to describe every command or action.
+
+A feature may take several sessions. When stopping, leave the current task, progress, and next action clear before ending the session:
 
 ```bash
 ctx session end
 ```
 
-A task does not need to be completed before ending a session.
+When you return, review the available context and continue from the task that is still in progress.
 
-For example, a session might end while `Add login` is still being worked on. The task remains unfinished and can be continued during another session.
+### Review the Result
 
-This is important because development work rarely fits neatly into one uninterrupted period.
+Review the implementation against the original goal.
 
-### 8. Resume the work later
+Check whether the feature behaves as expected, whether the relevant tests or checks pass, and whether the implementation fits the project’s existing structure. Review the result as a whole rather than checking only whether the individual tasks were completed.
 
-When returning to the project, start another session:
-
-```bash
-ctx session start
-```
-
-Then inspect the current context:
+Use CTX to see what has been completed and what remains:
 
 ```bash
-ctx status
+ctx task list
 ```
-
-Continue the unfinished task:
 
 ```bash
-ctx task start <task-id>
+ctx logs --count=5
 ```
 
-The previous session records the earlier period of work. The task identifies what remains to be done, while logs and decisions preserve useful context from the work that has already happened.
+Based on the review, move to the next task or revise the plan.
 
-The new session can therefore continue the existing work rather than treating it as a completely new starting point.
+If the implementation exposes a new requirement, update the relevant task. If a previous decision no longer makes sense, update it with the new reasoning. If a discovery is useful for future work, preserve it in a log.
 
-### 10. Repeat until the project is complete
+For example:
 
-Continue the same cycle as the project progresses:
-
-```mermaid
-flowchart LR
-    A["Plan"] --> B["Work"]
-    B --> C["Preserve useful context"]
-    C --> D["Complete work"]
-    D --> E["Continue"]
-    E --> F["Resume in another session when needed"]
+```bash
+ctx task update <task-id> --note "Include platform-specific lock handling"
+ctx decision update <decision-id> --reasoning "Use a platform-independent fallback when OS locking is unavailable."
 ```
 
-There is no requirement to use every CTX capability for every task. Some tasks may only require a task record. Others may produce an issue worth logging or a decision worth preserving.
+Continue moving between planning, implementation, and review until the feature meets its intended goal.
 
-The workflow stays lightweight because context is captured when it has value.
+## What's Better with CTX
 
-## What this workflow gives you
+Without CTX, the plan, unfinished work, decisions, and discoveries are often spread across memory, editor tabs, temporary notes, and commit messages.
 
-By the end of a project, CTX has accumulated a structured record of the work that happened during development. You can understand:
+CTX keeps those parts of the work connected inside the project:
 
-- what work was planned through tasks.
-- what work is currently being performed.
-- which periods of work took place through sessions.
-- what useful events or observations were worth preserving.
-- which important decisions were made and why.
-- where unfinished work can be resumed.
+- The goal remains visible. Tasks describe what needs to be achieved.
+- The plan remains organised. Related tasks make the feature easier to break down and follow.
+- The reasoning is preserved. Decisions explain why an approach was chosen.
+- The work can be resumed. Sessions show when work started and ended, while tasks and logs preserve the current state.
+- Important discoveries are not lost. Logs capture useful attempts, problems, and findings.
+- Review can improve the plan. When implementation changes the understanding of the problem, CTX gives you a place to update the plan and reasoning.
 
-This gives the project an execution history alongside its source code and version-control history. The result is a record of planned work, active work, completed work, work periods, useful observations, and important decisions. When work resumes later, that record provides the starting point for continuing the project.
+The benefit is not that CTX adds more steps to development. It makes the steps you already take easier to remember, continue, and understand.
 
-For a more robust workflow that uses the broader capabilities of CTX, continue with the [Intermediate Development Workflow](../intermediate/).
+## Completion
+
+The workflow is complete when the feature meets its intended goal, the implementation has been reviewed, and the relevant tasks are finished.
+
+Before finishing, preserve the important outcome in CTX. Completed tasks should reflect the actual result, while decisions and logs should retain the reasoning, discoveries, or limitations that may matter later.
+
+If the feature is not finished, leave it clearly paused instead of marking it complete. The remaining work and next useful action should be obvious when you return.
