@@ -20,6 +20,7 @@
     "@docusaurus/preset-classic": "3.10.2",
     "@docusaurus/theme-mermaid": "^3.10.2",
     "@easyops-cn/docusaurus-search-local": "^0.55.3",
+    "@iconify/react": "^6.0.2",
     "@mdx-js/react": "^3.0.0",
     "@writechoice/docusaurus-plugin-llms-txt": "^0.1.11",
     "clsx": "^2.0.0",

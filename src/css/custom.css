@@ -44,3 +44,19 @@
   height: 2.5rem !important;
   margin-right: 0 !important;
 }
+
+.inline-icon {
+  vertical-align: -0.125em;
+}
+
+.pagination-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: middle;
+  margin-inline: 0.35rem;
+}
+
+.pagination-nav__link--prev .pagination-nav__label::before,
+.pagination-nav__link--next .pagination-nav__label::after {
+  content: none;
+}

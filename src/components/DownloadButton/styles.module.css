@@ -1,0 +1,232 @@
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.buttonGroup {
+  position: relative;
+  display: inline-flex;
+  align-items: stretch;
+  max-width: 100%;
+}
+
+/*
+ * The primary button and architecture button share the same height,
+ * border radius, and visual treatment. The divider is created by the
+ * negative left margin and the subtle border on the right control.
+ */
+.downloadButton,
+.architectureButton {
+  min-height: 3rem;
+  border-radius: var(--ifm-global-radius);
+  box-shadow: none;
+}
+
+.downloadButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.architectureButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+  min-width: 0;
+  max-width: 100%;
+  padding: 0.75rem 0.85rem;
+  border-left: 1px solid
+    color-mix(
+      in srgb,
+      var(--ifm-color-primary) 60%,
+      var(--ifm-background-color)
+    );
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  text-align: left;
+}
+
+/*
+ * Keep the extension and architecture label together while allowing the
+ * label to shrink instead of forcing the entire button outside its parent.
+ */
+.architectureValue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.archiveExtension {
+  flex: 0 0 auto;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.architectureLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+}
+
+.arrow {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  transition: transform 160ms ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.dropdown {
+  position: absolute;
+  z-index: 20;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  width: max-content;
+  min-width: 100%;
+  max-width: min(24rem, calc(100vw - 2rem));
+  padding: 0.35rem;
+  overflow: hidden;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-global-radius);
+  background: var(--ifm-background-surface-color);
+  box-shadow: var(--ifm-global-shadow-md);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  min-height: 3.3rem;
+  padding: 0.55rem 0.7rem;
+  border: 0;
+  border-radius: calc(var(--ifm-global-radius) * 0.75);
+  background: transparent;
+  color: var(--ifm-font-color-base);
+  cursor: pointer;
+  text-align: left;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
+}
+
+.dropdownItemMain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.dropdownLabel {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.dropdownArchive {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--ifm-color-emphasis-700);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.78rem;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.checkmark {
+  color: var(--ifm-color-primary);
+}
+
+.dropdownItemSelected {
+  color: var(--ifm-color-primary);
+  background: var(--ifm-hover-overlay);
+}
+
+.description {
+  max-width: 42rem;
+  margin: 0.65rem 0 0;
+  color: var(--ifm-color-content-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.description code {
+  padding: 0.1rem 0.3rem;
+  font-size: 0.85em;
+}
+
+/*
+ * Hover styles are limited to devices that support hover. This avoids
+ * applying sticky hover states on touch devices.
+ */
+@media (hover: hover) and (pointer: fine) {
+  .dropdownItem:hover {
+    background: var(--ifm-hover-overlay);
+  }
+
+  .dropdownItemSelected:hover {
+    color: var(--ifm-color-primary);
+  }
+}
+
+/*
+ * On narrow screens, allow the architecture button to use the remaining
+ * width while keeping the Download action visible.
+ */
+@media screen and (max-width: 480px) {
+  .buttonGroup {
+    display: flex;
+    width: 100%;
+  }
+
+  .downloadButton {
+    flex: 0 0 auto;
+  }
+
+  .architectureButton {
+    flex: 1 1 auto;
+  }
+
+  .architectureLabel {
+    font-size: 0.82rem;
+  }
+
+  .archiveExtension {
+    font-size: 0.78rem;
+  }
+
+  .dropdown {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/*
+ * Respect users who prefer reduced motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+  .arrow,
+  .dropdownItem {
+    transition: none;
+  }
+}
