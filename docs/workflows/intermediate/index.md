@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+sidebar_label: Intermediate
 ---
 
 
@@ -87,8 +88,6 @@ Record important initial assumptions or project constraints as short logs. For e
 ctx log add --tag=NOTE --note="The first delivery must support existing users without changing the current API contract."
 ```
 
-See the [context guide](../guides/context.md)  and [logging guide](../guides/logging.md) .
-
 The result of this stage should be a clear project goal and an initial understanding of the major areas of work.
 
 ### Break Requirements into a Hierarchy
@@ -132,8 +131,6 @@ ctx task create --task="Add account persistence" --parent=<parent-task-id>
 ctx task create --task="Add account API" --parent=<parent-task-id>
 ctx task create --task="Add account validation" --parent=<parent-task-id>
 ```
-
-Use [task management](../guides/tasks.md)  to review task creation, parent relationships, and task hierarchy.
 
 Do not force every future detail into the hierarchy. Requirements that are not yet understood can remain broad until their delivery section approaches.
 
@@ -282,8 +279,6 @@ End the session when the work is complete or paused:
 ```bash
 ctx session end
 ```
-
-See [session management](../guides/sessions.md)  and [task lifecycle](../guides/tasks.md) .
 
 A task may continue across multiple sessions. A session may also contain work on more than one task. CTX preserves these as separate dimensions so the team can recover both what was worked on and when the work happened.
 
@@ -444,8 +439,6 @@ ctx task query -x equals:BLOCKED
 ctx log query -x equals:ISSUE
 ctx decision query -x contains:validation
 ```
-
-Use [query and retrieval](../guides/query.md)  when the project state requires more focused inspection.
 
 The purpose of querying is not only to retrieve records. It is to evaluate what the team should do next.
 

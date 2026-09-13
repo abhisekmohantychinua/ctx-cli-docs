@@ -1,396 +1,480 @@
 ---
 sidebar_position: 3
+sidebar_label: Advanced
 ---
 
-# Advanced
+# Advanced Workflow
 
-## Development Workflow with CTX
+The advanced workflow is designed for developers maintaining an evolving product or production system over time. It supports recurring feature work, bug fixes, security improvements, technical debt, releases, incidents, and operational maintenance without losing the context behind each change.
 
-At the advanced level, CTX becomes part of the wider development system.
+Unlike the intermediate workflow, which focuses on completing a larger project through defined sections, the advanced workflow is continuous. A product may reach individual release milestones, but operation, feedback, and improvement continue to create new work.
 
-The context of development is no longer produced only by the developer. AI agents, Git workflows, CI/CD pipelines, hooks, and other automation can also participate when they perform meaningful work or observe information worth preserving.
-
-CTX provides a shared execution-context layer across these participants.
-
-The goal is not to send every event into CTX. The goal is to make useful execution context available wherever development work happens.
+## The Process
 
 ```mermaid
-flowchart LR
-    D[Developer]
-    A[AI Agent]
-    G[Git / GitHub]
-    C[CI / CD]
-    O[Other Automation]
-
-    X[(CTX<br/>Execution Context)]
-
-    D <--> X
-    A <--> X
-    G --> X
-    C --> X
-    O --> X
+flowchart TD
+    A[Establish Product Context] --> B[Manage Change Portfolio]
+    B --> C[Define Release Boundary]
+    C --> D[Prepare Workstreams]
+    D --> E[Execute Delivery Cycle]
+    E --> F[Validate and Review]
+    F --> G{Ready for Release?}
+    G -->|No| E
+    G -->|Yes| H[Release and Rollout]
+    H --> I[Operate and Observe]
+    I --> J{Issue or Improvement?}
+    J -->|Yes| B
+    J -->|No| K[Evaluate and Rebalance]
+    K --> B
 ```
 
-This workflow builds on the Beginner and Intermediate workflows. It assumes that CTX is already part of your normal development process and that you are comfortable maintaining tasks, sessions, logs, and decisions.
+### 1. Establish Product Context
 
----
+Begin by understanding the current state of the product or system.
 
-## Establish shared execution context
+Review:
 
-Start by treating CTX as a shared record of what is happening in the project.
+- What the product is intended to achieve
+- Who currently depends on it
+- What is working
+- What is incomplete, fragile, or changing
+- Which technical constraints matter
+- Which operational risks are known
+- Which decisions and guidelines should remain consistent
 
-The source code describes what the project contains. Git describes how the source changes. Other tools describe their own activity.
+The purpose is not to document the entire product. It is to recover enough shared context to make the next change safely.
 
-CTX captures the execution context around that work.
+Use CTX to inspect the current state:
 
-```text
-Developer ──────┐
-AI agent ───────┤
-Git / GitHub ───┤
-CI / CD ────────┼──> CTX
-Automation ─────┤
-Other tools ────┘
+```bash
+ctx status
+ctx task tree
+ctx logs --count=20
 ```
 
-Each participant can use CTX to understand the current state of work before acting.
+If the project context does not exist, initialize it explicitly:
 
-This is especially useful when work moves between people, machines, agents, or development environments.
-
----
-
-## Read context before meaningful work
-
-When a participant begins work, CTX can provide the context needed to continue.
-
-A developer can inspect the current task, active session, recent logs, decisions, or query the information relevant to the work.
-
-An AI agent can do the same before making changes.
-
-Automation can retrieve context when its operation depends on the current state of development.
-
-The important principle is:
-
-> **Context should be retrieved when it is useful, not reconstructed from scratch.**
-
-CTX does not need to be the first system consulted for every operation. It becomes valuable when the execution context affects what should happen next.
-
----
-
-## Let participants contribute context
-
-CTX is a shared execution record.
-
-Humans, AI agents, and automation can contribute to it when they perform meaningful work or discover information that should remain available later.
-
-For example:
-
-- A developer records an important observation.
-- An AI agent records a meaningful discovery during implementation.
-- A developer or agent records a decision and its reasoning.
-- Automation records a significant state change.
-- CI records useful execution information that helps explain what happened.
-
-The important distinction is between **meaningful context** and **raw activity**.
-
-Not every command, tool call, Git operation, or CI step needs to become a CTX record.
-
-### Read broadly, write deliberately
-
-CTX works best when participants can retrieve the context they need while writing only information that has lasting value.
-
-Avoid turning CTX into an event stream such as:
-
-```text
-every command      → CTX
-every tool call    → CTX
-every Git command  → CTX
-every CI step      → CTX
+```bash
+ctx init
 ```
 
-Instead, preserve information that helps someone understand the work, continue it, or reason about what happened.
+At this stage, the important question is:
 
----
+> What are we operating, what condition is it in, and what must we understand before changing it?
 
-## Connect context with Git
+### 2. Manage the Change Portfolio
 
-Git remains responsible for source control.
+Collect and organize the changes competing for attention.
 
-CTX does not replace commits, branches, pull requests, or repository history.
+The portfolio may contain:
 
-Instead, Git activity can provide useful points where execution context and source history meet.
+- New product capabilities
+- Customer requests
+- Bugs and regressions
+- Security concerns
+- Performance problems
+- Operational improvements
+- Technical debt
+- Maintenance work
+- Deferred decisions
+- Follow-up work from incidents or releases
 
-For example, a development workflow might associate meaningful context with:
+Not every item should become immediate work. Each change should be understood well enough to decide whether it should be started, deferred, combined, rejected, or investigated further.
 
-- a task being started or completed;
-- a significant decision;
-- an implementation milestone;
-- a change that requires explanation;
-- a branch or pull request;
-- a release or deployment.
+Record important decisions and dependencies in CTX:
 
-Git hooks or other repository automation can be used when they provide useful context without creating unnecessary records.
-
-The goal is not to mirror Git history inside CTX.
-
-The goal is to make the relationship between **what changed** and **why or how the work progressed** easier to understand.
-
----
-
-## Connect context with CI/CD
-
-CI/CD systems provide another part of the development lifecycle.
-
-A pipeline may know that a build failed, a deployment succeeded, or a particular stage produced an important result.
-
-CTX can preserve selected information from these processes when it is useful for understanding the execution history of the project.
-
-For example:
-
-```text
-Developer
-    │
-    ├── Task: prepare release
-    │
-    └── Commit
-          │
-          ▼
-       CI/CD
-          │
-          ├── Build
-          ├── Test
-          └── Deploy
-                │
-                ▼
-              CTX
+```bash
+ctx decision create \
+  --topic="Prioritize authentication hardening before reporting features" \
+  --reasoning="The current authentication flow creates higher security and operational risk." \
+  --tags=SECURITY
 ```
 
-Only information with contextual value needs to be recorded.
+Record issues that affect future prioritization:
 
-Routine pipeline output can remain in the CI/CD system where it already belongs.
-
----
-
-## Use hooks and automation selectively
-
-Hooks and automation can extend CTX without requiring every participant to interact with it manually.
-
-A useful automation usually answers one of these questions:
-
-- What important event just happened?
-- What context should be available to the next participant?
-- What information would otherwise be lost?
-- What should a developer or AI agent know when continuing this work?
-
-For example, an automation could record that a deployment completed or that a particular development milestone was reached.
-
-It should not blindly copy every underlying event into CTX.
-
-Automation should preserve **context**, not activity volume.
-
----
-
-## Treat AI agents as participants
-
-AI agents can use CTX in the same way a developer does.
-
-An agent can retrieve the current execution context before working and contribute meaningful context after performing work.
-
-For example:
-
-```text
-CTX
- │
- ├── current task
- ├── recent logs
- ├── relevant decisions
- └── session context
-        │
-        ▼
-    AI agent
-        │
-        ├── investigates
-        ├── changes code
-        └── records useful context
+```bash
+ctx log add \
+  --tag=ISSUE \
+  --note="Reporting work depends on the authentication changes."
 ```
 
-This allows an agent to participate in the same execution context as the developer instead of maintaining a separate understanding of the project.
+CTX does not replace an issue tracker or product backlog. It preserves the reasoning behind the current priorities and the relationship between planned work and the wider product context.
 
-The agent does not need a special CTX interface.
+### 3. Define the Release Boundary
 
-It can use the same CLI available to the developer.
+Choose which changes belong together in the next delivery boundary.
 
----
+A release boundary may be:
 
-## Support multiple participants
+- A feature release
+- A maintenance release
+- A bug-fix release
+- A security release
+- A larger product milestone
+- An infrastructure or operational change
 
-As more people and agents participate in a project, execution context becomes increasingly important.
+The boundary should be small enough to understand, validate, and recover from. It should also make dependencies and risk visible before implementation begins.
 
-Different participants may work on different tasks, sessions, or environments while contributing to the same project.
+Define:
 
-CTX provides a shared project-level context that can help connect that work.
+- The intended outcome
+- Included changes
+- Explicit exclusions
+- Dependencies
+- Known risks
+- Validation expectations
+- Release conditions
+- Rollback or recovery expectations
 
-This does not require every participant to follow exactly the same workflow.
+The release boundary is a decision, not merely a collection of tasks. Record why it exists and what would cause it to change.
 
-One developer may use detailed task structures while another may work with a smaller set of tasks. An AI agent may retrieve context more frequently than a human.
+### 4. Prepare Independent Workstreams
 
-The shared requirement is that meaningful context remains available to whoever needs to continue the work.
+Break the release boundary into workstreams that can be executed and reviewed independently.
 
----
+Possible workstreams include:
 
-## Keep context close to the project
+- Product functionality
+- Backend or API changes
+- Frontend changes
+- Data or migration work
+- Testing and quality
+- Documentation
+- Deployment configuration
+- Monitoring and operational readiness
 
-CTX remains local to the project.
+Each workstream should have a clear outcome. It should also be possible to understand its progress without reconstructing the entire release.
 
-The `.ctxcli` directory belongs to the project context rather than to a central CTX service.
+Create tasks with enough context for another session or developer to continue:
 
-This makes it possible to choose how different parts of the context participate in version control.
-
-For example, a team may decide to:
-
-- version project-wide decisions and useful development history;
-- ignore session-specific information;
-- share selected context between developers;
-- keep machine-specific context local.
-
-The exact strategy depends on the project and team.
-
-CTX provides the context model; the development team decides how that context should move through its repository and infrastructure.
-
----
-
-## Extend CTX through the development system
-
-Once CTX is part of the development system, other tools can build on the same context.
-
-Possible extensions include:
-
-- Git hooks
-- GitHub workflows
-- CI/CD pipelines
-- release automation
-- AI coding agents
-- development scripts
-- team tooling
-- project-specific automation
-
-These integrations do not need to make CTX the central controller.
-
-Instead, they allow different parts of the development system to participate in a shared execution context.
-
-```mermaid
-flowchart TB
-    X[(CTX)]
-
-    X --> D[Developer]
-    X --> A[AI Agent]
-    X --> G[Git / GitHub]
-    X --> C[CI / CD]
-    X --> O[Other Tools]
-
-    D --> X
-    A --> X
-    G --> X
-    C --> X
-    O --> X
+```bash
+ctx task create \
+  --task="Implement authentication token rotation" \
+  --description="Add token rotation, update validation, and cover expiry and reuse cases."
 ```
 
-The architecture remains simple:
+Start the task when active work begins:
 
-**CTX provides execution context. Other systems continue to do what they are designed to do.**
-
----
-
-## Keep the context useful
-
-As more systems participate, the amount of available information can grow quickly.
-
-That makes discipline more important, not less.
-
-Prefer information that helps answer questions such as:
-
-- What are we working on?
-- What has changed?
-- Why was this decision made?
-- What happened during the work?
-- What is blocked?
-- What should happen next?
-- What does another participant need to know?
-
-Avoid using CTX as:
-
-- a replacement for Git;
-- a replacement for an issue tracker;
-- a complete CI/CD log;
-- an application monitoring system;
-- a raw event store;
-- a transcript of AI activity.
-
-CTX should remain focused on **execution context**.
-
----
-
-## Continue work across the system
-
-The value of an advanced workflow becomes most visible when work moves between participants.
-
-A developer may begin a task, an AI agent may continue implementation, CI may validate the change, and another developer may review or continue the work.
-
-The participants can use the same CTX records to understand the execution history.
-
-```mermaid
-sequenceDiagram
-    participant D as Developer
-    participant X as CTX
-    participant A as AI Agent
-    participant C as CI/CD
-
-    D->>X: Record task and context
-    D->>A: Delegate implementation
-    A->>X: Retrieve context
-    A->>X: Record meaningful findings
-    A->>C: Push changes
-    C->>X: Record meaningful result
-    D->>X: Retrieve updated context
-    D->>A: Continue or review work
+```bash
+ctx task start <task-id>
 ```
 
-The workflow does not depend on any single participant remembering everything.
+If a task depends on an unresolved decision or external condition, record that dependency instead of leaving it implicit.
 
-The execution context remains available as the work moves through the development system.
+### 5. Execute the Delivery Cycle
 
----
+Implement the selected work in small, reviewable increments.
 
-## Keep CTX in its role
+During execution:
 
-Advanced usage does not mean making CTX responsible for everything around development.
+- Keep the active task current
+- Integrate changes frequently
+- Record meaningful discoveries
+- Record failed approaches that affect future work
+- Capture decisions that change the original direction
+- Keep incomplete work distinguishable from completed work
 
-Git should remain the source control system.
+Use a session to preserve working context across interruptions:
 
-Issue trackers and project-management systems can remain responsible for planning and organizational workflows.
+```bash
+ctx start --notes="Implementing authentication token rotation for the next release."
+```
 
-CI/CD systems should continue to run and report builds, tests, and deployments.
+Record meaningful attempts or discoveries:
 
-AI agents should remain responsible for the work they perform.
+```bash
+ctx log add \
+  --tag=ATTEMPT \
+  --note="The first rotation approach failed because refresh tokens were not invalidated consistently." \
+  --task
+```
 
-CTX connects these activities through the execution context that surrounds them.
+When a task is complete:
 
-That boundary keeps CTX lightweight while still allowing it to participate in a much larger development system.
+```bash
+ctx task complete <task-id>
+```
 
----
+If work cannot continue:
 
-## What this workflow gives you
+```bash
+ctx task block <task-id> \
+  --reason="Waiting for the migration strategy to be approved."
+```
 
-With this workflow, CTX becomes more than a tool you use manually during development.
+CTX does not replace source control, code review, CI, or deployment systems. Its role is to preserve the execution context surrounding those systems: what was being attempted, why the approach changed, and what remains unfinished.
 
-It becomes a shared execution-context layer that different participants can read from and contribute to.
+### 6. Validate and Review the Change
 
-You can:
+Validation should happen throughout the delivery cycle, not only at the end.
 
-- continue work across sessions, people, and AI agents;
-- preserve meaningful context alongside source changes;
-- connect development activity with useful execution history;
-- allow automation to contribute context where appropriate;
-- give AI agents access to the same project context as developers;
-- build project-specific integrations without turning CTX into the integration itself.
+Review the change against:
 
-The result is a development system where context can move with the work instead of remaining trapped in individual sessions, tools, or people's memory.
+- The intended outcome
+- Existing product behavior
+- Relevant technical decisions
+- Security and data concerns
+- Performance expectations
+- Documentation requirements
+- Operational impact
+- Failure and recovery behavior
+
+The result of validation should be evidence, not simply a statement that the work appears complete.
+
+Record important findings:
+
+```bash
+ctx log add \
+  --tag=NOTE \
+  --note="Token rotation passed expiry, reuse, and concurrent-request tests."
+```
+
+If validation exposes a new problem, create or update follow-up work instead of silently expanding the current task:
+
+```bash
+ctx task create \
+  --task="Handle concurrent refresh requests safely" \
+  --description="Follow-up discovered during token rotation validation."
+```
+
+A change is ready to move forward when its required behavior is implemented, its risks are understood, and the evidence needed for release is available.
+
+### 7. Decide Whether the Change Is Ready for Release
+
+Review the release boundary as a whole.
+
+Ask:
+
+- Are all required changes complete?
+- Are known blockers resolved?
+- Are dependencies satisfied?
+- Has the combined system been validated?
+- Are migrations sufficiently protected?
+- Is monitoring available
+- Is rollback understood?
+- Are release notes or operational instructions ready?
+- Is the remaining risk acceptable?
+
+If the answer is no, return to execution or create follow-up work.
+
+If the answer is yes, record the release decision:
+
+```bash
+ctx decision create \
+  --topic="Approve authentication release" \
+  --reasoning="Required implementation, integration tests, migration checks, and rollback preparation are complete." \
+  --tags=RELEASE
+```
+
+The release should not be considered complete merely because individual tasks are marked completed.
+
+### 8. Release and Rollout
+
+Move the validated change into the target environment using the project’s existing release process.
+
+This may include:
+
+- Building and packaging
+- Deploying to staging
+- Running final checks
+- Approving production exposure
+- Performing a gradual rollout
+- Communicating the change
+- Confirming the deployed version
+
+The actual release process belongs to the project’s deployment and operations tooling. CTX preserves the context around the release:
+
+- What was released
+- Why it was released
+- Which decisions shaped it
+- What risks were accepted
+- What should be watched after rollout
+
+Record the release milestone:
+
+```bash
+ctx log add \
+  --tag=NOTE \
+  --note="Authentication token rotation released to production."
+```
+
+If the rollout fails, do not treat the failed release as an ordinary completed task. Preserve the evidence and move the affected work into incident or recovery handling.
+
+### 9. Operate and Observe
+
+After release, observe the product in its real operating environment.
+
+Review:
+
+- Errors and failures
+- Performance
+- Resource usage
+- User-facing behavior
+- Security signals
+- Deployment health
+- Support or customer feedback
+- Unexpected interactions with existing functionality
+
+Distinguish between:
+
+- Normal behavior
+- A known limitation
+- A minor improvement
+- A release regression
+- An urgent incident
+- A systemic problem
+
+Record important operational findings:
+
+```bash
+ctx log add \
+  --tag=ISSUE \
+  --note="Authentication failures increased after rollout and require investigation."
+```
+
+The purpose of this stage is to connect what was delivered with what actually happened after delivery.
+
+### 10. Handle Incidents and Recovery
+
+When a production issue occurs, prioritize restoring a safe and usable system.
+
+The immediate response may include:
+
+- Confirming the incident
+- Assessing impact
+- Identifying the affected change
+- Applying a mitigation or rollback
+- Recording the current state
+- Tracking recovery work
+- Reviewing the cause after service is restored
+
+Create a dedicated recovery task:
+
+```bash
+ctx task create \
+  --task="Investigate authentication failures after release" \
+  --description="Determine whether the release caused the increase in failed authentication requests."
+```
+
+Record meaningful attempts and decisions:
+
+```bash
+ctx log add \
+  --tag=ATTEMPT \
+  --note="Rollback reduced authentication failures; investigate the release before redeployment."
+```
+
+After the immediate problem is resolved, return the incident to the change portfolio. The follow-up may involve:
+
+- A bug fix
+- Additional tests
+- Improved monitoring
+- A design change
+- A new operating guideline
+- A change to the release process
+
+### 11. Maintain Engineering Standards and Product Direction
+
+Long-running products accumulate decisions, conventions, and operational knowledge.
+
+Periodically review whether the current direction still supports the product.
+
+This may involve:
+
+- Updating technical guidelines
+- Replacing an outdated approach
+- Revisiting architectural decisions
+- Removing obsolete assumptions
+- Improving testing and release practices
+- Documenting recurring operational procedures
+- Identifying areas where technical debt is increasing risk
+
+Record decisions when the direction changes:
+
+```bash
+ctx decision create \
+  --topic="Adopt a shared authentication validation policy" \
+  --reasoning="Repeated inconsistencies across services increased maintenance and security risk." \
+  --tags=ARCHITECTURE,SECURITY
+```
+
+CTX should preserve the history and reasoning of these decisions so future work does not repeatedly revisit the same questions.
+
+### 12. Evaluate and Rebalance
+
+At the end of a delivery cycle, release, incident, or significant period of operation, evaluate the current state.
+
+Review:
+
+- What changed
+- What was delivered
+- What did not work
+- Which assumptions were invalidated
+- Which tasks remain active or blocked
+- Which risks increased or decreased
+- Which decisions should be revisited
+- What should enter the next delivery boundary
+
+Use CTX to recover the information needed for this review:
+
+```bash
+ctx status
+ctx task query -x equals:BLOCKED
+ctx log query -x equals:ISSUE
+ctx decision query -x contains:authentication
+```
+
+The result is not necessarily project completion. It is a better understanding of what should happen next.
+
+The workflow then returns to change management, where the next delivery boundary is selected using the latest product and operational context.
+
+## What’s Better with CTX
+
+Without persistent execution context, long-running product work becomes fragmented across:
+
+- Issue trackers
+- Pull requests
+- Code comments
+- Release notes
+- Incident channels
+- Personal notes
+- Separate AI sessions
+- Individual memory
+
+These systems may contain useful information, but they do not always preserve the reasoning connecting one stage to another.
+
+CTX provides a shared project-level record of:
+
+- The current working context
+- Active and completed tasks
+- Blocked work and its reasons
+- Meaningful discoveries
+- Failed attempts
+- Product and technical decisions
+- Session continuity
+- The relationship between delivery work and operational follow-up
+
+This makes it easier to answer:
+
+- Why was this change prioritized?
+- What was attempted before?
+- Which decision led to the current implementation?
+- What remains blocked?
+- What should the next developer or AI agent understand?
+- What changed after the last release?
+- Which issues should influence the next delivery cycle?
+
+## Completion
+
+The advanced workflow has no permanent completion point.
+
+A single delivery cycle may complete when its changes are released and evaluated. An incident may complete when service is restored and follow-up work is recorded. A product may reach a stable milestone, but continued operation creates new requirements, risks, and improvement opportunities.
+
+The workflow is complete for a cycle when:
+
+- The intended change has been delivered or deliberately deferred
+- The resulting system state is understood
+- Important decisions and findings are recorded
+- Remaining work is visible
+- Follow-up priorities are clear
+- The next cycle can begin without reconstructing the previous one
