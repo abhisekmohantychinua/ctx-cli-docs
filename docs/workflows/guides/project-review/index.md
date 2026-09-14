@@ -79,3 +79,6 @@ The recorded reasoning helps you understand previous choices before changing the
 - [Tasks](../../../concepts/tasks/)
 - [Logs](../../../concepts/logs/)
 - [Decisions](../../../concepts/decisions/)
+- [Task commands](../../../commands/ctx/task/)
+- [Log commands](../../../commands/ctx/log/)
+- [Decision commands](../../../commands/ctx/decision/)
