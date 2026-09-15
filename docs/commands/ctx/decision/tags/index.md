@@ -51,7 +51,7 @@ A tag operation must be provided through one of its subcommands.
 
 ### Add tags to a decision
 
-```cmd
+```bash
 ctx decision tags D3 add
 ```
 
@@ -59,7 +59,7 @@ Starts the tag addition operation for decision `D3`.
 
 ### Remove tags from a decision
 
-```cmd
+```bash
 ctx decision tags D3 remove
 ```
 
@@ -67,7 +67,7 @@ Starts the tag removal operation for decision `D3`.
 
 ### Show available tag commands
 
-```cmd
+```bash
 ctx decision tags D3 --help
 ```
 

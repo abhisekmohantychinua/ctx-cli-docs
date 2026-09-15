@@ -40,7 +40,7 @@ The command does not filter, paginate, or otherwise modify the task list.
 
 ### List all project tasks
 
-```cmd
+```bash
 ctx task list
 ```
 
@@ -48,7 +48,7 @@ Displays all project tasks in a flat list with their identifiers, statuses, and 
 
 ### Use the `ls` alias
 
-```cmd
+```bash
 ctx task ls
 ```
 

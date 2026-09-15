@@ -50,7 +50,7 @@ The root command does not create or modify project context.
 
 ### Display CTX information
 
-```cmd
+```bash
 ctx
 ```
 
@@ -58,7 +58,7 @@ Displays the CTX banner, installed version, documentation location, and a short 
 
 ### Show available commands
 
-```cmd
+```bash
 ctx --help
 ```
 

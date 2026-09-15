@@ -5,7 +5,7 @@ sidebar_label: Beginner
 
 # Beginner Development Workflow with CTX
 
-This workflow is for a small, clearly defined feature or change. It shows how a developer can use CTX to understand the goal, organise the work, implement it across one or more sessions, and review the result until it is complete.
+This workflow is for a small, clearly defined feature or change. It shows how a developer can use CTX to understand the goal, organize the work, implement it across one or more sessions, and review the result until it is complete.
 
 ## The Process
 
@@ -24,7 +24,7 @@ Begin by clarifying what needs to change and why.
 
 Understand the problem, the expected result, and the feature's boundaries. Review the existing project context for related tasks, previous decisions, or useful information before making a plan.
 
-If the context has not been initialised yet, create it first:
+If the context has not been initialized yet, create it first:
 
 ```bash
 ctx init
@@ -50,7 +50,7 @@ The goal is not to document every thought. Preserve the decisions that explain h
 
 ### Plan the Feature
 
-Organise the tasks into a practical order.
+Organize the tasks into a practical order.
 
 Identify which task should be completed first, whether any task depends on another, and how you will verify the result. Keep the plan simple enough to follow, but detailed enough to make the next action clear.
 
@@ -120,8 +120,13 @@ If the implementation exposes a new requirement, update the relevant task. If a 
 For example:
 
 ```bash
-ctx task update <task-id> --note "Include platform-specific lock handling"
-ctx decision update <decision-id> --reasoning "Use a platform-independent fallback when OS locking is unavailable."
+ctx task update <task-id> \
+    --note "Include platform-specific lock handling"
+```
+
+```bash
+ctx decision update <decision-id> \
+    --reasoning "Use a platform-independent fallback when OS locking is unavailable."
 ```
 
 Continue moving between planning, implementation, and review until the feature meets its intended goal.

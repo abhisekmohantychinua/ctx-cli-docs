@@ -54,7 +54,7 @@ The command only presents existing logs and does not modify them.
 
 ### List recent logs
 
-```cmd
+```bash
 ctx logs
 ```
 
@@ -62,7 +62,7 @@ Shows the latest 20 logs.
 
 ### Show a specific number of logs
 
-```cmd
+```bash
 ctx logs --count=50
 ```
 
@@ -70,7 +70,7 @@ Shows the latest 50 logs.
 
 ### Show recent logs as formatted JSON
 
-```cmd
+```bash
 ctx logs --pretty-json
 ```
 
@@ -78,7 +78,7 @@ Shows the recent logs as formatted JSON.
 
 ### Show the compact output
 
-```cmd
+```bash
 ctx logs --short
 ```
 

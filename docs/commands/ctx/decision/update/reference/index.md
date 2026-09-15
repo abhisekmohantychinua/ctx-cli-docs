@@ -45,7 +45,7 @@ The command only changes the decision reference and does not modify the decision
 
 ### Reference a decision to a session
 
-```cmd
+```bash
 ctx decision update D3 reference --session=S1
 ```
 
@@ -53,7 +53,7 @@ Associates decision `D3` with session `S1`.
 
 ### Reference a decision to a task
 
-```cmd
+```bash
 ctx decision update D3 reference --task=T5
 ```
 
@@ -61,7 +61,7 @@ Associates decision `D3` with task `T5`.
 
 ### Reference a decision to the active session
 
-```cmd
+```bash
 ctx decision update D3 reference --session
 ```
 
@@ -69,7 +69,7 @@ Associates decision `D3` with the active session.
 
 ### Reference a decision to the active task
 
-```cmd
+```bash
 ctx decision update D3 reference --task
 ```
 
@@ -77,7 +77,7 @@ Associates decision `D3` with the active task.
 
 ### Remove the decision reference
 
-```cmd
+```bash
 ctx decision update D3 reference
 ```
 

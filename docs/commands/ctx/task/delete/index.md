@@ -51,7 +51,7 @@ References associated with the deleted task are removed as part of the deletion.
 
 ### Delete a task
 
-```cmd
+```bash
 ctx task delete T7
 ```
 
@@ -59,7 +59,7 @@ Deletes task `T7` and prints its identifier.
 
 ### Delete a task with subtasks
 
-```cmd
+```bash
 ctx task delete T4
 ```
 

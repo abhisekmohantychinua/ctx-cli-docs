@@ -37,7 +37,7 @@ The same query model is used across sessions, tasks, logs, and decisions. Only t
 
 Each query is scoped to a domain.
 
-```text
+```bash
 ctx session query
 ctx task query
 ctx log query
@@ -61,7 +61,7 @@ The query command accepts the same common query controls and the same output vie
 
 For example:
 
-```text
+```bash
 ctx task query -f status -x equals:BLOCKED
 ```
 
@@ -429,7 +429,7 @@ These expressions are available regardless of the selected field type.
 
 For example:
 
-```text
+```bash
 ctx session query -f endedAt -x :null
 ```
 
@@ -441,7 +441,7 @@ Queries return results in pages rather than returning every matching record at o
 
 The `--page` option selects the page and `--size` controls how many records belong to each page.
 
-```text
+```bash
 ctx task query -f status -x equals:PENDING --page 2 --size 20
 ```
 
@@ -464,7 +464,7 @@ DESC
 
 For example:
 
-```text
+```bash
 ctx log query -f tag -x equals:ISSUE --sort-by timestamp --sort DESC
 ```
 
@@ -478,43 +478,43 @@ Sorting fields are validated against the fields supported by the domain.
 
 ### Find Active Sessions
 
-```text
+```bash
 ctx session query -f status -x equals:ACTIVE
 ```
 
 ### Find Blocked Tasks
 
-```text
+```bash
 ctx task query -f status -x equals:BLOCKED
 ```
 
 ### Find Authentication-Related Tasks
 
-```text
+```bash
 ctx task query -f task -x contains:authentication
 ```
 
 ### Find Issue Logs
 
-```text
+```bash
 ctx log query -f tag -x equals:ISSUE
 ```
 
 ### Find Logs Referencing a Task
 
-```text
+```bash
 ctx log query -f referenceType -x equals:TASK
 ```
 
 ### Find Decisions About Authentication
 
-```text
+```bash
 ctx dec query -f topic -x contains:authentication
 ```
 
 ### Find Incomplete Sessions
 
-```text
+```bash
 ctx session query -f endedAt -x :null
 ```
 
@@ -522,7 +522,7 @@ ctx session query -f endedAt -x :null
 
 Date fields can be queried relative to the current time when the field supports date expressions.
 
-```text
+```bash
 ctx session query -f createdAt -x after::now
 ```
 

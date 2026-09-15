@@ -57,7 +57,7 @@ Use the `reference` subcommand when the session or task reference of a log needs
 
 ### Update the log note
 
-```cmd
+```bash
 ctx log update L4 --note="Payment API timeout confirmed."
 ```
 
@@ -65,7 +65,7 @@ Updates the note of log `L4`.
 
 ### Update the log tag
 
-```cmd
+```bash
 ctx log update L4 --tag=ISSUE
 ```
 
@@ -73,7 +73,7 @@ Changes the tag of log `L4` to `ISSUE`.
 
 ### Update multiple fields
 
-```cmd
+```bash
 ctx log update L4 --tag=ATTEMPT --note="Retry strategy tested successfully."
 ```
 
@@ -81,7 +81,7 @@ Updates both the tag and note of log `L4`.
 
 ### Update a log reference
 
-```cmd
+```bash
 ctx log update L4 reference --task=T14
 ```
 
@@ -89,7 +89,7 @@ Updates the reference of log `L4`.
 
 ### Update without changing fields
 
-```cmd
+```bash
 ctx log update L4
 ```
 

@@ -43,7 +43,7 @@ The command only presents existing context and does not create or modify any pro
 
 ### View the current execution status
 
-```cmd
+```bash
 ctx status
 ```
 
@@ -51,7 +51,7 @@ Displays a summary of the current session and task along with recent pending tas
 
 ### Use the `ps` alias
 
-```cmd
+```bash
 ctx ps
 ```
 

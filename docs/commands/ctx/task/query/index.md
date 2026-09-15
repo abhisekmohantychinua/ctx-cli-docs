@@ -65,7 +65,7 @@ Querying is designed for finding and inspecting context across the task history.
 
 ### Find pending tasks
 
-```cmd
+```bash
 ctx task query -x equals:PENDING
 ```
 
@@ -73,7 +73,7 @@ Searches for tasks whose status is `PENDING`.
 
 ### Find a specific task
 
-```cmd
+```bash
 ctx task query -f id -x equals:T7
 ```
 
@@ -81,7 +81,7 @@ Searches for the task with identifier `T7`.
 
 ### Find tasks by name
 
-```cmd
+```bash
 ctx task query -f task -x contains:authentication
 ```
 
@@ -89,7 +89,7 @@ Searches for tasks whose name contains `authentication`.
 
 ### Find blocked tasks
 
-```cmd
+```bash
 ctx task query -f status -x equals:BLOCKED
 ```
 
@@ -97,7 +97,7 @@ Searches for tasks whose status is `BLOCKED`.
 
 ### Sort matching tasks
 
-```cmd
+```bash
 ctx task query -f status -x equals:COMPLETED --sort-by=completedAt --sort=DESC
 ```
 
@@ -105,7 +105,7 @@ Returns completed tasks with the most recently completed tasks first.
 
 ### View query results as formatted JSON
 
-```cmd
+```bash
 ctx task query -f status -x equals:COMPLETED --pretty-json
 ```
 

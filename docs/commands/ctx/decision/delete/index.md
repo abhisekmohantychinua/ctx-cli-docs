@@ -43,7 +43,7 @@ If the provided identifier does not match an existing decision, the command repo
 
 ### Delete a decision
 
-```cmd
+```bash
 ctx decision delete D1
 ```
 

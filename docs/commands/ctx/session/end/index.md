@@ -38,7 +38,7 @@ When no active session exists, the command reports an error and does not change 
 
 ### End the active session
 
-```cmd
+```bash
 ctx session end
 ```
 
@@ -46,7 +46,7 @@ Ends the active session and prints its identifier.
 
 ### Try to end a session when none is active
 
-```cmd
+```bash
 ctx session end
 ```
 

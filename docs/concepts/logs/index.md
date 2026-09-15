@@ -2,6 +2,10 @@
 sidebar_position: 3
 ---
 
+{/*
+<!-- TODO: DO A CONTENT AND STYLE REVIEW -->
+*/}
+
 # Logs
 
 A **Log** represents a small, meaningful record of something that happened during project execution.

@@ -54,7 +54,7 @@ Every newly created task starts with `PENDING` status and an empty list of subta
 
 ### Create a root task
 
-```cmd
+```bash
 ctx task create --task="Implement payment retry"
 ```
 
@@ -62,7 +62,7 @@ Creates a new task at the root level.
 
 ### Create a task with a description
 
-```cmd
+```bash
 ctx task create --task="Implement payment retry" --description="Add retry handling for failed payment requests."
 ```
 
@@ -70,7 +70,7 @@ Creates a root task with the specified description.
 
 ### Create a subtask
 
-```cmd
+```bash
 ctx task create T2 --task="Define service layer for business logic"
 ```
 
@@ -78,7 +78,7 @@ Creates the new task as a subtask of `T2`.
 
 ### Enter the task interactively
 
-```cmd
+```bash
 ctx task create --task
 ```
 
@@ -86,7 +86,7 @@ Prompts for the task name before creating it.
 
 ### Enter the task and description interactively
 
-```cmd
+```bash
 ctx task create --task --description
 ```
 

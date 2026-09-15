@@ -45,7 +45,7 @@ The session creation time is recorded when the new session is started.
 
 ### Start a session
 
-```cmd
+```bash
 ctx session start
 ```
 
@@ -53,7 +53,7 @@ Starts a new session and returns its identifier.
 
 ### Start a session with notes
 
-```cmd
+```bash
 ctx session start --notes="Working on payment retry test."
 ```
 
@@ -61,7 +61,7 @@ Starts a new session with the provided notes.
 
 ### Enter session notes interactively
 
-```cmd
+```bash
 ctx session start --notes
 ```
 
@@ -69,7 +69,7 @@ Prompts for the session notes before starting the session.
 
 ### End the active session and start a new one
 
-```cmd
+```bash
 ctx session start --end
 ```
 
@@ -77,7 +77,7 @@ Ends the active session and immediately starts a new one.
 
 ### End the active session and start a new one with notes
 
-```cmd
+```bash
 ctx session start --end --notes="Working on payment retry test."
 ```
 

@@ -50,7 +50,7 @@ The decision receives a generated identifier using the `D` prefix and records th
 
 ### Create a decision
 
-```cmd
+```bash
 ctx decision create --topic="Use PostgreSQL for the application database"
 ```
 
@@ -58,7 +58,7 @@ Creates a decision with the specified topic.
 
 ### Create a decision with reasoning
 
-```cmd
+```bash
 ctx decision create --topic="Use PostgreSQL for the application database" --reasoning="PostgreSQL provides strong relational integrity and transaction support."
 ```
 
@@ -66,7 +66,7 @@ Creates a decision with the chosen topic and its reasoning.
 
 ### Enter the reasoning interactively
 
-```cmd
+```bash
 ctx decision create --topic="Use PostgreSQL for the application database" --reasoning
 ```
 
@@ -74,7 +74,7 @@ Prompts for the decision reasoning before creating the record.
 
 ### Add tags
 
-```cmd
+```bash
 ctx decision create --topic="Use PostgreSQL for the application database" --tags=database,architecture,backend
 ```
 
@@ -82,7 +82,7 @@ Creates the decision with the specified tags.
 
 ### Reference the active session
 
-```cmd
+```bash
 ctx decision create --topic="Use PostgreSQL for the application database" --session
 ```
 
@@ -90,7 +90,7 @@ Creates the decision and associates it with the active session.
 
 ### Reference a task
 
-```cmd
+```bash
 ctx decision create --topic="Use PostgreSQL for the application database" --task=T5
 ```
 

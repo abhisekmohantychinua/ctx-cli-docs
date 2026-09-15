@@ -52,7 +52,7 @@ The task itself is moved without changing its other task information.
 
 ### Move a task under another task
 
-```cmd
+```bash
 ctx task move T7 T2
 ```
 
@@ -60,7 +60,7 @@ Moves task `T7` to become a subtask of `T2`.
 
 ### Move a task to the root
 
-```cmd
+```bash
 ctx task move T7
 ```
 
@@ -68,7 +68,7 @@ Moves task `T7` to the root level.
 
 ### Move a task to another parent
 
-```cmd
+```bash
 ctx task move T7 T4
 ```
 

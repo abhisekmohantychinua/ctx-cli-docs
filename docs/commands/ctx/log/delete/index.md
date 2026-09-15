@@ -43,7 +43,7 @@ If the provided identifier does not match an existing log, the command reports a
 
 ### Delete a log
 
-```cmd
+```bash
 ctx log delete L3
 ```
 

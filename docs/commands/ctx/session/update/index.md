@@ -51,7 +51,7 @@ If the provided identifier does not match an existing session, the command repor
 
 ### Update session notes
 
-```cmd
+```bash
 ctx session update S4 --notes="Working on payment retry tests."
 ```
 
@@ -59,7 +59,7 @@ Updates the notes of session `S4`.
 
 ### Enter session notes interactively
 
-```cmd
+```bash
 ctx session update S4 --notes
 ```
 
@@ -67,7 +67,7 @@ Prompts for the new session notes before updating the session.
 
 ### Update a session without providing new values
 
-```cmd
+```bash
 ctx session update S4
 ```
 

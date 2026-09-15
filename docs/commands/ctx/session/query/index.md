@@ -65,7 +65,7 @@ Querying is designed for finding and inspecting context across the session histo
 
 ### Find active sessions
 
-```cmd
+```bash
 ctx session query -x equals:ACTIVE
 ```
 
@@ -73,7 +73,7 @@ Searches for sessions whose status is `ACTIVE`.
 
 ### Find a specific session
 
-```cmd
+```bash
 ctx session query -f id -x equals:S4
 ```
 
@@ -81,7 +81,7 @@ Searches for the session with identifier `S4`.
 
 ### Find sessions by notes
 
-```cmd
+```bash
 ctx session query -f notes -x contains:payment
 ```
 
@@ -89,7 +89,7 @@ Searches for sessions whose notes contain `payment`.
 
 ### Sort matching sessions
 
-```cmd
+```bash
 ctx session query -f status -x equals:COMPLETED --sort-by=endedAt --sort=DESC
 ```
 
@@ -97,7 +97,7 @@ Returns completed sessions with the most recently ended sessions first.
 
 ### View query results as formatted JSON
 
-```cmd
+```bash
 ctx session query -f status -x equals:COMPLETED --pretty-json
 ```
 

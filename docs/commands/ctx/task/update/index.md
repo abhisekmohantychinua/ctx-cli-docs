@@ -54,7 +54,7 @@ If the provided identifier does not match an existing task, the command reports 
 
 ### Update the task name
 
-```cmd
+```bash
 ctx task update T7 --task="Define authentication strategy"
 ```
 
@@ -62,7 +62,7 @@ Updates the name of task `T7`.
 
 ### Update the task description
 
-```cmd
+```bash
 ctx task update T7 --description="Document the authentication approach."
 ```
 
@@ -70,7 +70,7 @@ Updates the description of task `T7`.
 
 ### Change the task status
 
-```cmd
+```bash
 ctx task update T7 --status=IN_PROGRESS
 ```
 
@@ -78,7 +78,7 @@ Changes the status of task `T7` to `IN_PROGRESS`.
 
 ### Update multiple fields
 
-```cmd
+```bash
 ctx task update T7 --task="Implement authentication" --description="Add login and token handling." --status=IN_PROGRESS
 ```
 
@@ -86,7 +86,7 @@ Updates the task name, description, and status together.
 
 ### Enter a value interactively
 
-```cmd
+```bash
 ctx task update T7 --task
 ```
 
@@ -94,7 +94,7 @@ Prompts for the new task name before updating the task.
 
 ### Update without changing fields
 
-```cmd
+```bash
 ctx task update T7
 ```
 

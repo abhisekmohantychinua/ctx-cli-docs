@@ -43,7 +43,7 @@ If the specified decision does not exist, the command reports an error and does 
 
 ### Remove a tag
 
-```cmd
+```bash
 ctx decision tags D3 remove --tags=backend
 ```
 
@@ -51,7 +51,7 @@ Removes the `backend` tag from decision `D3`.
 
 ### Remove multiple tags
 
-```cmd
+```bash
 ctx decision tags D3 remove --tags=database,backend
 ```
 
@@ -59,7 +59,7 @@ Removes the specified tags from decision `D3`.
 
 ### Remove tags using repeated options
 
-```cmd
+```bash
 ctx decision tags D3 remove --tags=database --tags=backend
 ```
 
@@ -67,7 +67,7 @@ Removes both tags from decision `D3`.
 
 ### Remove a tag that does not exist
 
-```cmd
+```bash
 ctx decision tags D3 remove --tags=frontend
 ```
 

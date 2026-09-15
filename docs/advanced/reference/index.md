@@ -202,7 +202,7 @@ Provide the identifier when you want to reference a specific session or task.
 
 For example:
 
-```text
+```bash
 ctx log add --note "Investigated webhook processing." --task T5
 ```
 
@@ -210,7 +210,7 @@ creates a log associated with task `T5`.
 
 A decision can be associated in the same way:
 
-```text
+```bash
 ctx dec create --topic "Use the provider's asynchronous webhook flow." --session S2
 ```
 
@@ -224,7 +224,7 @@ You can omit the identifier when the record should belong to the currently activ
 
 For example:
 
-```text
+```bash
 ctx log add --note "Investigated webhook processing." --task
 ```
 
@@ -232,7 +232,7 @@ associates the new log with the active task.
 
 Similarly:
 
-```text
+```bash
 ctx dec create --topic "Use the provider's asynchronous webhook flow." --session
 ```
 
@@ -246,7 +246,7 @@ When neither `--session` nor `--task` is provided, the record remains unreferenc
 
 For example:
 
-```text
+```bash
 ctx log add --note "Investigated webhook processing."
 ```
 
@@ -307,19 +307,19 @@ This is useful when:
 
 For example, a decision can be associated with a task:
 
-```text
+```bash
 ctx decision update D1 ref --task T5
 ```
 
 Or with a session:
 
-```text
+```bash
 ctx decision update D1 ref --session S2
 ```
 
 A log can be updated in the same way:
 
-```text
+```bash
 ctx log update L1 ref --task T5
 ```
 

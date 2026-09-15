@@ -40,7 +40,7 @@ Running it without a subcommand does not perform any generation and results in a
 
 ### List available generation commands
 
-```cmd
+```bash
 ctx generate --help
 ```
 
@@ -48,7 +48,7 @@ Displays the available generation subcommands and their options.
 
 ### Generate project instructions
 
-```cmd id="8m5v2p"
+```bash
 ctx generate instruction
 ```
 

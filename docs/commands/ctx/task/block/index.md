@@ -49,7 +49,7 @@ If no reason is provided, the task is still marked as `BLOCKED` without adding a
 
 ### Block a task
 
-```cmd
+```bash
 ctx task block T7
 ```
 
@@ -57,7 +57,7 @@ Marks task `T7` as `BLOCKED`.
 
 ### Block a task with a reason
 
-```cmd
+```bash
 ctx task block T7 --reason="Waiting for the payment provider API."
 ```
 
@@ -65,7 +65,7 @@ Marks task `T7` as `BLOCKED` and records the specified reason.
 
 ### Enter the block reason interactively
 
-```cmd
+```bash
 ctx task block T7 --reason
 ```
 
@@ -73,7 +73,7 @@ Prompts for the reason before marking the task as `BLOCKED`.
 
 ### Block a completed task
 
-```cmd
+```bash
 ctx task block T4
 ```
 

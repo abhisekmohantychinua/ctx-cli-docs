@@ -109,7 +109,7 @@ e.g.
 
 ### Create a task
 
-```cmd
+```bash
 ctx task create -t "Review frontend documentation"
 ```
 

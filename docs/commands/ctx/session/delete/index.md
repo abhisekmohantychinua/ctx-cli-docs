@@ -45,7 +45,7 @@ When the session is inactive, CTX deletes it and prints its identifier.
 
 ### Delete an inactive session
 
-```cmd
+```bash
 ctx session delete S4
 ```
 
@@ -53,7 +53,7 @@ Deletes session `S4` and prints its identifier.
 
 ### Try to delete the active session
 
-```cmd
+```bash
 ctx session delete S5
 ```
 

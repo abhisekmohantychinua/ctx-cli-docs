@@ -49,7 +49,7 @@ If the specified task does not exist, the command reports an error and does not 
 
 ### Start a task
 
-```cmd
+```bash
 ctx task start T7
 ```
 
@@ -57,7 +57,7 @@ Starts task `T7` and changes its status to `IN PROGRESS`.
 
 ### Complete the current task and start another
 
-```cmd
+```bash
 ctx task start T7 --end
 ```
 
@@ -65,7 +65,7 @@ Completes the task currently in progress and starts task `T7`.
 
 ### Use the `st` alias
 
-```cmd
+```bash
 ctx task st T7
 ```
 

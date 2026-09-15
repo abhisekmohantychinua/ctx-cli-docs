@@ -43,7 +43,7 @@ If the specified decision does not exist, the command reports an error and does 
 
 ### Add a tag
 
-```cmd
+```bash
 ctx decision tags D3 add --tags=backend
 ```
 
@@ -51,7 +51,7 @@ Adds the `backend` tag to decision `D3`.
 
 ### Add multiple tags
 
-```cmd
+```bash
 ctx decision tags D3 add --tags=database,architecture,backend
 ```
 
@@ -59,7 +59,7 @@ Adds multiple tags to decision `D3`.
 
 ### Add tags using repeated options
 
-```cmd
+```bash
 ctx decision tags D3 add --tags=database --tags=backend
 ```
 
@@ -67,7 +67,7 @@ Adds both tags to decision `D3`.
 
 ### Add a tag that already exists
 
-```cmd
+```bash
 ctx decision tags D3 add --tags=backend
 ```
 
