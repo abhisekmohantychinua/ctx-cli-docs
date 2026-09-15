@@ -4,15 +4,15 @@ sidebar_position: 2
 
 # Models
 
-CTX stores project context as structured records. Each core concept has its own data model that defines the information CTX keeps and how that information is represented.
+CTX stores project context as structured records. Each core concept has its own data model, which defines the information CTX stores and how that information is represented.
 
-This section documents the structure of those records. It is intended for users who need to understand the data behind CTX's sessions, tasks, logs, and decisions rather than how to use the concepts in everyday work.
+This section documents the structure of those records. It is intended for users who need to understand the data behind CTX's sessions, tasks, logs, and decisions rather than how to use these concepts in everyday work.
 
 ## Data Models
 
 ### [Session](./session/)
 
-Understand the data stored for each session, including its identity, state, timing, and session notes.
+Understand the data stored for each session, including its identity, state, timing, and notes.
 
 ### [Task](./task/)
 
