@@ -6,7 +6,7 @@ sidebar_position: 3
 
 A **Log** represents a small, meaningful record of something that happened during project execution.
 
-Logs allow CTX to preserve events, observations, ideas, issues, and attempts as they occur. They provide the detailed execution context around tasks, sessions, and decisions without requiring the task or session itself to be continuously updated.
+Logs allow CTX to preserve events, observations, ideas, issues, and attempts as they occur. They provide detailed execution context around tasks, sessions, and decisions without requiring the task or session itself to be continuously updated.
 
 A log is not a system log, application log, or version-control record. It is a lightweight record of **what happened or what was noticed while work was being performed**.
 
@@ -98,7 +98,7 @@ When a log is associated with a session or task, that relationship makes it easi
 
 Sessions represent periods of active work, while logs represent events that happen during those periods.
 
-When a session is active, a log can be associated with that session. This gives the log a temporal context without requiring the log to contain session information in its content.
+When a session is active, a log can be associated with that session. This gives the log temporal context without requiring the log to contain session information in its content.
 
 For example:
 
