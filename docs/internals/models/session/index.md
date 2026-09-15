@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Session
 
-A **Session** represents a continuous period of active work on a project.  
+A **Session** represents a continuous period of active work on a project.
 The session data model contains the information CTX uses to identify the session, describe its purpose, track its lifecycle, and determine whether it is currently active.
 
 ## Fields
@@ -31,12 +31,12 @@ The session data model contains the information CTX uses to identify the session
 
 ### createdAt
 
-- `createdAt` records the moment the session starts. It is always present for a valid session.
+- `createdAt` records when the session starts. It is always present for a valid session.
 - The timestamp is stored in UTC. CTX uses the configured time representation when displaying the timestamp.
 
 ### endedAt
 
-- `endedAt` records the moment the session ends.
+- `endedAt` records when the session ends.
 - The field remains `null` while the session is active.
 - The timestamp is stored in UTC. CTX uses the configured time representation when displaying the timestamp.
 
