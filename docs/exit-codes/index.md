@@ -6,7 +6,7 @@ sidebar_position: 9
 
 CTX uses exit codes to identify the outcome of every command execution.
 
-The code returned by CTX is the same code used to identify the error. This makes command failures predictable for both developers and programs consuming CTX.
+The code returned by CTX also identifies the error, making command failures predictable for both developers and programs that consume CTX.
 
 A successful command returns `0`. When a command fails, CTX returns a non-zero code that identifies the reason for the failure.
 
@@ -25,7 +25,7 @@ Every CTX command ends with an exit code.
 | 2 | Command validation failed |
 | 100–999 | Known error identified by a specific error code |
 
-The error code is returned as the process exit code and, when an error message is displayed, the same code identifies that error.
+The error code is returned as the process exit code. When CTX displays an error message, the same code identifies that error.
 
 For example, if a command fails because no project context can be found, CTX returns:
 
@@ -40,7 +40,7 @@ ctx init
 
 The process also exits with code `103`.
 
-This means a script, an AI agent, or another tool does not need to interpret the error message to determine what happened. It can use the exit code directly.
+This means that a script, an AI agent, or another tool does not need to interpret the error message to determine what happened. It can use the exit code directly.
 
 ## Error Code Structure
 
@@ -94,7 +94,7 @@ For example:
 230  Session deletion - active session cannot be deleted
 ```
 
-This structure allows the code itself to provide useful information without putting dynamic information such as an entity identifier or timestamp into the error code.
+This structure allows the code itself to provide useful information without including dynamic information, such as an entity identifier or timestamp, in the error code.
 
 ## Reading an Exit Code
 
@@ -109,7 +109,7 @@ The exit code can be used directly to determine the outcome of a command.
 310   Known error: task not found
 ```
 
-The important distinction is that `1` and `2` are themselves meaningful error codes. They are not categories that contain another error code. If CTX returns `310`, `310` is the error code and the process exit code. If CTX returns `1`, `1` is the error code and the process exit code. There is no separate business error code hidden behind the exit code.
+The important distinction is that `1` and `2` are themselves meaningful error codes. They are not categories that contain another error code. If CTX returns `310`, `310` is both the error code and the process exit code. If CTX returns `1`, `1` is both the error code and the process exit code. There is no separate business error code hidden behind the exit code.
 
 ## Error Reference
 
@@ -191,4 +191,4 @@ A code should therefore be treated as an identifier, not as a value whose meanin
 
 The entity identifier, timestamp, or other dynamic information belongs in the error message, not in the exit code.
 
-Integrations can depend on an exit code's meaning instead of the exact wording of an error message.
+Integrations can depend on the meaning of an exit code instead of the exact wording of an error message.
