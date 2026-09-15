@@ -8,7 +8,7 @@ CTX uses three related representations when working with tasks:
 
 - `Task` - represents the complete task record.
 - `TaskReference` - represents a relationship to another task by its identifier.
-- `ResolvedTask` - represents a task after its references have been resolved for use.  
+- `ResolvedTask` - represents a task after its references have been resolved for use.
 
 These representations serve different purposes. A task contains its own information, while references keep task relationships lightweight. A resolved task is used when CTX needs the referenced task information rather than only its identifier.
 
@@ -44,7 +44,7 @@ The complete task is stored as a task record. Subtasks are not stored as complet
 
 - The task field identifies the work represented by the task.
 - It is required and should provide a concise description of the work.
-- A task field is limited to **150 characters**.
+- The task field is limited to **150 characters**.
 
 #### description
 
@@ -94,11 +94,11 @@ A **TaskReference** is a lightweight reference to another task. It contains only
 | --- | --- | --- | --- |
 | id | [Identifier](../../identifier/) | Yes | Unique identifier for the referenced task. |
 
-The references do not contain copies of the referenced tasks. This is how CTX represents task hierarchy without embedding complete task records inside other tasks. For example, a parent task may contain references to T2 and T3, while the actual task records remain separate. This distinction is important because a reference answers which task is related to this task. But not what is that task.
+References do not contain copies of the referenced tasks. This is how CTX represents task hierarchy without embedding complete task records inside other tasks. For example, a parent task may contain references to T2 and T3, while the actual task records remain separate. This distinction is important because a reference identifies which task is related to the current task, not what that task contains.
 
 ## Resolved Task
 
-A **ResolvedTask** is the representation used when a task reference has been resolved to its corresponding task. Instead of working only with **Task** and **TaskReference**, CTX can resolve that reference to the corresponding task. This is particularly useful when CTX needs to display or operate on a task hierarchy.
+A **ResolvedTask** is the representation used when a task reference has been resolved to its corresponding task. Instead of working only with **Task** and **TaskReference**, CTX can resolve a reference to the corresponding task. This is particularly useful when CTX needs to display or operate on a task hierarchy.
 
 ### Fields
 
