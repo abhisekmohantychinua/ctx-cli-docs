@@ -5,7 +5,7 @@ sidebar_label: Beginner
 
 # Beginner Development Workflow with CTX
 
-This workflow is for a small, clearly defined feature or change. It shows how a typical developer can use CTX to understand the goal, organise the work, implement it across one or more sessions, and review the result until it is complete.
+This workflow is for a small, clearly defined feature or change. It shows how a developer can use CTX to understand the goal, organise the work, implement it across one or more sessions, and review the result until it is complete.
 
 ## The Process
 
@@ -22,7 +22,7 @@ flowchart LR
 
 Begin by clarifying what needs to change and why.
 
-Understand the problem, the expected result, and the boundaries of the feature. Review the existing project context for related tasks, previous decisions, or useful information before making a plan.
+Understand the problem, the expected result, and the feature's boundaries. Review the existing project context for related tasks, previous decisions, or useful information before making a plan.
 
 If the context has not been initialised yet, create it first:
 
@@ -30,7 +30,7 @@ If the context has not been initialised yet, create it first:
 ctx init
 ```
 
-Break the feature into smaller tasks and add them to CTX. If the project already has practices, guidelines, or constraints that should influence the implementation, record them as decisions so the reasoning is available while you work.
+Break the feature into smaller tasks and add them to CTX. If existing practices, guidelines, or constraints should influence the implementation, record them as decisions so the reasoning remains available while you work.
 
 For example:
 
@@ -50,7 +50,7 @@ The goal is not to document every thought. Preserve the decisions that explain h
 
 ### Plan the Feature
 
-Organize the tasks into a practical order.
+Organise the tasks into a practical order.
 
 Identify which task should be completed first, whether any task depends on another, and how you will verify the result. Keep the plan simple enough to follow, but detailed enough to make the next action clear.
 
@@ -72,7 +72,7 @@ Start a session and choose the next task.
 ctx start --notes "Implement file locking"
 ```
 
-Start with the first task and work through it using the project’s existing tools, structure, and practices.
+Start with the first task and work through it using the project's existing tools, structure, and practices.
 
 While implementing, use CTX to preserve useful information:
 
@@ -101,7 +101,7 @@ When you return, review the available context and continue from the task that is
 
 Review the implementation against the original goal.
 
-Check whether the feature behaves as expected, whether the relevant tests or checks pass, and whether the implementation fits the project’s existing structure. Review the result as a whole rather than checking only whether the individual tasks were completed.
+Check whether the feature behaves as expected, whether the relevant tests or checks pass, and whether the implementation fits the project's existing structure. Review the result as a whole rather than checking only whether the individual tasks were completed.
 
 Use CTX to see what has been completed and what remains:
 

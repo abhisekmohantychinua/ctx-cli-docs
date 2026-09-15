@@ -33,7 +33,7 @@ The `session` command manages project sessions.
 
 When used without a subcommand, it shows the active session. If no session is active, it shows the most recent session. When no session records are available, it shows nothing.
 
-The command also provides access to the operations for starting, ending, updating, deleting, and querying sessions.
+The command also gives you access to the operations for starting, ending, updating, deleting, and querying sessions.
 
 ## When to use it
 

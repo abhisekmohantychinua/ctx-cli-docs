@@ -73,6 +73,8 @@ const config: Config = {
           exclude: ["**/_*.md", "**/_*.mdx"],
         },
         blog: {
+          path: "articles",
+          routeBasePath: "articles",
           showReadingTime: true,
           feedOptions: {
             type: ["rss", "atom"],
@@ -114,7 +116,7 @@ const config: Config = {
           position: "left",
           label: "Docs",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        { to: "/articles", label: "Articles", position: "left" },
       ],
     },
     footer: {
@@ -126,6 +128,18 @@ const config: Config = {
             {
               label: "Introduction",
               to: "/docs/introduction",
+            },
+            {
+              label: "AI",
+              to: "/docs/ai",
+            },
+            {
+              label: "Workflows",
+              to: "/docs/workflows",
+            },
+            {
+              label: "Commands",
+              to: "/docs/commands",
             },
           ],
         },
@@ -150,8 +164,8 @@ const config: Config = {
           title: "More",
           items: [
             {
-              label: "Blog",
-              to: "/blog",
+              label: "Articles",
+              to: "/articles",
             },
             {
               label: "GitHub",

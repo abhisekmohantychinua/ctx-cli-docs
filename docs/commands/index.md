@@ -4,9 +4,9 @@ sidebar_position: 7
 
 # Commands
 
-CTX CLI commands are organized around the different parts of project execution that CTX helps you capture and manage.
+CTX CLI commands are organized around the parts of project execution that CTX helps you capture and manage.
 
-Most commands follow the same structure as the concepts they work with: sessions represent periods of work, tasks represent the work itself, logs capture things that happen along the way, and decisions preserve important choices and their reasoning.
+Most commands follow the same structure as the concepts they work with: sessions represent periods of work, tasks represent the work itself, logs capture what happens along the way, and decisions preserve important choices and their reasoning.
 
 ## Project Context
 

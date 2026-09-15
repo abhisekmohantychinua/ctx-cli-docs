@@ -30,7 +30,7 @@ A decision records a chosen approach along with the reasoning behind it. It can 
 
 Use `ctx decision create` when an important choice has been made during project work and you want to preserve the choice and the reasoning behind it.
 
-Record decisions that may be useful later when revisiting the work, understanding why an approach was chosen, or helping others and AI continue the project with the same context.
+Record decisions that will matter when you revisit the work, explain why an approach was chosen, or help teammates and AI continue with the same context.
 
 ## How it works
 

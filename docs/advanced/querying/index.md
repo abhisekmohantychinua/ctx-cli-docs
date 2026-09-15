@@ -6,7 +6,7 @@ sidebar_position: 3
 
 The **Query System** provides a common way to find records across CTX's execution context.
 
-It is designed for users who need more control than the normal views provide. Instead of changing the way records are stored, a query lets you select a field, provide an expression for that field, optionally control pagination, and choose how the matching records are sorted.
+Use it when the standard views do not provide enough control. Instead of changing the way records are stored, a query lets you select a field, provide an expression for that field, optionally control pagination, and choose how the matching records are sorted.
 
 Querying is available for sessions, tasks, logs, and decisions.
 
@@ -410,7 +410,7 @@ regex:ACT.*
 contains:ACT
 ```
 
-This allows enum values to use the same expression language without requiring a separate query syntax.
+As a result, enum values use the same expression language without a separate query syntax.
 
 ## Null Values
 

@@ -4,8 +4,8 @@ sidebar_position: 3
 
 # Log
 
-A **Log** represents a meaningful record of something that happened during project execution.  
-The log data model contains the information CTX uses to describe the event, when it happened, how it is classified, and whether it belongs to a specific session or task.
+A **Log** represents a meaningful record of something that happened during project execution.
+The log data model contains the information CTX uses to describe the event, record when it happened, classify it, and determine whether it belongs to a specific session or task.
 
 ## Fields
 

@@ -4,16 +4,16 @@ sidebar_position: 3
 
 # Getting Started
 
-CTX helps you keep track of what is happening in a project while the work is still in progress. It records sessions, tasks, logs, and decisions so you can return to a project without reconstructing everything from memory.
+CTX records sessions, tasks, logs, and decisions as you work, so you can return to a project without having to reconstruct everything from memory.
 
-You can use CTX while working alone, across multiple sessions, or with AI agents that need to understand the current state of the project.
+Use CTX when working alone, across multiple sessions, or with AI agents that need to understand the current state of a project.
 
 ## Start Here
 
 ### [Installation](./installation/)
 
-Install CTX and make it available from your terminal. This is the first step if CTX is not already installed on your system.
+Install CTX and make it available from your terminal. Start here if CTX is not already installed on your system.
 
 ### [First Project](./first-project/)
 
-Use CTX while building a small but realistic project. The guide introduces the basic workflow through a practical example, including starting work, tracking tasks, recording progress, handling interruptions, and resuming later.
+Use CTX while building a small but realistic project. This guide introduces the basic workflow through a practical example: starting work, tracking tasks, recording progress, handling interruptions, and resuming later.

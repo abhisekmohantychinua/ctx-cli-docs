@@ -6,9 +6,9 @@ sidebar_label: Intermediate
 
 # Intermediate Development Workflow
 
-This workflow helps a small development team deliver a larger project that contains multiple requirements, connected parts, and changing priorities. It is useful when the work must be divided into several sections, completed across multiple sessions, and repeatedly reviewed as new information becomes available.
+This workflow helps a small development team deliver a larger project with multiple requirements, connected parts, and changing priorities. It is useful when the work must be divided into sections, completed across multiple sessions, and reviewed again as new information becomes available.
 
-Unlike a small, straightforward project, the entire implementation is not planned and completed in one continuous sequence. The team works through manageable sections, keeps dependent tasks waiting, executes independent tasks separately, and evaluates the project before deciding what to do next.
+Unlike a small, straightforward project, the whole implementation is not planned and completed in one continuous sequence. The team works through manageable sections, keeps dependent tasks waiting, executes independent tasks separately, and evaluates the project before deciding what to do next.
 
 ## The Process
 
@@ -226,7 +226,7 @@ Start work on the tasks that are ready and can proceed independently.
 
 For example:
 
-```
+```txt
 Persistence changes ───────┐
                            ├── Integration
 API changes ───────────────┤
@@ -295,7 +295,7 @@ A task may need to wait because:
 - An external dependency is unavailable
 - The requirement is unclear
 - The test environment is not ready
-- Another workstream has changed a shared contract
+- Another work stream has changed a shared contract
 
 Mark the task as blocked when the reason prevents progress:
 
@@ -482,7 +482,7 @@ ctx start --notes="Starting the next project section."
 
 Do not simply continue with the next task in a flat list. A new section should have its own objective, scope, dependencies, and completion conditions.
 
-This allows the team to pause a long project and resume later without reconstructing the entire project history.
+A team can pause a long project and later resume it without reconstructing its history.
 
 ### Release and Handover
 

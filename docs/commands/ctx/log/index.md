@@ -33,7 +33,7 @@ The `log` command manages project logs.
 
 When used without a subcommand, it adds a new log using the values provided through the command options.
 
-A log records a small piece of information about the work, such as an observation, idea, issue, or attempt. A log can optionally be associated with a session or task.
+A log records a small piece of information about the work, such as an observation, an idea, an issue, or an attempt. A log can optionally be associated with a session or task.
 
 ## When to use it
 

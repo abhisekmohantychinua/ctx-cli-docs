@@ -5,7 +5,7 @@ sidebar_label: Advanced
 
 # Advanced Workflow
 
-The advanced workflow is designed for developers maintaining an evolving product or production system over time. It supports recurring feature work, bug fixes, security improvements, technical debt, releases, incidents, and operational maintenance without losing the context behind each change.
+The advanced workflow is for teams that maintain an evolving product or production system over time. It supports recurring feature work, bug fixes, security improvements, technical debt, releases, incidents, and operational maintenance without losing the context behind each change.
 
 Unlike the intermediate workflow, which focuses on completing a larger project through defined sections, the advanced workflow is continuous. A product may reach individual release milestones, but operation, feedback, and improvement continue to create new work.
 

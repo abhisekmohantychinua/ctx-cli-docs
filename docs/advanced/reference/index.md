@@ -238,7 +238,7 @@ ctx dec create --topic "Use the provider's asynchronous webhook flow." --session
 
 associates the decision with the active session.
 
-This allows the current execution context to be reused without repeatedly copying identifiers into commands.
+You can reuse the current execution context without repeatedly copying identifiers into commands.
 
 ### No Reference
 

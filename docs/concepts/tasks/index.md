@@ -6,11 +6,11 @@ sidebar_position: 2
 
 A **Task** represents a unit of real work within a project.
 
-Tasks give CTX a way to describe what is being worked on and track its current execution state. They are intentionally lightweight and are designed to work alongside sessions, logs, and decisions.
+Tasks give CTX a way to describe what is being worked on and track its current execution state. They are intentionally lightweight and designed to work alongside sessions, logs, and decisions.
 
 ## Why Tasks Exist
 
-A project can contain many pieces of work at different stages. Tasks provide that structure.
+A project can contain many pieces of work at different stages. Tasks provide structure for that work.
 
 Each task represents a unit of work that can be created, worked on, blocked, and completed. Tasks are not intended to become a full project-management system. They provide just enough structure to keep track of the work being executed.
 
@@ -84,7 +84,7 @@ A completed task remains available as part of the project's execution history.
 
 CTX supports hierarchical tasks, allowing a larger unit of work to be divided into smaller pieces while preserving the relationship between them.
 
-For example, **Implement authentication** can contain **OAuth integration** and **Session handling**. **OAuth integration** can then be further divided into **Configure provider** and **Implement callback**, while **Session handling** can contain **Create session** and **Refresh session**. This allows related work to be organized according to its natural structure.
+For example, **Implement authentication** can contain **OAuth integration** and **Session handling**. **OAuth integration** can then be further divided into **Configure provider** and **Implement callback**, while **Session handling** can contain **Create session** and **Refresh session**. Related work can be organized around its natural structure.
 
 A task can be placed under another task when it is created, and an existing task can later be moved to a different parent or back to the root. CTX also limits the depth of the hierarchy so that task structures remain manageable.
 
@@ -112,7 +112,7 @@ This makes it easier to understand how smaller pieces of work contribute to a la
 
 ### Moving Tasks
 
-CTX allows tasks to be reorganized within the hierarchy. A task can be moved from one parent to another, or moved to the root so that it is no longer a subtask of another task. This allows the hierarchy to evolve as the structure of the work changes.
+CTX allows tasks to be reorganized within the hierarchy. A task can be moved from one parent to another, or moved to the root so that it is no longer a subtask of another task. The hierarchy can evolve as the work changes.
 
 ## Tasks and Sessions
 
@@ -122,7 +122,7 @@ Visit [Sessions](../sessions/index.md#sessions-and-tasks) to understand tasks an
 
 Tasks provide structure for the work, while logs capture what happens while that work is being performed.
 
-When a task is in progress theres an option to associate a log with a task.
+When a task is in progress, a log can be associated with that task.
 
 A task does not need to be continuously edited to reflect every step of development. Instead, its execution history can emerge through its logs.
 

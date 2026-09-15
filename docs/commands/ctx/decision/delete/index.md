@@ -29,7 +29,7 @@ Deletes the specified decision and returns its identifier.
 
 Use `ctx decision delete` when a decision should no longer be part of the project's context.
 
-This is a decision management operation for removing an existing decision when it is no longer relevant or was recorded incorrectly.
+Use it to remove a decision that is no longer relevant or was recorded incorrectly.
 
 ## How it works
 

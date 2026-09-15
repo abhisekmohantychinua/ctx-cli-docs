@@ -4,7 +4,7 @@ sidebar_position: 4
 
 # Decision
 
-A **Decision** represents an explicit choice made during project execution together with the reasoning behind it.  
+A **Decision** represents an explicit choice made during project execution, together with the reasoning behind it.
 The decision data model contains the information CTX uses to identify the decision, describe the subject of the choice, explain the reasoning, and indicate whether it belongs to a specific session or task.
 
 ## Fields

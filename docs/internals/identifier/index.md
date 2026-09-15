@@ -6,19 +6,19 @@ sidebar_position: 1
 
 CTX uses structured identifiers to uniquely identify sessions, tasks, logs, and decisions within a project.
 
-This page explains how CTX generates identifiers, what an identifier looks like, how it is validated, and how CTX keeps track of the next identifier for each domain.
+This page explains how CTX generates identifiers, what an identifier looks like, how it is validated, and how CTX tracks the next identifier for each domain.
 
 ## How Identifiers Are Generated
 
 Each core domain has its own identifier sequence. The sequences are independent of one another. Creating a task does not affect the next session, log, or decision identifier.
 
-Identifiers are generated sequentially within their respective domains. For example, **Sessions** may receive identifiers like **S1**, **S2** and **S3**. While **Tasks** may receive identifiers like **T1**, **T2** and **T3**.
+Identifiers are generated sequentially within their respective domains. For example, **Sessions** may receive identifiers such as **S1**, **S2**, and **S3**, while **Tasks** may receive identifiers such as **T1**, **T2**, and **T3**.
 
 The letter identifies the domain, while the number identifies the position of that record in the domain's sequence.
 
 ### Identifier Format
 
-A valid CTX identifier has two parts **domain** and **number**.
+A valid CTX identifier has two parts: a **domain** and a **number**.
 
 ```text
 <domain><number>
@@ -26,7 +26,7 @@ A valid CTX identifier has two parts **domain** and **number**.
 
 For example: S3, T12, L8, D24
 
-The first character identifies the domain. An identifier must use a supported domain prefix followed by a positive non-zero integer.
+The first character identifies the domain. An identifier must use a supported domain prefix followed by a positive, non-zero integer.
 
 | Prefix | Domain   |
 | ------ | -------- |
@@ -51,13 +51,13 @@ A valid identifier:
 
 ### Domain-Specific Sequences
 
-CTX maintains a separate sequence for each supported domain. This means the same numeric value can exist across different domains without creating a conflict. For example **S5**, **T5**, **L5**, **D5** are all valid identifiers. They identify four different records because their domain prefixes distinguish them. Within a single domain, however, an identifier is unique. A project cannot have two different sessions with S5.
+CTX maintains a separate sequence for each supported domain. This means the same numeric value can exist across different domains without creating a conflict. For example, **S5**, **T5**, **L5**, and **D5** are all valid identifiers. They identify four different records because their domain prefixes distinguish them. Within a single domain, however, an identifier is unique. A project cannot have two different sessions with the identifier **S5**.
 
 ### Identifier Counter
 
 CTX maintains the next identifier to be issued for each domain. The counter is initialized when the identifier manager is created and starts at `1` for every supported domain.
 
-When a new record is created, CTX uses the current value for that domain and then advances the corresponding counter. For example current task counter **5**, create a task. It assigns **T5** and next task counter becomes **6**. The next task will therefore receive **T6**.
+When a new record is created, CTX uses the current value for that domain and then advances the corresponding counter. For example, if the current task counter is **5** and a task is created, CTX assigns **T5** and advances the next task counter to **6**. The next task will therefore receive **T6**.
 
 The counters for the other domains remain unchanged.
 
@@ -74,7 +74,7 @@ The identifier manager is persisted as a single project record named `identifier
 }
 ```
 
-Each value represents the next number that will be assigned in that domain. For example **nextSessionIdentifier = 3** means that the next session created will receive **S3**.
+Each value represents the next number that will be assigned in that domain. For example, **nextSessionIdentifier = 3** means that the next session created will receive **S3**.
 
 ## Why the Generator Is Persisted
 
@@ -84,7 +84,7 @@ The identifier counters are stored with the project so that CTX can continue the
 
 The identifier generator stores **the next number**, not the records themselves.
 
-For example `nextTaskIdentifier = 15` does not mean task `T15` already exists. It means `T15` is the next task identifier available for allocation. The actual task record remains in the task data. This distinction applies to every domain.
+For example, `nextTaskIdentifier = 15` does not mean task `T15` already exists. It means `T15` is the next task identifier available for allocation. The actual task record remains in the task data. This distinction applies to every domain.
 
 ## Advancing the Counter
 
