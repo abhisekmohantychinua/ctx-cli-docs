@@ -6,11 +6,11 @@ sidebar_position: 2
 
 A **Task** represents a unit of real work within a project.
 
-Tasks give CTX a way to describe what is being worked on and track its current execution state. They are intentionally lightweight and are designed to work alongside sessions, logs, and decisions.
+Tasks give CTX a way to describe what is being worked on and track its current execution state. They are intentionally lightweight and designed to work alongside sessions, logs, and decisions.
 
 ## Why Tasks Exist
 
-A project can contain many pieces of work at different stages. Tasks provide that structure.
+A project can contain many pieces of work at different stages. Tasks provide structure for that work.
 
 Each task represents a unit of work that can be created, worked on, blocked, and completed. Tasks are not intended to become a full project-management system. They provide just enough structure to keep track of the work being executed.
 
@@ -122,7 +122,7 @@ Visit [Sessions](../sessions/index.md#sessions-and-tasks) to understand tasks an
 
 Tasks provide structure for the work, while logs capture what happens while that work is being performed.
 
-When a task is in progress theres an option to associate a log with a task.
+When a task is in progress, a log can be associated with that task.
 
 A task does not need to be continuously edited to reflect every step of development. Instead, its execution history can emerge through its logs.
 
