@@ -64,7 +64,7 @@ The view options only change how the task is presented and do not modify the tas
 
 ### View the current task
 
-```cmd
+```bash
 ctx task
 ```
 
@@ -72,7 +72,7 @@ Shows the task currently in progress, or the most recently completed task when n
 
 ### View the task as formatted JSON
 
-```cmd
+```bash
 ctx task --pretty-json
 ```
 
@@ -80,7 +80,7 @@ Shows the selected task in formatted JSON.
 
 ### Show the available task commands
 
-```cmd
+```bash
 ctx task --help
 ```
 

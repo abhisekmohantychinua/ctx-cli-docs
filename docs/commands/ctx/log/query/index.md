@@ -66,7 +66,7 @@ Querying is designed for finding and inspecting context across the log history. 
 
 ### Find issue logs
 
-```cmd
+```bash
 ctx log query -x equals:ISSUE
 ```
 
@@ -74,7 +74,7 @@ Searches for logs whose tag is `ISSUE`.
 
 ### Find a specific log
 
-```cmd
+```bash
 ctx log query -f id -x equals:L3
 ```
 
@@ -82,7 +82,7 @@ Searches for the log with identifier `L3`.
 
 ### Find logs by note
 
-```cmd
+```bash
 ctx log query -f note -x contains:payment
 ```
 
@@ -90,7 +90,7 @@ Searches for logs whose note contains `payment`.
 
 ### Find logs by tag
 
-```cmd
+```bash
 ctx log query -f tag -x equals:ATTEMPT
 ```
 
@@ -98,7 +98,7 @@ Searches for logs tagged as `ATTEMPT`.
 
 ### Sort matching logs
 
-```cmd
+```bash
 ctx log query -f tag -x equals:ISSUE --sort-by=timestamp --sort=DESC
 ```
 
@@ -106,7 +106,7 @@ Returns matching issue logs with the most recent logs first.
 
 ### View query results as formatted JSON
 
-```cmd
+```bash
 ctx log query -f tag -x equals:ISSUE --pretty-json
 ```
 

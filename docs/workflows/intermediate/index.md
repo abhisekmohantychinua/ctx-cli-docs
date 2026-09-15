@@ -85,7 +85,9 @@ ctx init
 Record important initial assumptions or project constraints as short logs. For example:
 
 ```bash
-ctx log add --tag=NOTE --note="The first delivery must support existing users without changing the current API contract."
+ctx log add \
+  --tag=NOTE \
+  --note="The first delivery must support existing users without changing the current API contract."
 ```
 
 The result of this stage should be a clear project goal and an initial understanding of the major areas of work.

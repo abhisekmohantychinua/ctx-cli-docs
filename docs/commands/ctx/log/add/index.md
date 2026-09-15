@@ -50,7 +50,7 @@ The command generates a unique identifier for the new log and records the curren
 
 ### Add a log
 
-```cmd
+```bash
 ctx log add --note="Stripe timeout occurs after 10 seconds."
 ```
 
@@ -58,7 +58,7 @@ Adds a log using the default `NOTE` tag.
 
 ### Add an issue log
 
-```cmd
+```bash
 ctx log add --tag=ISSUE --note="Payment API returns an invalid response."
 ```
 
@@ -66,7 +66,7 @@ Adds a log tagged as an issue.
 
 ### Attach a log to the active session
 
-```cmd
+```bash
 ctx log add --note="Started testing payment retries." --session
 ```
 
@@ -74,7 +74,7 @@ Adds the log and associates it with the active session.
 
 ### Attach a log to a specific task
 
-```cmd
+```bash
 ctx log add --tag=ATTEMPT --note="Testing exponential backoff." --task=T14
 ```
 
@@ -82,7 +82,7 @@ Adds the log and associates it with task `T14`.
 
 ### Use the `a` alias
 
-```cmd
+```bash
 ctx log a --note="Payment retry test started."
 ```
 

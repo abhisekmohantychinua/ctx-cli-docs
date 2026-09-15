@@ -56,7 +56,7 @@ For complex work, completing child tasks explicitly can provide a more accurate 
 
 ### Complete a task
 
-```cmd
+```bash
 ctx task complete T4
 ```
 
@@ -64,7 +64,7 @@ Completes task `T4` and prints its identifier.
 
 ### Complete a task and its child tasks
 
-```cmd
+```bash
 ctx task complete T4 --cc
 ```
 
@@ -72,7 +72,7 @@ Completes task `T4` along with its child tasks and prints all completed task ide
 
 ### Complete a small group of child tasks together
 
-```cmd
+```bash
 ctx task complete T1 --cc
 ```
 

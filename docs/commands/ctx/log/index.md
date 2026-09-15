@@ -59,7 +59,7 @@ The command returns control to the same log management operations available thro
 
 ### Add a log
 
-```cmd
+```bash
 ctx log --note="Stripe timeout occurs after 10 seconds."
 ```
 
@@ -67,7 +67,7 @@ Adds a log using the default `NOTE` tag.
 
 ### Add an issue log
 
-```cmd
+```bash
 ctx log --tag=ISSUE --note="Payment API returns an invalid response."
 ```
 
@@ -75,7 +75,7 @@ Adds an issue log with the specified note.
 
 ### Add a log for the current session
 
-```cmd
+```bash
 ctx log --note="Started testing payment retries." --session
 ```
 
@@ -83,7 +83,7 @@ Adds the log and associates it with the active session.
 
 ### Add a log for a specific task
 
-```cmd
+```bash
 ctx log --tag=ATTEMPT --note="Testing exponential backoff." --task=T14
 ```
 
@@ -91,7 +91,7 @@ Adds the log and associates it with task `T14`.
 
 ### Show the available log commands
 
-```cmd
+```bash
 ctx log --help
 ```
 

@@ -40,7 +40,7 @@ The command only presents the existing task hierarchy and does not modify any ta
 
 ### View the task hierarchy
 
-```cmd
+```bash
 ctx task tree
 ```
 

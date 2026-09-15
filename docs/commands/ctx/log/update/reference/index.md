@@ -45,7 +45,7 @@ The command operates on the reference of the log and does not change the other l
 
 ### Reference a log to a session
 
-```cmd
+```bash
 ctx log update L3 reference --session=S1
 ```
 
@@ -53,7 +53,7 @@ Associates log `L3` with session `S1`.
 
 ### Reference a log to a task
 
-```cmd
+```bash
 ctx log update L3 reference --task=T5
 ```
 
@@ -61,7 +61,7 @@ Associates log `L3` with task `T5`.
 
 ### Reference a log to the active session
 
-```cmd
+```bash
 ctx log update L3 reference --session
 ```
 
@@ -69,7 +69,7 @@ Associates log `L3` with the active session.
 
 ### Reference a log to the active task
 
-```cmd
+```bash
 ctx log update L3 reference --task
 ```
 
@@ -77,7 +77,7 @@ Associates log `L3` with the active task.
 
 ### Remove the log reference
 
-```cmd
+```bash
 ctx log update L3 reference
 ```
 

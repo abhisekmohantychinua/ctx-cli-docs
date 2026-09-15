@@ -179,7 +179,7 @@ const config: Config = {
     prism: {
       theme: prismThemes.gruvboxMaterialLight,
       darkTheme: prismThemes.gruvboxMaterialDark,
-      additionalLanguages: ["java", "powershell", "json"],
+      additionalLanguages: ["java", "powershell", "json", "bash"],
     },
   } satisfies Preset.ThemeConfig,
 

@@ -51,7 +51,7 @@ The view options only change how the session is presented and do not modify the 
 
 ### View the current session
 
-```cmd
+```bash
 ctx session
 ```
 
@@ -59,7 +59,7 @@ Shows the active session, or the most recent session when none is active.
 
 ### View the session as formatted JSON
 
-```cmd
+```bash
 ctx session --pretty-json
 ```
 
@@ -67,7 +67,7 @@ Shows the selected session in formatted JSON.
 
 ### Show the available session commands
 
-```cmd
+```bash
 ctx session --help
 ```
 

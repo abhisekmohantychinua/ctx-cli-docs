@@ -46,7 +46,7 @@ It does not perform a decision operation on its own. A subcommand must be provid
 
 ### View available decision commands
 
-```cmd
+```bash
 ctx decision --help
 ```
 
@@ -54,7 +54,7 @@ Displays the available decision operations.
 
 ### Create a decision
 
-```cmd
+```bash
 ctx decision create
 ```
 
@@ -62,7 +62,7 @@ Starts the decision creation operation.
 
 ### Search decisions
 
-```cmd
+```bash
 ctx decision query
 ```
 

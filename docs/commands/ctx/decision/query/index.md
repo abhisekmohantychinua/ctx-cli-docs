@@ -65,7 +65,7 @@ Querying is designed for finding and inspecting context across the decision hist
 
 ### Find a decision by topic
 
-```cmd
+```bash
 ctx decision query -x contains:database
 ```
 
@@ -73,7 +73,7 @@ Searches for decisions whose topic contains `database`.
 
 ### Find a specific decision
 
-```cmd
+```bash
 ctx decision query -f id -x equals:D1
 ```
 
@@ -81,7 +81,7 @@ Searches for the decision with identifier `D1`.
 
 ### Find decisions by reasoning
 
-```cmd
+```bash
 ctx decision query -f reasoning -x contains:transaction
 ```
 
@@ -89,7 +89,7 @@ Searches for decisions whose reasoning contains `transaction`.
 
 ### Find decisions by tag
 
-```cmd
+```bash
 ctx decision query -f tags -x contains:backend
 ```
 
@@ -97,7 +97,7 @@ Searches for decisions containing the `backend` tag.
 
 ### Sort matching decisions
 
-```cmd
+```bash
 ctx decision query -f tags -x contains:backend --sort-by=timestamp --sort=DESC
 ```
 
@@ -105,7 +105,7 @@ Returns matching decisions with the most recent decisions first.
 
 ### View query results as formatted JSON
 
-```cmd
+```bash
 ctx decision query -f topic -x contains:database --pretty-json
 ```
 

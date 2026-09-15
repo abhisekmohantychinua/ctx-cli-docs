@@ -31,7 +31,7 @@ It is used when no view option is explicitly provided.
 
 ### Session
 
-```cmd
+```text
 Status       INACTIVE
 Started      29 Aug 2026 09:43:16 PM IST
 Ended        29 Aug 2026 11:13:34 PM IST
@@ -43,7 +43,7 @@ Working on MultiStack CLI
 
 ### Task
 
-```cmd
+```text
 Task         Implement User Management
 Status       IN PROGRESS
 Created      30 Aug 2026 03:55:17 PM IST
@@ -54,13 +54,13 @@ Implement user registration, login, profile management, and basic user administr
 
 ### Log
 
-```cmd
+```text
 30 Aug 2026 09:50:53 PM IST     ISSUE   Google oauth2 has incorrect origin.
 ```
 
 ### Decision
 
-```cmd
+```text
 Use PostgreSQL for the application database
 
 PostgreSQL provides strong relational integrity and transaction support, which fits our application requirements.
@@ -80,7 +80,7 @@ It is used when the `-v` or `--verbose` option is explicitly provided.
 
 ### Session
 
-```cmd
+```text
 ID           S1
 Status       INACTIVE
 Started      29 Aug 2026 09:43:16 PM IST
@@ -93,7 +93,7 @@ Working on MultiStack CLI
 
 ### Task
 
-```cmd
+```text
 ID           T8
 Task         Implement User Management
 Status       IN PROGRESS
@@ -108,7 +108,7 @@ Block Reason
 
 ### Log
 
-```cmd
+```text
 ID               L1
 Timestamp        30 Aug 2026 09:50:53 PM IST
 Tag              ISSUE
@@ -119,7 +119,7 @@ Google oauth2 has incorrect origin.
 
 ### Decision
 
-```cmd
+```text
 ID               D1
 Timestamp        30 Aug 2026 09:53:36 PM IST
 Topic            Use PostgreSQL for the application database
@@ -139,25 +139,25 @@ It is used when `-s`, `--short`, `--oneline` option is explicitly provided.
 
 ### Session
 
-```cmd
+```text
 S1  INACTIVE  29 Aug 2026 09:43:16 PM IST  1h 30m
 ```
 
 ### Task
 
-```cmd
+```text
 T8       IN PROGRESS   Implement User Management
 ```
 
 ### Log
 
-```cmd
+```text
 30 Aug 2026 09:50:53 PM IST  ISSUE  Google oauth2 has incorrect origin.
 ```
 
 ### Decision
 
-```cmd
+```text
 Use PostgreSQL for the application database  database, architecture, backend  30 Aug 2026 09:53:36 PM IST
 ```
 
@@ -293,11 +293,11 @@ The list is useful when the primary concern is finding a task, scanning many tas
 
 Theres a command for this view i.e.
 
-```cmd
+```bash
 ctx task list
 ```
 
-```cmd
+```text
 T1       PENDING       Build Project Management System
 T2       PENDING       Design System Architecture
 T3       IN PROGRESS   Implement Core Features
@@ -315,7 +315,7 @@ It displays the hierarchy so that larger units of work and their subtasks can be
 
 Theres a command for this view i.e.
 
-```cmd
+```bash
 ctx task tree
 ```
 
@@ -345,7 +345,7 @@ Query views are designed for inspection and exploration rather than the concise 
 
 ### Default
 
-```cmd
+```text
 T9       COMPLETED     Implement Task Management
 T6       COMPLETED     Design API Structure
 T5       COMPLETED     Design Database Schema

@@ -141,7 +141,9 @@ ctx start --notes="Start apiwatch and build the first usable CLI scaffold."
 Create the main task:
 
 ```bash
-ctx task create --task="Build apiwatch first version" --description="Create a small Python CLI that stores API endpoints, checks their health, records results, and prints a report."
+ctx task create \
+  --task="Build apiwatch first version" \
+  --description="Create a small Python CLI that stores API endpoints, checks their health, records results, and prints a report."
 ```
 
 In a fresh project, this will usually create `T1`.
@@ -149,15 +151,21 @@ In a fresh project, this will usually create `T1`.
 Create subtasks under `T1`:
 
 ```bash
-ctx task create T1 --task="Scaffold the Python CLI" --description="Create package structure, command entry point, endpoint storage, and tests for add/list behavior."
+ctx task create T1 \
+  --task="Scaffold the Python CLI" \
+  --description="Create package structure, command entry point, endpoint storage, and tests for add/list behavior."
 ```
 
 ```bash
-ctx task create T1 --task="Implement endpoint checks" --description="Check configured endpoints, classify health, handle failures, and store check results."
+ctx task create T1 \
+  --task="Implement endpoint checks" \
+  --description="Check configured endpoints, classify health, handle failures, and store check results."
 ```
 
 ```bash
-ctx task create T1 --task="Review and finish v1" --description="Run tests, improve small CLI rough edges, and record final project history."
+ctx task create T1 \
+  --task="Review and finish v1" \
+  --description="Run tests, improve small CLI rough edges, and record final project history."
 ```
 
 View the task structure:
@@ -175,13 +183,20 @@ ctx task start T2
 Record why you are starting small:
 
 ```bash
-ctx decision create --topic="Keep apiwatch v1 as a local Python CLI" --reasoning="The first project should demonstrate CTX, human review, and AI-assisted implementation without adding infrastructure noise." --tags=scope,python,cli --task
+ctx decision create \
+  --topic="Keep apiwatch v1 as a local Python CLI" \
+  --reasoning="The first project should demonstrate CTX, human review, and AI-assisted implementation without adding infrastructure noise." \
+  --tags=scope,python,cli \
+  --task
 ```
 
 Add a short log:
 
 ```bash
-ctx log add --tag=NOTE --note="Starting with endpoint storage and add/list commands before implementing HTTP checks." --task
+ctx log add \
+  --tag=NOTE \
+  --note="Starting with endpoint storage and add/list commands before implementing HTTP checks." \
+  --task
 ```
 
 ### Ask AI To Scaffold The Project
@@ -219,7 +234,10 @@ After making changes, summarize:
 Record that AI handoff in CTX:
 
 ```bash
-ctx log add --tag=ATTEMPT --note="Asked AI to scaffold apiwatch with add/list commands, local endpoint storage, and initial tests." --task
+ctx log add \
+  --tag=ATTEMPT \
+  --note="Asked AI to scaffold apiwatch with add/list commands, local endpoint storage, and initial tests." \
+  --task
 ```
 
 :::note
@@ -260,19 +278,28 @@ python -m apiwatch list
 If something fails, record the issue:
 
 ```bash
-ctx log add --tag=ISSUE --note="Initial scaffold did not pass tests until CLI argument handling was corrected." --task
+ctx log add \
+  --tag=ISSUE \
+  --note="Initial scaffold did not pass tests until CLI argument handling was corrected." \
+  --task
 ```
 
 If you or the AI tries a fix, record the attempt:
 
 ```bash
-ctx log add --tag=ATTEMPT --note="Adjusted CLI parsing and reran pytest after reviewing the failing add/list test." --task
+ctx log add \
+  --tag=ATTEMPT \
+  --note="Adjusted CLI parsing and reran pytest after reviewing the failing add/list test." \
+  --task
 ```
 
 When the scaffold works, record the validation:
 
 ```bash
-ctx log add --tag=NOTE --note="Scaffold is working: add/list commands run and the initial tests pass." --task
+ctx log add \
+  --tag=NOTE \
+  --note="Scaffold is working: add/list commands run and the initial tests pass." \
+  --task
 ```
 
 Complete the task:
@@ -340,7 +367,9 @@ ctx logs --count=10
 Review decisions:
 
 ```bash
-ctx decision query -f timestamp -x before::now --sort-by=timestamp --sort=DESC
+ctx decision query \
+  -f timestamp -x before::now \
+  --sort-by=timestamp --sort=DESC
 ```
 
 Start a new session:
@@ -358,7 +387,10 @@ ctx task start T3
 Record the resumption:
 
 ```bash
-ctx log add --tag=NOTE --note="Resumed after a break by reading ctx status, task tree, recent logs, and decisions before asking AI to continue." --task
+ctx log add \
+  --tag=NOTE \
+  --note="Resumed after a break by reading ctx status, task tree, recent logs, and decisions before asking AI to continue." \
+  --task
 ```
 
 :::important
@@ -408,7 +440,10 @@ After making changes, summarize:
 Record the AI handoff:
 
 ```bash
-ctx log add --tag=ATTEMPT --note="Asked AI to implement check/report commands, health classification, result history, and tests." --task
+ctx log add \
+  --tag=ATTEMPT \
+  --note="Asked AI to implement check/report commands, health classification, result history, and tests." \
+  --task
 ```
 
 ### Make A Real Product Decision
@@ -422,7 +457,11 @@ Should redirects count as healthy?
 For this first version, keep the rule strict:
 
 ```bash
-ctx decision create --topic="Only HTTP 2xx responses count as healthy in apiwatch v1" --reasoning="A strict rule is easier to explain, test, and trust. Redirect handling and custom success ranges can be future improvements." --tags=http,health-check,v1 --task
+ctx decision create \
+  --topic="Only HTTP 2xx responses count as healthy in apiwatch v1" \
+  --reasoning="A strict rule is easier to explain, test, and trust. Redirect handling and custom success ranges can be future improvements." \
+  --tags=http,health-check,v1 \
+  --task
 ```
 
 If the implementation needs adjustment, ask AI:
@@ -443,7 +482,10 @@ Do not add redirect configuration yet.
 Record the change:
 
 ```bash
-ctx log add --tag=NOTE --note="Clarified v1 health behavior: only 2xx responses are healthy; redirects are out of scope." --task
+ctx log add \
+  --tag=NOTE \
+  --note="Clarified v1 health behavior: only 2xx responses are healthy; redirects are out of scope." \
+  --task
 ```
 
 Run tests:
@@ -462,7 +504,10 @@ python -m apiwatch report
 If everything works:
 
 ```bash
-ctx log add --tag=NOTE --note="Endpoint checks and report command work; tests cover 2xx, non-2xx, failure handling, and result history." --task
+ctx log add \
+  --tag=NOTE \
+  --note="Endpoint checks and report command work; tests cover 2xx, non-2xx, failure handling, and result history." \
+  --task
 ```
 
 Complete the task:
@@ -532,7 +577,10 @@ Return:
 Record the review handoff:
 
 ```bash
-ctx log add --tag=ATTEMPT --note="Asked AI to review apiwatch v1 for bugs, CLI clarity, missing tests, and small usage notes without expanding scope." --task
+ctx log add \
+  --tag=ATTEMPT \
+  --note="Asked AI to review apiwatch v1 for bugs, CLI clarity, missing tests, and small usage notes without expanding scope." \
+  --task
 ```
 
 Run the full test suite:
@@ -544,13 +592,20 @@ python -m pytest
 Record the result:
 
 ```bash
-ctx log add --tag=NOTE --note="Final review completed and pytest passes for apiwatch v1." --task
+ctx log add \
+  --tag=NOTE \
+  --note="Final review completed and pytest passes for apiwatch v1." \
+  --task
 ```
 
 Record the final scope decision:
 
 ```bash
-ctx decision create --topic="Finish apiwatch v1 without adding scheduling or alerts" --reasoning="The first project is complete once the CLI can store endpoints, check health, record results, report history, and pass tests. Scheduling and alerts are useful later features but would distract from the getting-started workflow." --tags=scope,v1,finish --task
+ctx decision create \
+  --topic="Finish apiwatch v1 without adding scheduling or alerts" \
+  --reasoning="The first project is complete once the CLI can store endpoints, check health, record results, report history, and pass tests. Scheduling and alerts are useful later features but would distract from the getting-started workflow." \
+  --tags=scope,v1,finish \
+  --task
 ```
 
 Complete the final task and the parent task:
@@ -586,7 +641,9 @@ ctx status
 View the sessions:
 
 ```bash
-ctx session query -f status -x equals:INACTIVE --sort-by=endedAt --sort=DESC
+ctx session query \
+  -f status -x equals:INACTIVE \
+  --sort-by=endedAt --sort=DESC
 ```
 
 View the task tree:
@@ -598,7 +655,9 @@ ctx task tree
 View completed tasks:
 
 ```bash
-ctx task query -f status -x equals:COMPLETED --sort-by=completedAt --sort=DESC
+ctx task query \
+  -f status -x equals:COMPLETED \
+  --sort-by=completedAt --sort=DESC
 ```
 
 View recent logs:
@@ -610,19 +669,25 @@ ctx logs --count=50
 View issue logs:
 
 ```bash
-ctx log query -f tag -x equals:ISSUE --sort-by=timestamp --sort=DESC
+ctx log query \
+  -f tag -x equals:ISSUE \
+  --sort-by=timestamp --sort=DESC
 ```
 
 View attempt logs:
 
 ```bash
-ctx log query -f tag -x equals:ATTEMPT --sort-by=timestamp --sort=DESC
+ctx log query \
+  -f tag -x equals:ATTEMPT \
+  --sort-by=timestamp --sort=DESC
 ```
 
 View decisions:
 
 ```bash
-ctx decision query -f timestamp -x before::now --sort-by=timestamp --sort=DESC
+ctx decision query \
+  -f timestamp -x before::now \
+  --sort-by=timestamp --sort=DESC
 ```
 
 ### Export The History
@@ -632,19 +697,27 @@ CTX commands support JSON and pretty JSON views for structured output.
 Create a small project-history export with the documented query commands:
 
 ```bash
-ctx session query -f status -x equals:INACTIVE --sort-by=createdAt --sort=ASC --pretty-json
+ctx session query \
+  -f status -x equals:INACTIVE \
+  --sort-by=createdAt --sort=ASC --pretty-json
 ```
 
 ```bash
-ctx task query -f status -x equals:COMPLETED --sort-by=createdAt --sort=ASC --pretty-json
+ctx task query \
+  -f status -x equals:COMPLETED \
+  --sort-by=createdAt --sort=ASC --pretty-json
 ```
 
 ```bash
-ctx log query -f timestamp -x before::now --sort-by=timestamp --sort=ASC --pretty-json
+ctx log query \
+  -f timestamp -x before::now \
+  --sort-by=timestamp --sort=ASC --pretty-json
 ```
 
 ```bash
-ctx decision query -f timestamp -x before::now --sort-by=timestamp --sort=ASC --pretty-json
+ctx decision query \
+  -f timestamp -x before::now \
+  --sort-by=timestamp --sort=ASC --pretty-json
 ```
 
 If you want to keep the complete CTX project context with the repository, preserve the `.ctxcli` directory according to your project policy.

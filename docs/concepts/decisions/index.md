@@ -2,6 +2,10 @@
 sidebar_position: 4
 ---
 
+{/*
+<!-- TODO: DO A CONTENT AND STYLE REVIEW -->
+*/}
+
 # Decisions
 
 A **Decision** represents an explicit choice made during project execution, together with the reasoning or context behind that choice.

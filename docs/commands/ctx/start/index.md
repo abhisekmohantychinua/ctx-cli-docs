@@ -46,7 +46,7 @@ The newly created session receives a generated identifier and records its creati
 
 ### Start a session
 
-```cmd
+```bash
 ctx start
 ```
 
@@ -54,7 +54,7 @@ Starts a new project session and prints its identifier.
 
 ### Start a session with notes
 
-```cmd
+```bash
 ctx start --notes="Working on payment retry tests."
 ```
 
@@ -62,7 +62,7 @@ Starts a new session with the provided notes.
 
 ### Enter session notes interactively
 
-```cmd
+```bash
 ctx start --notes
 ```
 
@@ -70,7 +70,7 @@ Prompts for the session notes before starting the session.
 
 ### End the active session and start a new one
 
-```cmd
+```bash
 ctx start --end
 ```
 
@@ -78,7 +78,7 @@ Ends the active session and immediately starts a new session.
 
 ### Use the `st` alias
 
-```cmd
+```bash
 ctx st
 ```
 

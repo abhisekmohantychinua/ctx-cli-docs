@@ -63,7 +63,7 @@ For a deeper explanation of CTX instructions and how they work with AI, see [Ins
 
 ### Generate instructions for Codex
 
-```cmd
+```bash
 ctx generate instruction --preset=codex
 ```
 
@@ -71,7 +71,7 @@ Creates `AGENTS.md` with CTX instructions for Codex.
 
 ### Generate instructions for GitHub Copilot
 
-```cmd
+```bash
 ctx generate instruction --preset=copilot
 ```
 
@@ -79,7 +79,7 @@ Creates `.github/copilot-instructions.md` with CTX instructions for GitHub Copil
 
 ### Write instructions to a custom path
 
-```cmd
+```bash
 ctx generate instruction --path=.ai/ctx-instructions.md
 ```
 
@@ -87,7 +87,7 @@ Writes the generated instructions to the specified relative Markdown path.
 
 ### Overwrite an existing instruction file
 
-```cmd
+```bash
 ctx generate instruction --preset=codex --overwrite
 ```
 

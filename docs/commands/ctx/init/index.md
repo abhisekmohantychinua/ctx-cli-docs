@@ -49,6 +49,6 @@ Global context initialization is currently supported for configuration purposes,
 
 ### Initialize the project context
 
-```cmd
+```bash
 ctx init
 ```

@@ -55,7 +55,7 @@ The command also supports updating a decision reference through the `reference` 
 
 ### Update the decision topic
 
-```cmd
+```bash
 ctx decision update D1 --topic="Use PostgreSQL for the application database"
 ```
 
@@ -63,7 +63,7 @@ Updates the topic of decision `D1`.
 
 ### Update the decision reasoning
 
-```cmd id="8p4m2v"
+```bash id="8p4m2v"
 ctx decision update D1 --reasoning="PostgreSQL provides the relational integrity and transaction support required by the application."
 ```
 
@@ -71,7 +71,7 @@ Updates the reasoning of decision `D1`.
 
 ### Enter the reasoning interactively
 
-```cmd id="3k7n5q"
+```bash id="3k7n5q"
 ctx decision update D1 --reasoning
 ```
 
@@ -79,7 +79,7 @@ Prompts for the new reasoning before updating the decision.
 
 ### Update multiple fields
 
-```cmd id="5v9x1m"
+```bash id="5v9x1m"
 ctx decision update D1 --topic="Use PostgreSQL for the application database" --reasoning="Fits the application's relational and transaction requirements."
 ```
 
@@ -87,7 +87,7 @@ Updates both the topic and reasoning of decision `D1`.
 
 ### Update a decision reference
 
-```cmd id="2q6w8p"
+```bash id="2q6w8p"
 ctx decision update D1 reference --task=T5
 ```
 
@@ -95,7 +95,7 @@ Updates the reference associated with decision `D1`.
 
 ### Use the `u` alias
 
-```cmd id="7m4c9x"
+```bash id="7m4c9x"
 ctx decision u D1 --reasoning="Updated after reviewing the database requirements."
 ```
 
