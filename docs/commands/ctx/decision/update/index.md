@@ -37,7 +37,7 @@ You can update the decision topic or reasoning, or manage its reference through 
 
 Use `ctx decision update` when an existing decision needs to be corrected, clarified, or adjusted after it has been recorded.
 
-This is a decision management operation for modifying existing context rather than recording a new decision.
+It changes existing context rather than recording a new decision.
 
 ## How it works
 

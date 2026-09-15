@@ -191,4 +191,4 @@ A code should therefore be treated as an identifier, not as a value whose meanin
 
 The entity identifier, timestamp, or other dynamic information belongs in the error message, not in the exit code.
 
-This allows integrations to depend on the meaning of an exit code without depending on the exact wording of an error message.
+Integrations can depend on an exit code's meaning instead of the exact wording of an error message.

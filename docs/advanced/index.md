@@ -4,9 +4,9 @@ sidebar_position: 6
 
 # Advanced
 
-CTX is designed to remain simple during everyday work while still providing deeper capabilities when you need more control, richer context, or detailed information.
+CTX stays simple for everyday work, with deeper capabilities available when you need more control, richer context, or a closer look at project activity.
 
-The section covers capabilities that are not part of the basic execution workflow but become useful when working with larger projects, historical context, AI agents, or more detailed project analysis.
+These capabilities support work that needs more than the basic execution workflow: larger projects, historical context, AI agents, or detailed project analysis.
 
 ## Advanced Capabilities
 
@@ -39,4 +39,4 @@ Advanced features are independent. You do not need to learn or use all of them t
 - **Querying** - To find specific records.
 - **Reference** - To associate a log or decision to task or session.
 
-Together, these capabilities extend CTX from a lightweight execution tracker into a richer project context system while keeping the everyday workflow simple.
+Together, these capabilities add depth to CTX without making the everyday workflow more complicated.

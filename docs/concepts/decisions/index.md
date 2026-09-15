@@ -174,7 +174,7 @@ An AI agent can use decisions to understand:
 
 For example, before proposing a different persistence strategy, an AI agent can inspect previous decisions and discover that local JSON storage was deliberately chosen to preserve portability and eliminate external dependencies.
 
-This allows AI to reason from the project's existing decisions rather than treating every problem as a new problem.
+This helps AI reason from the project's existing decisions instead of treating every problem as new.
 
 AI can also record decisions when it makes a meaningful choice during execution. Such write-back should preserve important choices rather than every small implementation detail.
 

@@ -8,7 +8,7 @@ CTX is built around a simple idea: software work generates context, and that con
 
 A project is not just its source code. It also contains the work being performed, the periods in which that work happens, the observations made along the way, and the decisions that shape its direction.
 
-CTX captures these different parts of execution as separate but connected concepts.
+CTX records these parts of execution as separate, connected concepts.
 
 ## The Four Core Concepts
 

@@ -84,7 +84,7 @@ A completed task remains available as part of the project's execution history.
 
 CTX supports hierarchical tasks, allowing a larger unit of work to be divided into smaller pieces while preserving the relationship between them.
 
-For example, **Implement authentication** can contain **OAuth integration** and **Session handling**. **OAuth integration** can then be further divided into **Configure provider** and **Implement callback**, while **Session handling** can contain **Create session** and **Refresh session**. This allows related work to be organized according to its natural structure.
+For example, **Implement authentication** can contain **OAuth integration** and **Session handling**. **OAuth integration** can then be further divided into **Configure provider** and **Implement callback**, while **Session handling** can contain **Create session** and **Refresh session**. Related work can be organized around its natural structure.
 
 A task can be placed under another task when it is created, and an existing task can later be moved to a different parent or back to the root. CTX also limits the depth of the hierarchy so that task structures remain manageable.
 
@@ -112,7 +112,7 @@ This makes it easier to understand how smaller pieces of work contribute to a la
 
 ### Moving Tasks
 
-CTX allows tasks to be reorganized within the hierarchy. A task can be moved from one parent to another, or moved to the root so that it is no longer a subtask of another task. This allows the hierarchy to evolve as the structure of the work changes.
+CTX allows tasks to be reorganized within the hierarchy. A task can be moved from one parent to another, or moved to the root so that it is no longer a subtask of another task. The hierarchy can evolve as the work changes.
 
 ## Tasks and Sessions
 

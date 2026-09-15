@@ -132,7 +132,7 @@ The path must be:
 - a Markdown file
 - within the project directory
 
-This allows the user to decide exactly where the CTX instructions should live.
+This lets you choose exactly where the CTX instructions belong.
 
 ### Presets and Custom Paths
 
@@ -154,7 +154,7 @@ CTX preserves existing instruction content unless explicitly instructed to overw
 
 When the target file already contains content and `--overwrite` is not provided, CTX appends the newly generated CTX instructions to the existing file.
 
-This allows project-specific instructions to remain intact while adding or refreshing CTX integration guidance.
+Project-specific instructions remain intact while you add or refresh CTX integration guidance.
 
 For example:
 
@@ -182,11 +182,11 @@ ctx generate instruction --preset codex --overwrite
 
 Without `--overwrite`, existing content is preserved. With `--overwrite`, the existing content is replaced.
 
-This makes replacement an explicit action rather than a side effect of instruction generation.
+Replacement is explicit rather than a side effect of instruction generation.
 
 ### Keeping Instructions Up to Date
 
-CTX retrieves the generated instruction content from its versioned instruction specification rather than embedding a fixed copy into the executable. This allows the instruction content to evolve with CTX.
+CTX retrieves the generated instruction content from its versioned instruction specification rather than embedding a fixed copy into the executable. The instruction content can therefore evolve with CTX.
 
 When CTX's command surface, context model, or recommended AI workflow changes, a newly generated instruction can reflect the corresponding specification.
 

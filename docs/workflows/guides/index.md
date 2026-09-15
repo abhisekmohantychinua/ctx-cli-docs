@@ -4,11 +4,9 @@ sidebar_position: 4
 
 # Guides
 
-CTX workflows describe common situations that occur while working on a project
-and show how CTX can be used as part of that work.
+These workflow guides cover common situations that arise during a project and show how CTX fits into the work.
 
-These guides are not command references. They focus on what you are trying to
-accomplish and the CTX actions that help you get there.
+They are not command references. Each guide focuses on your goal and the CTX actions that help you reach it.
 
 ## Daily Work
 

@@ -16,7 +16,7 @@ Development work is rarely continuous.
 
 You may work on a project for two hours, leave it for a day, and return later to continue the same task. Without sessions, CTX can record what happened but cannot reliably distinguish between different periods of active work.
 
-Sessions provide that temporal context. This allows CTX to distinguish between work performed during different periods while preserving the overall project context.
+Sessions provide that temporal context. CTX can therefore distinguish work from different periods while preserving the overall project context.
 
 For example:
 
@@ -90,7 +90,7 @@ This makes a session more than a timer. It provides context for interpreting the
 
 Important project decisions can also be associated with work taking place during a session.
 
-This allows CTX to preserve not only what happened, but also the decisions made while the work was being performed.
+CTX can preserve both what happened and the decisions made while the work was underway.
 
 Combined with tasks and logs, session context can provide a more complete representation of project execution.
 

@@ -482,7 +482,7 @@ ctx start --notes="Starting the next project section."
 
 Do not simply continue with the next task in a flat list. A new section should have its own objective, scope, dependencies, and completion conditions.
 
-This allows the team to pause a long project and resume later without reconstructing the entire project history.
+A team can pause a long project and later resume it without reconstructing its history.
 
 ### Release and Handover
 

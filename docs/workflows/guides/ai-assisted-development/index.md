@@ -252,7 +252,7 @@ After making changes, summarize:
 - remaining work.
 ```
 
-This allows the AI agent to use the project’s execution context together with the existing source code.
+The AI agent can then use the project's execution context alongside the existing source code.
 
 ## Complete the task
 

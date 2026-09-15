@@ -4,7 +4,7 @@ sidebar_position: 3
 
 # Getting Started
 
-CTX helps you keep track of what is happening in a project while the work is still in progress. It records sessions, tasks, logs, and decisions so you can return to a project without reconstructing everything from memory.
+CTX records sessions, tasks, logs, and decisions while you work, so you can return to a project without reconstructing everything from memory.
 
 You can use CTX while working alone, across multiple sessions, or with AI agents that need to understand the current state of the project.
 
