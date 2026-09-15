@@ -66,15 +66,15 @@ An ended session is not deleted.
 
 ## Sessions and Tasks
 
-Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A session can continue across multiple tasks. Similarly a task can be completed in multiple sessions.
+Sessions and tasks represent different dimensions of project execution. A **session** represents a period of work. A **task** represents the work being performed. A session can continue across multiple tasks. Similarly, a task can be completed across multiple sessions.
 
-The session does not own the task neither the task owns the session. Instead, they provide temporal context about what is being worked on. In simple terms, session answers "When did I work?". While task answers "What am I working on?".
+A session does not own a task, and a task does not own a session. Instead, they provide different kinds of context about the work. In simple terms, a session answers "When did I work?", while a task answers "What am I working on?".
 
 ## Sessions and Logs
 
 Logs capture events, observations, and activity that occur during project execution.
 
-When a session is active, there's an option to associate log with a session.
+When a session is active, a log can be associated with that session.
 
 The session therefore acts as a temporal boundary around the events that occurred during a period of work.
 
@@ -96,7 +96,7 @@ Combined with tasks and logs, session context can provide a more complete repres
 
 ## Session History
 
-Ending a session does not remove it from the project. Instead, the session becomes part of the project's historical record. Then historical sessions can be used to:
+Ending a session does not remove it from the project. Instead, the session becomes part of the project's historical record. Historical sessions can be used to:
 
 - Review previous periods of work.
 - Understand how project activity progressed over time.
@@ -126,7 +126,7 @@ A session:
 - Belongs to a project.
 - Can be `ACTIVE` or `INACTIVE`.
 - Records when work started and, when applicable, when it ended.
-- May contain notes describing the the work.
+- May contain notes describing the work.
 - Provides context for tasks, logs, and decisions.
 - Remains available after it ends as part of project history.
 - Allows CTX to distinguish between separate periods of work on the same project.
