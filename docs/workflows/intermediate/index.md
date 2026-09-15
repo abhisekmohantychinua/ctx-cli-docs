@@ -226,7 +226,7 @@ Start work on the tasks that are ready and can proceed independently.
 
 For example:
 
-```
+```txt
 Persistence changes ───────┐
                            ├── Integration
 API changes ───────────────┤
@@ -295,7 +295,7 @@ A task may need to wait because:
 - An external dependency is unavailable
 - The requirement is unclear
 - The test environment is not ready
-- Another workstream has changed a shared contract
+- Another work stream has changed a shared contract
 
 Mark the task as blocked when the reason prevents progress:
 

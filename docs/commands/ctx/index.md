@@ -12,9 +12,9 @@ The main entry point for CTX CLI.
 ### Options
 
 | options | shorthand | required | description |
-|---|---|---|---|
-| --help | -h |  | Show this help message and exit. |
-| --version | -V |  | Print version information and exit. |
+| --- | --- | --- | --- |
+| --help | -h | | Show this help message and exit. |
+| --version | -V | | Print version information and exit. |
 
 ### Subcommands
 
