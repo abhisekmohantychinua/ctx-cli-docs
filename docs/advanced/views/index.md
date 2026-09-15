@@ -6,7 +6,7 @@ sidebar_position: 2
 
 CTX provides multiple view modes for displaying project context in the CLI.
 
-The same record can be presented with different levels of detail depending on what you are trying to accomplish. Everyday usage should remain concise and readable, while detailed inspection and machine-readable output are available when needed. These views do not change the underlying data. They only change how CTX presents it.
+The same record can be presented with different levels of detail depending on what you are trying to accomplish. Everyday usage should remain concise and readable, while detailed inspection and machine-readable output are available when needed. These views do not change the underlying data; they only change how CTX presents it.
 
 CTX provides five general view modes:
 
@@ -72,11 +72,11 @@ PostgreSQL provides strong relational integrity and transaction support, which f
 
 The verbose view provides a more complete representation of a record.
 
-It includes information that may not be necessary during normal usage, such as the record identifier and additional fields or metadata.
+It includes information that may not be necessary during normal use, such as the record identifier and additional fields or metadata.
 
-Verbose output is useful when inspecting a specific record, identifying a record by its ID, debugging or troubleshooting, checking fields that are omitted from the default view. The verbose view prioritizes  completeness over brevity.
+Verbose output is useful when you need to inspect a specific record, identify it by its ID, debug a problem, or check fields that are omitted from the default view. The verbose view prioritizes completeness over brevity.
 
-It is used when `-v`, `--verbose` option is explicitly provided.
+It is used when the `-v` or `--verbose` option is explicitly provided.
 
 ### Session
 

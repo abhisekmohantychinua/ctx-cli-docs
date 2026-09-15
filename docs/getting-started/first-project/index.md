@@ -7,7 +7,7 @@ description: Build a small Python CLI API uptime monitor with CTX and an AI codi
 
 In this guide, you will build a small Python CLI called `apiwatch` while working with CTX and an AI coding agent. `apiwatch` checks whether configured API endpoints are healthy, records results, and prints a small report. The tool is only part of the experience. The real goal is to see how a project moves through real work: planning, implementation, interruption, resumption, review, and completion.
 
-You will experience a realistic development flow where:
+You will follow a realistic development flow in which:
 
 - you start a project
 - you initialize CTX

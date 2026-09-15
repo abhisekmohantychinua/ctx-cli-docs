@@ -12,15 +12,15 @@ This keeps the instructions stable while the project context continues to change
 
 ## What Is `instructions.md`?
 
-An instruction file is a Markdown file containing persistent guidance for an AI development environment.
+An instruction file is a Markdown file that contains persistent guidance for an AI development environment.
 
-AI coding tools commonly use project instruction files to provide information that should remain available while the agent works on a project. For example, GitHub Copilot supports repository-wide instruction files such as `.github/copilot-instructions.md` and agent instruction files such as `AGENTS.md`. Cursor provides project rules through `.cursor/rules` and also supports `AGENTS.md`.
+AI coding tools commonly use project instruction files to provide information that should stay available while the agent works on a project. For example, GitHub Copilot supports repository-wide instruction files such as `.github/copilot-instructions.md` and agent instruction files such as `AGENTS.md`. Cursor provides project rules through `.cursor/rules` and also supports `AGENTS.md`.
 
 These files are useful because the guidance is available without requiring the user to repeat the same instructions in every prompt.
 
-In CTX, the generated instruction serves a more specific purpose. It tells the AI agent  that CTX is available in this project. Use it to retrieve the project's execution context when that context is relevant to your work.
+In CTX, the generated instruction serves a more specific purpose. It tells the AI agent that CTX is available in this project and shows how to retrieve the project's execution context when that context matters to the work.
 
-The instruction file therefore acts as the connection between an AI agent and the dynamic context maintained by CTX.
+The instruction file acts as the connection between an AI agent and the dynamic context maintained by CTX.
 
 ## The Role of the Generated Instruction
 
@@ -136,7 +136,7 @@ This lets you choose exactly where the CTX instructions belong.
 
 ### Presets and Custom Paths
 
-Presets and custom paths solve the same problem in different ways. A preset is convenient when the target environment is already supported. Where as a custom path provides direct control. Only one is required for each generation.
+Presets and custom paths solve the same problem in different ways. A preset is convenient when the target environment is already supported. A custom path gives direct control. Only one is required for each generation.
 
 The command therefore rejects:
 

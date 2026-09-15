@@ -28,7 +28,7 @@ Create a new project task.
 
 Creates a new project task and returns its generated identifier.
 
-A task is created with `PENDING` status and no subtasks. When a parent task is provided, the new task is created as a subtask of that task.
+A task is created with the `PENDING` status and no subtasks. When a parent task is provided, the new task is created as a subtask of that task.
 
 ## When to use it
 

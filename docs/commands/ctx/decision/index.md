@@ -28,7 +28,7 @@ Manage project decisions.
 
 The `decision` command manages project decisions.
 
-Use its subcommands to create, update, delete, and search decisions, or manage their tags.
+Use its subcommands to create, update, delete, and search decisions, or to manage their tags.
 
 ## When to use it
 

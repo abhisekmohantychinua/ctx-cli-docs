@@ -38,7 +38,7 @@ The `task` command manages project tasks.
 
 When used without a subcommand, it shows the task currently in progress. If no task is in progress, it shows the most recently completed task. When no task records are available, it shows no task information.
 
-The command also provides access to operations for creating, starting, completing, blocking, updating, deleting, moving, listing, and querying tasks.
+The command also gives you access to operations for creating, starting, completing, blocking, updating, deleting, moving, listing, and querying tasks.
 
 ## When to use it
 

@@ -22,7 +22,7 @@ Start a new project session.
 
 Starts a new project session and returns its generated identifier.
 
-The command provides the same session-starting capability as `ctx session start`, but is available directly at the root for convenient access.
+The command provides the same session-starting capability as `ctx session start`, but is available directly at the root for convenience.
 
 ## When to use it
 

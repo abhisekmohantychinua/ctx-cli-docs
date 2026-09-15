@@ -3,11 +3,11 @@ sidebar_position: 1
 ---
 # ctx
 
-CTX CLI - Project execution context for developers and AI.
+CTX CLI keeps project execution context for developers and AI.
 
 ## ctx
 
-The root command for CTX CLI.
+The main entry point for CTX CLI.
 
 ### Options
 

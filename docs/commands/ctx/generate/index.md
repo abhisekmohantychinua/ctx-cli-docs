@@ -20,7 +20,7 @@ Generate project artifacts.
 
 ## What it does
 
-The `generate` command provides commands for generating project-specific artifacts.
+The `generate` command provides commands for creating project-specific artifacts.
 
 It does not generate anything on its own. A subcommand must be provided to perform a specific generation operation.
 

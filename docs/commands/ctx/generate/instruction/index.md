@@ -22,7 +22,7 @@ Generate project instructions.
 
 Generates an instruction file that helps an AI agent work with CTX in a project.
 
-The generated instructions describe how the agent should use CTX and work with its project context. They are static instructions for the AI and are separate from the project's sessions, tasks, logs, and decisions.
+The generated instructions explain how the agent should use CTX and work with the project's context. They are static instructions for the AI and are separate from the project's sessions, tasks, logs, and decisions.
 
 You can generate the instruction file for a supported AI tool or provide your own relative file path.
 

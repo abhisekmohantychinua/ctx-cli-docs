@@ -6,9 +6,9 @@ sidebar_label: Intermediate
 
 # Intermediate Development Workflow
 
-This workflow helps a small development team deliver a larger project that contains multiple requirements, connected parts, and changing priorities. It is useful when the work must be divided into several sections, completed across multiple sessions, and repeatedly reviewed as new information becomes available.
+This workflow helps a small development team deliver a larger project with multiple requirements, connected parts, and changing priorities. It is useful when the work must be divided into sections, completed across multiple sessions, and reviewed again as new information becomes available.
 
-Unlike a small, straightforward project, the entire implementation is not planned and completed in one continuous sequence. The team works through manageable sections, keeps dependent tasks waiting, executes independent tasks separately, and evaluates the project before deciding what to do next.
+Unlike a small, straightforward project, the whole implementation is not planned and completed in one continuous sequence. The team works through manageable sections, keeps dependent tasks waiting, executes independent tasks separately, and evaluates the project before deciding what to do next.
 
 ## The Process
 
