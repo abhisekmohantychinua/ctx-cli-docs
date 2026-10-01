@@ -246,7 +246,8 @@ function buildDownloadUrl(
   architecture: DownloadArchitecture,
   version?: string,
 ): string {
-  const downloadBaseUrl = "https://ctx.mohantyabhisek.com/download";
+  const downloadBaseUrl = "https://mohantyabhisek.com/api/ctx/download";
+
   const params = new URLSearchParams({
     arch: architecture,
   });
