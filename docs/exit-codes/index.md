@@ -125,6 +125,7 @@ The important distinction is that `1` and `2` are themselves meaningful error co
 | 130 | Instruction content could not be fetched because of an I/O error |
 | 131 | Instruction content fetch was interrupted |
 | 132 | Instruction content could not be fetched because the server returned an unsuccessful HTTP status |
+| 133 | Instruction content cannot be written to the specified file |
 | 140 | A referenced entity could not be found |
 | 141 | An active task is required but none exists |
 | 142 | An active session is required but none exists |
