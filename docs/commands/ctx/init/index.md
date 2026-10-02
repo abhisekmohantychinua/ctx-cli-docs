@@ -33,7 +33,7 @@ Project initialization is the normal option when using CTX with a project. The g
 
 Without `--global`, CTX uses the current working directory as the project location. With `--global`, it uses the user's home directory.
 
-CTX resolves the `ctxcli` directory in the selected location and creates a `config.json` containing the context location, creation time, default date-time template, and device time zone.
+CTX resolves the `.ctx` directory in the selected location and creates a `config.json` containing the context location, creation time, default date-time template, and device time zone.
 
 If a context already exists, CTX does not overwrite it unless `--force` is provided. Without `--force`, the command reports that the context already exists and instructs you to initialize it again with `-f`.
 

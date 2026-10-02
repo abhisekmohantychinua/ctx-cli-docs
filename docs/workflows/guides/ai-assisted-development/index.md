@@ -49,7 +49,7 @@ You can also generate the instruction file at a custom path:
 ctx generate instruction --path=.ai/ctx-instructions.md
 ```
 
-The instruction file teaches the AI agent how to work with CTX. It does not contain the changing project context. That context remains inside `.ctxcli`.
+The instruction file teaches the AI agent how to work with CTX. It does not contain the changing project context. That context remains inside `.ctx`.
 
 ## Start a session before asking AI to work
 

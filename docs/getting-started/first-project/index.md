@@ -98,7 +98,7 @@ ctx status
 
 At this point, CTX has created project context for `apiwatch`.
 
-CTX stores the execution context in the project itself, inside `.ctxcli`. That means the context can move with the project, be inspected with the project, and be used by both you and your AI agent.
+CTX stores the execution context in the project itself, inside `.ctx`. That means the context can move with the project, be inspected with the project, and be used by both you and your AI agent.
 
 :::note
 
@@ -127,7 +127,7 @@ ctx generate instruction --path=.ai/ctx-instructions.md
 The instruction file does not contain the current project context. It teaches the AI agent how to retrieve that context from CTX while working.
 
 :::important
-CTX instructions are stable guidance for the AI. The changing project context still lives in `.ctxcli`.
+CTX instructions are stable guidance for the AI. The changing project context still lives in `.ctx`.
 :::
 
 ## Session 1: Start The Work
@@ -720,9 +720,9 @@ ctx decision query \
   --sort-by=timestamp --sort=ASC --pretty-json
 ```
 
-If you want to keep the complete CTX project context with the repository, preserve the `.ctxcli` directory according to your project policy.
+If you want to keep the complete CTX project context with the repository, preserve the `.ctx` directory according to your project policy.
 
-For example, you may choose to commit `.ctxcli` when the execution history should travel with the project, or ignore it when the context should remain local.
+For example, you may choose to commit `.ctx` when the execution history should travel with the project, or ignore it when the context should remain local.
 
 ## Recap
 

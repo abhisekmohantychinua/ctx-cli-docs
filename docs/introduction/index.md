@@ -74,7 +74,7 @@ ctx dec "Use file-based storage instead of a database"
 
 ### Persist
 
-CTX stores the captured information in the project's `.ctxcli` directory.
+CTX stores the captured information in the project's `.ctx` directory.
 
 The project therefore carries its own execution context. No separate service is required to keep the basic context available. The records can remain useful across different work sessions, breaks in development, context switches, AI sessions, and development environments.
 
