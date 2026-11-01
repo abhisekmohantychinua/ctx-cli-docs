@@ -117,6 +117,11 @@ const config: Config = {
           label: "Docs",
         },
         { to: "/articles", label: "Articles", position: "left" },
+        {
+          type: "docsVersionDropdown",
+          position: "left",
+          label: "Versions",
+        },
       ],
     },
     footer: {
