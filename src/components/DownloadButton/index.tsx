@@ -1,10 +1,20 @@
-import React, { JSX, useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState, type JSX } from "react";
 import clsx from "clsx";
 
-import styles from "./styles.module.css";
-import { DownloadArchitecture, DownloadExtension } from "./architecture-option";
+import { ChevronDownIcon } from "lucide-react";
+import type {
+  DownloadArchitecture,
+  DownloadExtension,
+} from "./architecture-option";
 import architectureOptions from "./architecture-options";
-import { Icon } from "@iconify/react";
+import { Button } from "../ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 export interface DownloadButtonState {
   version?: string;
@@ -26,10 +36,6 @@ export default function DownloadButton({
 }: DownloadButtonProps): JSX.Element {
   const [selectedArchitecture, setSelectedArchitecture] =
     useState<DownloadArchitecture>(arch ?? "windows-amd64");
-
-  const [isOpen, setIsOpen] = useState(false);
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Synchronize the internal architecture with the supplied prop.
@@ -60,122 +66,88 @@ export default function DownloadButton({
     ? `version ${version.trim()}`
     : "the latest version";
 
-  const handleArchitectureChange = useCallback(
-    (architecture: DownloadArchitecture): void => {
-      setSelectedArchitecture(architecture);
-      setIsOpen(false);
-    },
-    [],
-  );
-
-  useEffect(() => {
-    function handleOutsideClick(event: MouseEvent): void {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        // Close the dropdown when the user clicks outside the component.
-        setIsOpen(false);
-      }
-    }
-
-    document.addEventListener("mousedown", handleOutsideClick);
-
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
-
   return (
-    <div className={styles.container}>
-      <div className={styles.buttonGroup} ref={dropdownRef}>
-        <a
-          className={clsx("button", "button--primary", styles.downloadButton)}
-          href={downloadUrl}
-          aria-label={`Download CTX ${releaseLabel} for ${selectedOption.label}`}
+    <div className="flex max-w-full flex-col items-start gap-2">
+      <div className="inline-flex max-w-full items-stretch max-[480px]:w-full">
+        <Button
+          asChild
+          className="h-12 shrink-0 rounded-r-none px-6 text-sm font-semibold text-primary-foreground! hover:text-primary-foreground!"
         >
-          Download
-        </a>
-
-        <button
-          type="button"
-          className={clsx(
-            "button",
-            "button--primary",
-            styles.architectureButton,
-          )}
-          aria-haspopup="menu"
-          aria-expanded={isOpen}
-          aria-label={`Select architecture. Current selection: ${selectedOption.label}`}
-          onClick={() => setIsOpen((currentValue) => !currentValue)}
-        >
-          <span className={styles.architectureValue}>
-            <span className={styles.archiveExtension}>
-              {selectedOption.extension}
-            </span>
-
-            <span className={styles.architectureLabel}>
-              {selectedOption.label}
-            </span>
-          </span>
-
-          <span
-            className={clsx(styles.arrow, {
-              [styles.arrowOpen]: isOpen,
-            })}
-            aria-hidden="true"
+          <a
+            href={downloadUrl}
+            aria-label={`Download CTX ${releaseLabel} for ${selectedOption.label}`}
           >
-            <Icon
-              icon="mdi:chevron-down"
-              width="18"
-              height="18"
-              aria-hidden="true"
-            />
-          </span>
-        </button>
+            Download
+          </a>
+        </Button>
 
-        {isOpen && (
-          <div className={styles.dropdown} role="menu">
-            {architectureOptions.map((option) => {
-              const isSelected = option.value === selectedArchitecture;
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              aria-label={`Select architecture. Current selection: ${selectedOption.label}`}
+              className="group h-12 min-w-0 max-w-full justify-between rounded-l-none border-l border-primary-foreground/30 px-3 text-left max-[480px]:flex-1"
+            >
+              <span className="inline-flex min-w-0 items-center gap-2 overflow-hidden">
+                <span className="shrink-0 font-mono text-xs font-semibold">
+                  {selectedOption.extension}
+                </span>
+                <span className="truncate text-sm">{selectedOption.label}</span>
+              </span>
+              <ChevronDownIcon
+                data-icon="inline-end"
+                aria-hidden="true"
+                className="transition-transform group-data-[state=open]:rotate-180 motion-reduce:transition-none"
+              />
+            </Button>
+          </DropdownMenuTrigger>
 
-              return (
-                <button
-                  key={option.value}
-                  type="button"
-                  role="menuitem"
-                  className={clsx(styles.dropdownItem, {
-                    [styles.dropdownItemSelected]: isSelected,
-                  })}
-                  onClick={() => handleArchitectureChange(option.value)}
-                >
-                  <span className={styles.dropdownItemMain}>
-                    <span className={styles.dropdownLabel}>{option.label}</span>
+          <DropdownMenuContent
+            align="end"
+            sideOffset={8}
+            className="w-max min-w-72 max-w-[calc(100vw-2rem)]"
+          >
+            <DropdownMenuRadioGroup
+              value={selectedArchitecture}
+              onValueChange={(value) => {
+                const option = architectureOptions.find(
+                  (item) => item.value === value,
+                );
+                if (option) setSelectedArchitecture(option.value);
+              }}
+            >
+              {architectureOptions.map((option) => {
+                const isSelected = option.value === selectedArchitecture;
 
-                    <span className={styles.dropdownArchive}>
-                      {option.archive}
+                return (
+                  <DropdownMenuRadioItem
+                    key={option.value}
+                    value={option.value}
+                    className="min-h-12 cursor-pointer items-center justify-between gap-4 py-2 pr-3"
+                  >
+                    <span className="flex min-w-0 flex-col items-start gap-0.5">
+                      <span
+                        className={clsx(
+                          "truncate text-sm font-semibold",
+                          isSelected && "text-primary",
+                        )}
+                      >
+                        {option.label}
+                      </span>
+                      <span className="max-w-full break-all font-mono text-xs leading-relaxed text-muted-foreground">
+                        {option.archive}
+                      </span>
                     </span>
-                  </span>
-
-                  {isSelected && (
-                    <Icon
-                      className={styles.checkmark}
-                      icon="mdi:check"
-                      width="18"
-                      height="18"
-                      aria-hidden="true"
-                    />
-                  )}
-                </button>
-              );
-            })}
-          </div>
-        )}
+                  </DropdownMenuRadioItem>
+                );
+              })}
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
 
-      <p className={styles.description}>
+      <p className="m-0 max-w-2xl text-sm leading-relaxed text-muted-foreground">
         Downloads {releaseLabel} for {selectedOption.label} as{" "}
-        <code>{selectedOption.archive}</code>.
+        <code className="font-mono">{selectedOption.archive}</code>.
       </p>
     </div>
   );
