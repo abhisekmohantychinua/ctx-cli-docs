@@ -1,0 +1,99 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+
+  // Single model: the free DeepSeek V4.1 Flash. Root selection cannot pin a
+  // variant; cycle variants (fast/deep) in the TUI with Ctrl+T.
+  "model": "opencode/deepseek-v4.1-flash-free",
+  "default_agent": "build",
+
+  // Tool-neutral persistent instructions, loaded every session.
+  "instructions": [".agents/commit-message.md"],
+
+  // Git is the source of truth for undo/revert, so skip OpenCode snapshots.
+  "snapshots": false,
+
+  // TinyFish TinySearch: free at 12,000 requests/day, 30/min, 500/hour, and it
+  // still works at a zero wallet balance. The only search provider here, so a
+  // single 429 cannot fall back to a paid one. The key comes from the server
+  // environment, never from this file. See tools/opencode/websearch.md.
+  "websearch": {
+    "provider": "tinyfish",
+  },
+
+  // MCP servers (Streamable HTTP). Sign-in state is stored outside this file.
+  "mcp": {
+    "servers": {
+      // GitHub's hosted MCP server. oauth:false because GitHub's endpoint needs
+      // a PAT rather than dynamic client registration. The token comes from the
+      // server environment, never from this file.
+      // Read-only until X-MCP-Readonly is removed; toolsets are capped because
+      // every tool costs context. See tools/opencode/mcp.md.
+      "github": {
+        "type": "remote",
+        "url": "https://api.githubcopilot.com/mcp/",
+        "oauth": false,
+        "headers": {
+          "Authorization": "Bearer {env:GITHUB_PERSONAL_ACCESS_TOKEN}",
+          "X-MCP-Toolsets": "context,repos,issues,pull_requests",
+          "X-MCP-Readonly": "true",
+        },
+      },
+    },
+  },
+
+  "providers": {
+    "opencode": {
+      "models": {
+        "deepseek-v4.1-flash-free": {
+          // Replaces the catalog reasoning variants (low/high/max) so only
+          // the two named below are offered.
+          "capabilities": {
+            "reasoning": { "supported": true },
+          },
+          "variants": [
+            { "id": "fast", "settings": { "reasoningEffort": "low" } },
+            { "id": "deep", "settings": { "reasoningEffort": "high" } },
+          ],
+        },
+      },
+    },
+  },
+
+  "permissions": [
+    // Nothing outside this project directory, read or write.
+    { "action": "external_directory", "resource": "*", "effect": "deny" },
+
+    // Full CRUD inside the project.
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "edit", "resource": "*", "effect": "allow" },
+    { "action": "glob", "resource": "*", "effect": "allow" },
+    { "action": "grep", "resource": "*", "effect": "allow" },
+
+    // Web research is allowed. Downloads must be written into this directory
+    // (enforced by the shell rule below, since fetching alone writes nothing).
+    { "action": "webfetch", "resource": "*", "effect": "allow" },
+    { "action": "websearch", "resource": "*", "effect": "allow" },
+
+    // Tools, skills, and subagents are available.
+    { "action": "skill", "resource": "*", "effect": "allow" },
+    { "action": "subagent", "resource": "*", "effect": "allow" },
+
+    // Every shell command, including package installs and downloads, is asked.
+    { "action": "shell", "resource": "*", "effect": "ask" },
+
+    // Never execute privilege escalation, even wrapped (e.g. `command sudo`).
+    { "action": "shell", "resource": "*sudo*", "effect": "deny" },
+    { "action": "shell", "resource": "su *", "effect": "deny" },
+    { "action": "shell", "resource": "doas *", "effect": "deny" },
+    { "action": "shell", "resource": "pkexec *", "effect": "deny" },
+  ],
+
+  "policies": [
+    // Only the OpenCode provider (source of the free DeepSeek model).
+    { "action": "provider.use", "resource": "*", "effect": "deny" },
+    { "action": "provider.use", "resource": "opencode", "effect": "allow" },
+
+    // Hard denial: survives an "Allow always" approval.
+    { "action": "tool.use", "resource": "shell:*sudo*", "effect": "deny" },
+  ],
+}

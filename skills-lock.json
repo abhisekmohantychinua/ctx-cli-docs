@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "skills": {
+    "documentation": {
+      "source": "mcollina/skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/documentation/SKILL.md",
+      "computedHash": "9a43f2e8ebb01dbc162ad78d865ff9e20bf20270e0514095c3bf3f1ac43599c6"
+    },
+    "documentation-diataxis": {
+      "source": "canonical/workshop",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": ".github/skills/documentation-diataxis/SKILL.md",
+      "computedHash": "7c06cfa23591073429a3fbb46fa3c5a33235bc5c1723158fb9959be462d5568c"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "89496d5dd00f4810205f351759594fc2742bf8eea85a2f2b2d1de59f4bd91576"
+    },
+    "mermaid-syntax": {
+      "source": "awesome-skills/mermaid-syntax-skill",
+      "sourceType": "github",
+      "skillPath": "SKILL.md",
+      "computedHash": "37fdb14fdcb6841b86e398bd98cd224135c8a40c90ddfd485304a6c7be3bf561"
+    },
+    "seo": {
+      "source": "addyosmani/web-quality-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/seo/SKILL.md",
+      "computedHash": "01a735ac18ceb15536ac40b11a5712b3ab8f78ebe94748b3ebc3afc7f58a6f2f"
+    },
+    "shadcn": {
+      "source": "shadcn-ui/ui",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/shadcn/SKILL.md",
+      "computedHash": "b864a958765563321f485a96f4d59c0bb6539f4286ab6d8b8b66895b7ebd302d"
+    },
+    "vercel-react-best-practices": {
+      "source": "vercel-labs/agent-skills",
+      "ref": "main",
+      "sourceType": "github",
+      "skillPath": "skills/react-best-practices/SKILL.md",
+      "computedHash": "3219a1944e404ffc14d1d9d6aef6dd2e3855b81387ee0a044ccbfe14d34c2357"
+    }
+  }
+}
