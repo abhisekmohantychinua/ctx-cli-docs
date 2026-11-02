@@ -3,10 +3,11 @@ import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Heading from "@theme/Heading";
 
 import styles from "./index.module.css";
+import HomepageFeatures from "../components/HomepageFeatures";
+import { Button } from "../components/ui/button";
 
 function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
@@ -24,6 +25,9 @@ function HomepageHeader() {
           >
             Docusaurus Tutorial - 5min ⏱️
           </Link>
+        </div>
+        <div className="bg-white">
+          <Button variant="destructive">Default</Button>
         </div>
       </div>
     </header>
