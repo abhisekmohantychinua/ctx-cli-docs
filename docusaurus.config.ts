@@ -6,8 +6,8 @@ import tailwindLoader from "./plugins/tailwind-loader.mjs";
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
+  title: "CTX CLI",
+  tagline: "Persistent project context for developers and AI",
   headTags: [
     {
       tagName: "link",
@@ -105,7 +105,7 @@ const config: Config = {
     },
     navbar: {
       logo: {
-        alt: "My Site Logo",
+        alt: "CTX CLI",
         src: "img/logo.png",
         srcDark: "img/logo-dark.png",
       },
