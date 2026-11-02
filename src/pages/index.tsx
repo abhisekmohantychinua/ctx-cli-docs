@@ -27,7 +27,7 @@ function HomepageHeader() {
           </Link>
         </div>
         <div className="bg-white">
-          <Button variant="destructive">Default</Button>
+          <Button>Default</Button>
         </div>
       </div>
     </header>

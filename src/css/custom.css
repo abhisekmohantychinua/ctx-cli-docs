@@ -1,43 +1,323 @@
-@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Intel+One+Mono:wght@300;400;500;600;700&display=swap");
 
 @import "tailwindcss";
 
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+@custom-variant dark (&:where(.dark, .dark *, [data-theme="dark"], [data-theme="dark"] *));
+
+/* Shared typography, layout, radius, and effect tokens. */
 :root {
-  --ifm-background-color: #ffffff;
-  --ifm-background-surface-color: #f6f3ec;
-
-  --ifm-font-color-base: #0f1115;
-
-  --ifm-color-primary: #824d00;
-  --ifm-color-primary-dark: #7d4900;
-  --ifm-color-primary-darker: #754400;
-  --ifm-color-primary-darkest: #6a3d00;
-  --ifm-color-primary-light: #8b5500;
-  --ifm-color-primary-lighter: #955d00;
-
-  --ifm-color-primary-lightest: #9c6200;
-
-  --ifm-font-family-base: "Geist", monospace;
-  --ifm-font-family-monospace: "Geist Mono", monospace;
+  --font-geist: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-intel-mono: "Intel One Mono", "Geist Mono", ui-monospace, monospace;
+  --type-hero: 3rem;
+  --type-section: 2.25rem;
+  --type-subheading: 1.5rem;
+  --type-card-heading: 1.25rem;
+  --type-body: 1rem;
+  --type-card-copy: 0.75rem;
+  --type-button: 0.9375rem;
+  --type-fine: 0.6875rem;
+  --leading-display: 1.08;
+  --leading-heading: 1.15;
+  --leading-body: 1.5;
+  --space-unit: 0.25rem;
+  --page-gutter: clamp(1.25rem, 5.47vw, 4.375rem);
+  --content-max: 71.25rem;
+  --shape-radius-icon: 4px;
+  --shape-radius-button: 5px;
+  --shape-radius-terminal: 10px;
+  --shape-radius-panel: 15px;
+  --shape-radius-card: 16px;
+  --shape-radius-hero: 35px;
+  --blur-glow: 151.7px;
+  --blur-backdrop: 18px;
 }
-/* CTX typography */
 
-[data-theme="dark"] {
-  --ifm-background-color: #1a1d22;
-  --ifm-background-surface-color: #0f1115;
+/* Light semantic tokens. */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
 
-  --ifm-font-color-base: #f6f3ec;
+  --background: #fffefb;
+  --foreground: #1f2126;
+  --card: #fbfaf5;
+  --card-foreground: #1f2126;
+  --popover: #fffefb;
+  --popover-foreground: #1f2126;
+  --primary: #d16e14;
+  --primary-foreground: #000000;
+  --secondary: #faf5eb;
+  --secondary-foreground: #1f2126;
+  --muted: #f5f1e8;
+  --muted-foreground: #5c5a55;
+  --accent: #fce8c2;
+  --accent-foreground: #713b08;
+  --destructive: #ea0000;
+  --destructive-foreground: #ffffff;
+  --border: #dbcdb0;
+  --input: #dbcdb0;
+  --ring: #d16e14;
+  --chart-1: #d16e14;
+  --chart-2: #018a47;
+  --chart-3: #994f0a;
+  --chart-4: #f5911f;
+  --chart-5: #66a182;
+  --sidebar: #faf5eb;
+  --sidebar-foreground: #1f2126;
+  --sidebar-primary: #d16e14;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #fce8c2;
+  --sidebar-accent-foreground: #713b08;
+  --sidebar-border: #dbcdb0;
+  --sidebar-ring: #d16e14;
+  --radius: 0.5rem;
 
-  --ifm-color-primary: #f0b35a;
-  --ifm-color-primary-dark: #d99a3d;
-  --ifm-color-primary-darker: #c9872d;
-  --ifm-color-primary-darkest: #b8781f;
-  --ifm-color-primary-light: #f4c06e;
-  --ifm-color-primary-lighter: #f8d18f;
-  --ifm-color-primary-lightest: #fbe1b5;
+  /* Infima mapping. */
+  --ifm-color-primary: #d16e14;
+  --ifm-color-primary-dark: #c76913;
+  --ifm-color-primary-darker: #bc6312;
+  --ifm-color-primary-darkest: #b25e11;
+  --ifm-color-primary-light: #d67d2c;
+  --ifm-color-primary-lighter: #da8b43;
+  --ifm-color-primary-lightest: #df9a5a;
+  --ifm-color-link: #994f0a;
+  --ifm-color-link-hover: #713b08;
+  --ifm-background-color: #fffefb;
+  --ifm-background-surface-color: #fbfaf5;
+  --ifm-font-color-base: #1f2126;
+  --ifm-font-color-secondary: #5c5a55;
+  --ifm-heading-color: #1f2126;
+  --ifm-border-color: #dbcdb0;
+  --ifm-hr-border-color: #dbcdb0;
+  --ifm-code-background: #f5f1e8;
+  --ifm-menu-color-background-active: #fce8c2;
+  --ifm-menu-color-active: #713b08;
+  --ifm-navbar-background-color: #fffefb;
+  --ifm-footer-background-color: #faf5eb;
+  --ifm-color-emphasis-0: #ffffff;
+  --ifm-color-emphasis-100: #fbfaf5;
+  --ifm-color-emphasis-200: #f5f1e8;
+  --ifm-color-emphasis-300: #e8e0d1;
+  --ifm-color-emphasis-500: #a49b8d;
+  --ifm-color-emphasis-700: #5c5a55;
+  --ifm-color-emphasis-900: #1f2126;
+  --ifm-font-family-base: var(--font-geist);
+  --ifm-font-family-monospace: var(--font-intel-mono);
+  --ifm-heading-font-weight: 600;
+  --ifm-line-height-base: var(--leading-body);
+  --ifm-global-radius: var(--radius);
+  --ifm-button-border-radius: var(--shape-radius-button);
+  --ifm-link-color: var(--ifm-color-link);
+  --ifm-link-hover-color: var(--ifm-color-link-hover);
+  --ifm-navbar-link-color: var(--ifm-font-color-base);
+  --ifm-navbar-link-hover-color: var(--ifm-color-primary);
+  --ifm-navbar-link-active-color: var(--ifm-color-link);
+  --ifm-footer-link-color: var(--ifm-font-color-secondary);
+  --ifm-footer-link-hover-color: var(--ifm-color-primary);
+  --ifm-footer-title-color: var(--ifm-heading-color);
+  --ifm-toc-border-color: var(--ifm-border-color);
+  --ifm-toc-link-color: var(--ifm-font-color-secondary);
+  --ifm-table-border-color: var(--ifm-border-color);
+  --ifm-table-stripe-background: var(--muted);
+}
+
+/* Dark semantic tokens. */
+.dark,
+[data-theme="dark"],
+html[data-theme="dark"] {
+  color-scheme: dark;
+
+  --background: #131417;
+  --foreground: #f0ebe0;
+  --card: #1d1f21;
+  --card-foreground: #f0ebe0;
+  --popover: #1d1f21;
+  --popover-foreground: #f0ebe0;
+  --primary: #b34f0b;
+  --primary-foreground: #f5f0e6;
+  --secondary: #201d18;
+  --secondary-foreground: #f0ebe0;
+  --muted: #29251f;
+  --muted-foreground: #c7c2b8;
+  --accent: #6e451f;
+  --accent-foreground: #ffb352;
+  --destructive: #ea0000;
+  --destructive-foreground: #f5f0e6;
+  --border: #594f40;
+  --input: #4a4538;
+  --ring: #f5911f;
+  --chart-1: #f5911f;
+  --chart-2: #66dc43;
+  --chart-3: #ffb352;
+  --chart-4: #c7c2b8;
+  --chart-5: #018a47;
+  --sidebar: #1d1f21;
+  --sidebar-foreground: #f0ebe0;
+  --sidebar-primary: #f5911f;
+  --sidebar-primary-foreground: #131417;
+  --sidebar-accent: #29251f;
+  --sidebar-accent-foreground: #f0ebe0;
+  --sidebar-border: #594f40;
+  --sidebar-ring: #f5911f;
+
+  /* Infima mapping. */
+  --ifm-color-primary: #f5911f;
+  --ifm-color-primary-dark: #e98a1d;
+  --ifm-color-primary-darker: #dd831c;
+  --ifm-color-primary-darkest: #d07b1a;
+  --ifm-color-primary-light: #f69c35;
+  --ifm-color-primary-lighter: #f7a74c;
+  --ifm-color-primary-lightest: #f8b262;
+  --ifm-color-link: #ffb352;
+  --ifm-color-link-hover: #f8b262;
+  --ifm-background-color: #131417;
+  --ifm-background-surface-color: #1d1f21;
+  --ifm-font-color-base: #f0ebe0;
+  --ifm-font-color-secondary: #c7c2b8;
+  --ifm-heading-color: #f0ebe0;
+  --ifm-border-color: #594f40;
+  --ifm-hr-border-color: #594f40;
+  --ifm-code-background: #29251f;
+  --ifm-menu-color-background-active: #29251f;
+  --ifm-menu-color-active: #ffb352;
+  --ifm-navbar-background-color: #131417;
+  --ifm-footer-background-color: #131417;
+  --ifm-color-emphasis-0: #131417;
+  --ifm-color-emphasis-100: #1d1f21;
+  --ifm-color-emphasis-200: #29251f;
+  --ifm-color-emphasis-300: #40392f;
+  --ifm-color-emphasis-500: #8e877b;
+  --ifm-color-emphasis-700: #c7c2b8;
+  --ifm-color-emphasis-900: #f0ebe0;
+  --ifm-navbar-link-color: var(--ifm-font-color-base);
+  --ifm-navbar-link-hover-color: var(--ifm-color-primary);
+  --ifm-navbar-link-active-color: var(--ifm-color-link);
+  --ifm-footer-link-color: var(--ifm-font-color-secondary);
+  --ifm-footer-link-hover-color: var(--ifm-color-primary);
+  --ifm-footer-title-color: var(--ifm-heading-color);
+  --ifm-toc-border-color: var(--ifm-border-color);
+  --ifm-toc-link-color: var(--ifm-font-color-secondary);
+  --ifm-table-border-color: var(--ifm-border-color);
+  --ifm-table-stripe-background: var(--muted);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --font-sans: var(--font-geist);
+  --font-mono: var(--font-intel-mono);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-icon: var(--shape-radius-icon);
+  --radius-button: var(--shape-radius-button);
+  --radius-terminal: var(--shape-radius-terminal);
+  --radius-panel: var(--shape-radius-panel);
+  --radius-card: var(--shape-radius-card);
+  --radius-hero: var(--shape-radius-hero);
+  --text-hero: var(--type-hero);
+  --text-hero--line-height: var(--leading-display);
+  --text-section: var(--type-section);
+  --text-section--line-height: var(--leading-heading);
+  --text-subheading: var(--type-subheading);
+  --text-card-heading: var(--type-card-heading);
+  --text-body: var(--type-body);
+  --text-body--line-height: var(--leading-body);
+  --text-card-copy: var(--type-card-copy);
+  --text-button: var(--type-button);
+  --text-fine: var(--type-fine);
+  --spacing: var(--space-unit);
+  --breakpoint-sm: 40rem;
+  --breakpoint-md: 48rem;
+  --breakpoint-lg: 64rem;
+  --breakpoint-xl: 80rem;
+  --breakpoint-2xl: 96rem;
+}
+
+/* Typography defaults. */
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--ifm-heading-color);
+  font-family: var(--font-geist);
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: var(--type-section);
+  line-height: var(--leading-heading);
+}
+
+h2 {
+  font-size: var(--type-subheading);
+  line-height: var(--leading-heading);
+}
+
+h3 {
+  font-size: var(--type-card-heading);
+  line-height: 1.3;
+}
+
+.hero__title {
+  font-size: var(--type-hero);
+  line-height: var(--leading-display);
+}
+
+.hero__subtitle {
+  font-size: var(--type-subheading);
+  line-height: var(--leading-heading);
+}
+
+/* Surface, border, and navigation styling. */
+.navbar {
+  border-bottom: 1px solid var(--ifm-border-color);
+  box-shadow: none;
 }
 
 .navbar__logo {
@@ -45,9 +325,51 @@
   margin-right: 0;
 }
 
+.footer {
+  border-top: 1px solid var(--ifm-border-color);
+}
+
+.theme-doc-sidebar-container {
+  border-right: 1px solid var(--ifm-border-color);
+}
+
+.menu__link--active:not(.menu__link--sublist) {
+  color: var(--ifm-menu-color-active);
+  background: var(--ifm-menu-color-background-active);
+}
+
+.pagination-nav__link,
+.table-of-contents,
+.card {
+  border-color: var(--ifm-border-color);
+}
+
 .sidebarLogo_isFc img {
   height: 2.5rem !important;
   margin-right: 0 !important;
+}
+
+/* Inline code keeps the terminal/code surface readable without affecting
+   fenced code blocks. */
+:not(pre) > code {
+  border: 1px solid var(--ifm-border-color);
+  border-radius: var(--shape-radius-icon);
+  background: var(--ifm-code-background);
+}
+
+/* Primary actions use the CTA foreground from the design tokens. */
+.button {
+  border-radius: var(--ifm-button-border-radius);
+  font-weight: 600;
+}
+
+.button--primary {
+  --ifm-button-color: var(--primary-foreground);
+}
+
+.button--primary:hover,
+.button--primary:focus {
+  --ifm-button-color: var(--primary-foreground);
 }
 
 .inline-icon {
