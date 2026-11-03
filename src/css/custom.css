@@ -399,6 +399,17 @@ html[data-theme="dark"] {
   @apply border-(--ifm-border-color) border-solid shadow-none;
 }
 
+@utility section-container {
+  @apply mx-auto w-[min(calc(100%-2*var(--ctx-page-gutter)),var(--ctx-content-max))];
+}
+
+@utility eyebrow {
+  @apply mt-0 font-mono text-ctx-fine font-medium uppercase leading-[1.3] tracking-[0.12em] text-link;
+}
+@utility section-heading {
+  @apply mt-0 font-mono text-ctx-fine font-medium uppercase leading-[1.3] tracking-[0.12em] text-link;
+}
+
 /*=================================
   DOCUSAURUS SPECIFIC CUSTOMIZATION
   ================================= */

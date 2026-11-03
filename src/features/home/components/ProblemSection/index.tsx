@@ -10,8 +10,10 @@ import {
 } from "lucide-react";
 
 import { container, eyebrow, sectionHeading } from "../../classes";
+import "./styles.css";
+import ProblemCard from "./problem-card";
 
-type ProblemItem = {
+export type ProblemItem = {
   title: string;
   description: string;
   Icon: LucideIcon;
@@ -58,38 +60,22 @@ const problems: ProblemItem[] = [
 
 export default function ProblemSection(): ReactNode {
   return (
-    <section
-      className="pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(3rem,6vw,4.75rem)]"
-      aria-labelledby="problem-heading"
-    >
-      <div className={container}>
-        <div className="grid grid-cols-[minmax(21rem,1fr)_minmax(0,2.4fr)] items-start gap-[clamp(2rem,5vw,4.5rem)] max-[1100px]:grid-cols-1 max-[1100px]:gap-8">
+    <section className="problem-section" aria-labelledby="problem-heading">
+      <div className="problem-section__container">
+        <div className="problem-section__content">
           <div>
-            <p className={`${eyebrow} mb-[0.7rem]`}>The Problem</p>
-            <h2 id="problem-heading" className={sectionHeading}>
+            <p className="problem-section__eyebrow">The Problem</p>
+            <h2 id="problem-heading" className="problem-section__heading">
               Context gets lost
               <br />
               Your work shouldn’t
             </h2>
           </div>
 
-          <ul className="m-0 grid list-none grid-cols-[repeat(3,minmax(0,1fr))] gap-[0.9rem] p-0 max-[1100px]:grid-cols-[repeat(2,minmax(0,1fr))] max-[680px]:grid-cols-1">
-            {problems.map(({ title, description, Icon }) => (
-              <li key={title} className="flex">
-                <article className="flex w-full flex-col rounded-card border border-home-border bg-[linear-gradient(180deg,color-mix(in_srgb,var(--primary)_10%,var(--card))_0%,color-mix(in_srgb,var(--primary)_3%,var(--card))_100%)] px-4 pb-[1.15rem] pt-4">
-                  <span
-                    className="mb-[0.8rem] grid size-[1.9rem] shrink-0 place-items-center rounded-icon bg-accent-foreground text-accent"
-                    aria-hidden="true"
-                  >
-                    <Icon size={16} strokeWidth={1.9} />
-                  </span>
-                  <h3 className="mb-[0.45rem] mt-0 text-[0.8125rem] leading-[1.35]">
-                    {title}
-                  </h3>
-                  <p className="m-0 text-card-copy leading-[1.55] text-muted-foreground">
-                    {description}
-                  </p>
-                </article>
+          <ul className="problem-section__problems">
+            {problems.map((problem) => (
+              <li key={problem.title} className="flex">
+                <ProblemCard problem={problem} />
               </li>
             ))}
           </ul>

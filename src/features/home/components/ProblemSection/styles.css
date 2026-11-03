@@ -1,0 +1,37 @@
+@reference "../../../../css/custom.css";
+
+.problem-section {
+  @apply pb-[clamp(2.5rem,5vw,4rem)] pt-[clamp(3rem,6vw,4.75rem)];
+}
+.problem-section__container {
+  @apply mx-auto w-[min(calc(100%-2*var(--ctx-page-gutter)),var(--ctx-content-max))];
+}
+.problem-section__content {
+  @apply grid grid-cols-[minmax(21rem,1fr)_minmax(0,2.4fr)] items-start gap-[clamp(2rem,5vw,4.5rem)] max-[1100px]:grid-cols-1 max-[1100px]:gap-8;
+}
+
+.problem-section__eyebrow {
+  @apply eyebrow mb-[0.7rem];
+}
+
+.problem-section__heading {
+  @apply section-heading;
+}
+.problem-section__problems {
+  @apply m-0 grid list-none grid-cols-3 gap-[0.9rem] p-0 max-[1100px]:grid-cols-2 max-[680px]:grid-cols-1;
+}
+
+.problem-card {
+  @apply flex w-full flex-col rounded-ctx-card border border-home-border bg-[linear-gradient(180deg,color-mix(in_srgb,var(--ctx-primary)_10%,var(--ctx-card))_0%,color-mix(in_srgb,var(--ctx-primary)_3%,var(--ctx-card))_100%)] px-4 pb-[1.15rem] pt-4;
+}
+.problem-card__icon-box {
+  @apply mb-[0.8rem] grid size-[1.9rem] shrink-0 place-items-center rounded-ctx-icon bg-accent-foreground text-accent;
+}
+
+.problem-card__title {
+  @apply mb-[0.45rem] mt-0 text-[0.8125rem] leading-[1.35];
+}
+
+.problem-card__description {
+  @apply m-0 text-ctx-card-copy leading-[1.55] text-muted-foreground;
+}
