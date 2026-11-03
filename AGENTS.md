@@ -60,11 +60,11 @@ diagram mentioning a type-check step).
 
 ## Writing and architecture references
 
-- Read `WRITING_GUIDE.md` before substantive prose changes; it defines the
+- Read `resources/WRITING_GUIDE.md` before substantive prose changes; it defines the
   brand voice, terminology, command-reference wording, and error-message style.
   However skills take priority.
 - `README.md` explains the site architecture, SEO, search, AI-readable output,
-  branching, and deployment. `DOCUMENTATION_VERSIONING_STRATEGY.md` is the
+  branching, and deployment. `resources/DOCUMENTATION_VERSIONING_STRATEGY.md` is the
   versioning policy.
 - Prefer these existing files over duplicating their rules in a new doc.
 
