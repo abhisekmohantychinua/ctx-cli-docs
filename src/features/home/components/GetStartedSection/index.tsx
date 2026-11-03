@@ -5,38 +5,36 @@ import { container, eyebrow, getStartedHeading } from "../../classes";
 import SubscriptionForm from "./subscription-form";
 import { buttonVariants } from "@/src/components/ui/button";
 
+import "./styles.css";
+
 export default function GetStartedSection(): ReactNode {
   return (
-    <section
-      className="border-t border-[color-mix(in_srgb,var(--border)_55%,transparent)] bg-home-band-strong py-[clamp(3rem,6vw,4.5rem)]"
-      aria-labelledby="get-started-heading"
-    >
-      <div className={container}>
-        <div className="grid grid-cols-2 items-start gap-[clamp(2rem,6vw,5rem)] max-[680px]:grid-cols-1">
-          <div className="pr-8 max-[680px]:pr-0">
-            <p className={`${eyebrow} mb-[0.7rem]`}>Get started</p>
-            <h2
-              id="get-started-heading"
-              className={`${getStartedHeading} mb-3`}
-            >
+    <section className="gs-section" aria-labelledby="get-started-heading">
+      <div className="gs-section__container">
+        <div className="gs-section__left">
+          <div className="gs-section__left-content">
+            <p className="gs-section__left-eyebrow">Get started</p>
+            <h2 id="get-started-heading" className="gs-section__left-heading">
               Keep your project
               <br />
               moving
             </h2>
-            <p className="mb-[1.35rem] mt-0 text-[0.9375rem] text-muted-foreground">
+            <p className="gs-section__description">
               Start preserving the context behind your work
             </p>
             <Link
-              className={buttonVariants({ variant: "default" })}
+              className={`${buttonVariants({ variant: "default" })} ifm-link-reset`}
               to="/docs/getting-started/"
             >
               Install CTX
             </Link>
           </div>
 
-          <div className="border-l border-border pl-[clamp(2rem,5vw,4rem)] max-[680px]:border-l-0 max-[680px]:border-t max-[680px]:pl-0 max-[680px]:pt-8">
-            <h3 className="mb-2 mt-0 text-[1.25rem]">Follow future releases</h3>
-            <p className="mb-[1.15rem] mt-0 max-w-[28rem] text-[0.9375rem] leading-[1.6] text-muted-foreground">
+          <div className="gs-section__right">
+            <h3 className="gs-section__right-heading">
+              Follow future releases
+            </h3>
+            <p className="gs-section__right-description">
               Get occasional updates about new versions, improvements, and
               important project announcements.
             </p>
