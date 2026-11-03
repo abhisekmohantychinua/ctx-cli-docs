@@ -1,13 +1,9 @@
 import { type ReactNode } from "react";
 import Link from "@docusaurus/Link";
 
-import {
-  container,
-  eyebrow,
-  getStartedHeading,
-  primaryButton,
-} from "../../classes";
+import { container, eyebrow, getStartedHeading } from "../../classes";
 import SubscriptionForm from "./subscription-form";
+import { buttonVariants } from "@/src/components/ui/button";
 
 export default function GetStartedSection(): ReactNode {
   return (
@@ -30,7 +26,10 @@ export default function GetStartedSection(): ReactNode {
             <p className="mb-[1.35rem] mt-0 text-[0.9375rem] text-muted-foreground">
               Start preserving the context behind your work
             </p>
-            <Link className={primaryButton} to="/docs/getting-started/">
+            <Link
+              className={buttonVariants({ variant: "default" })}
+              to="/docs/getting-started/"
+            >
               Install CTX
             </Link>
           </div>

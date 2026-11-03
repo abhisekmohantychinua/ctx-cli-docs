@@ -5,9 +5,11 @@
       "file": ".agents/commit-message.md"
     }
   ],
-  "editor.wordWrap": "on",
   "mermaidChart.showGenerateDiagramCodeLens": false,
   "editor.codeLens": true,
   "js/ts.referencesCodeLens.enabled": true,
-  "js/ts.implementationsCodeLens.enabled": true
+  "js/ts.implementationsCodeLens.enabled": true,
+  "files.associations": {
+    "*.css": "tailwindcss"
+  }
 }

@@ -448,3 +448,16 @@ html[data-theme="dark"] {
 .pagination-nav__link--next .pagination-nav__label::after {
   content: none;
 }
+
+/* Reset Infima link styles for shadcn button links */
+
+a.ifm-link-reset {
+  color: inherit;
+  text-decoration: none;
+  transition: none;
+}
+
+a.ifm-link-reset:hover {
+  color: inherit;
+  text-decoration: none;
+}

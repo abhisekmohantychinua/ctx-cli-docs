@@ -1,6 +1,6 @@
 import { type FormEvent, type ReactNode, useState } from "react";
 
-import { primaryButton } from "../../classes";
+import { buttonVariants } from "@/src/components/ui/button";
 
 export default function SubscriptionForm(): ReactNode {
   const [email, setEmail] = useState("");
@@ -18,7 +18,11 @@ export default function SubscriptionForm(): ReactNode {
   }
 
   return (
-    <form className="grid max-w-[30rem] gap-[0.6rem]" onSubmit={handleSubmit} noValidate>
+    <form
+      className="grid max-w-[30rem] gap-[0.6rem]"
+      onSubmit={handleSubmit}
+      noValidate
+    >
       <label className="sr-only" htmlFor="release-updates-email">
         Email address
       </label>
@@ -39,7 +43,10 @@ export default function SubscriptionForm(): ReactNode {
         aria-describedby="release-updates-status"
         required
       />
-      <button className={`${primaryButton} w-full`} type="submit">
+      <button
+        className={`${buttonVariants({ variant: "default" })} w-full`}
+        type="submit"
+      >
         Subscribe to updates
       </button>
       <p
