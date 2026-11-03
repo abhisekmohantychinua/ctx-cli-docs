@@ -1,12 +1,12 @@
-import { type ReactNode } from "react";
 import Layout from "@theme/Layout";
+import { type ReactNode } from "react";
 
-import HeroSection from "../features/home/components/HeroSection";
-import ProblemSection from "../features/home/components/ProblemSection";
-import FeaturesSection from "../features/home/components/FeatureSection";
-import AiSection from "../features/home/components/AiSection";
-import GetStartedSection from "../features/home/components/GetStartedSection";
-import WorkingSection from "../features/home/components/WorkingSection";
+import AiSection from "../features/home/components/ai-section";
+import FeaturesSection from "../features/home/components/feature-section";
+import GetStartedSection from "../features/home/components/get-started-section";
+import HeroSection from "../features/home/components/hero-section";
+import ProblemSection from "../features/home/components/problem-section";
+import WorkingSection from "../features/home/components/working-section";
 
 export default function Home(): ReactNode {
   return (

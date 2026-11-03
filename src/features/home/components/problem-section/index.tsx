@@ -1,4 +1,5 @@
-import { type ReactNode } from "react";
+import "./styles.css";
+
 import {
   Brain,
   FileCode2,
@@ -8,9 +9,8 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
+import { type ReactNode } from "react";
 
-import { container, eyebrow, sectionHeading } from "../../classes";
-import "./styles.css";
 import ProblemCard from "./problem-card";
 
 export type ProblemItem = {

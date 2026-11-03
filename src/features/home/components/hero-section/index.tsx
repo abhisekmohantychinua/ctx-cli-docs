@@ -1,10 +1,11 @@
-import { type ReactNode } from "react";
-import Link from "@docusaurus/Link";
-
-import { container } from "../../classes";
-import HeroPreview from "./hero-preview";
-import { buttonVariants } from "@/src/components/ui/button";
 import "./styles.css";
+
+import Link from "@docusaurus/Link";
+import { type ReactNode } from "react";
+
+import { buttonVariants } from "@/src/components/ui/button";
+
+import HeroPreview from "./hero-preview";
 
 export default function HeroSection(): ReactNode {
   return (

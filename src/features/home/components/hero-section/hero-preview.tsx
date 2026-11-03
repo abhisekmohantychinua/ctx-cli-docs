@@ -1,5 +1,5 @@
-import { type ReactNode } from "react";
 import { FileJson } from "lucide-react";
+import { type ReactNode } from "react";
 
 const contextFiles = [
   "config.json",
@@ -26,9 +26,9 @@ export default function HeroPreview(): ReactNode {
         </figcaption>
 
         <div className="hero-preview__terminal-window" aria-hidden="true">
-          <span className={`size-[0.55rem] rounded-full bg-[#ff5f57]`} />
-          <span className={`size-[0.55rem] rounded-full bg-[#febc2e]`} />
-          <span className={`size-[0.55rem] rounded-full bg-[#28c840]`} />
+          <span className={"size-[0.55rem] rounded-full bg-[#ff5f57]"} />
+          <span className={"size-[0.55rem] rounded-full bg-[#febc2e]"} />
+          <span className={"size-[0.55rem] rounded-full bg-[#28c840]"} />
         </div>
 
         <div className="hero-preview__terminal-content" aria-hidden="true">
@@ -60,9 +60,9 @@ export default function HeroPreview(): ReactNode {
 
       <div className="hero-preview__context">
         <div className="hero-preview__context-window" aria-hidden="true">
-          <span className={`size-[0.55rem] rounded-full bg-[#ff5f57]`} />
-          <span className={`size-[0.55rem] rounded-full bg-[#febc2e]`} />
-          <span className={`size-[0.55rem] rounded-full bg-[#28c840]`} />
+          <span className={"size-[0.55rem] rounded-full bg-[#ff5f57]"} />
+          <span className={"size-[0.55rem] rounded-full bg-[#febc2e]"} />
+          <span className={"size-[0.55rem] rounded-full bg-[#28c840]"} />
         </div>
 
         <ul

@@ -1,20 +1,15 @@
+import { cn } from "cn";
 import { type FormEvent, type ReactNode, useState } from "react";
 
-import { cn } from "cn";
 import { Button } from "@/src/components/ui/button";
-import {
-  Field,
-  FieldDescription,
-  FieldGroup,
-  FieldLabel,
-} from "@/src/components/ui/field";
+import { Field, FieldDescription, FieldLabel } from "@/src/components/ui/field";
 import { Input } from "@/src/components/ui/input";
 
 export default function SubscriptionForm(): ReactNode {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "error" | "success">("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: FormEvent<HTMLFormElement>): void {
     event.preventDefault();
 
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {

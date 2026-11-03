@@ -1,3 +1,5 @@
+import "./styles.css";
+
 import {
   CheckSquare,
   List,
@@ -8,9 +10,6 @@ import {
   UserRoundPlus,
 } from "lucide-react";
 import { type ReactNode } from "react";
-
-import { container, eyebrow, sectionHeading } from "../../classes";
-import "./styles.css";
 
 type ContextItem = {
   label: string;

@@ -11,5 +11,8 @@
   "js/ts.implementationsCodeLens.enabled": true,
   "files.associations": {
     "*.css": "tailwindcss"
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
   }
 }

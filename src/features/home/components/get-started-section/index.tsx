@@ -1,11 +1,11 @@
-import { type ReactNode } from "react";
-import Link from "@docusaurus/Link";
+import "./styles.css";
 
-import { container, eyebrow, getStartedHeading } from "../../classes";
-import SubscriptionForm from "./subscription-form";
+import Link from "@docusaurus/Link";
+import { type ReactNode } from "react";
+
 import { buttonVariants } from "@/src/components/ui/button";
 
-import "./styles.css";
+import SubscriptionForm from "./subscription-form";
 
 export default function GetStartedSection(): ReactNode {
   return (

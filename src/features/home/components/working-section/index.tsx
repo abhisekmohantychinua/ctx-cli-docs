@@ -1,4 +1,5 @@
-import { type ReactNode } from "react";
+import "./styles.css";
+
 import {
   ArrowRight,
   FileJson,
@@ -6,9 +7,7 @@ import {
   Terminal,
   UserRound,
 } from "lucide-react";
-
-import { container, eyebrow, sectionHeading } from "../../classes";
-import "./styles.css";
+import { type ReactNode } from "react";
 
 const projectEntries = [".git/", ".ctx/", "docs/", "src/", "test/"];
 const contextFiles = [

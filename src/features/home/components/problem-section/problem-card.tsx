@@ -1,12 +1,15 @@
-import { ReactNode } from "react";
-import { ProblemItem } from ".";
 import "./styles.css";
+
+import type { ReactNode } from "react";
+
+import type { ProblemItem } from ".";
 
 type ProblemCardProps = {
   problem: ProblemItem;
 };
 
 export default function ProblemCard({ problem }: ProblemCardProps): ReactNode {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const Icon = problem.Icon;
   return (
     <article className="problem-card">

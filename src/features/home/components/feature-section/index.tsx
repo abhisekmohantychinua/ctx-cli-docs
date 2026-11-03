@@ -1,4 +1,5 @@
-import { type ReactNode } from "react";
+import "./styles.css";
+
 import {
   Database,
   FileText,
@@ -7,7 +8,8 @@ import {
   Terminal,
   Zap,
 } from "lucide-react";
-import "./styles.css";
+import { type ReactNode } from "react";
+
 import FeatureCard from "./feature-card";
 
 export type FeatureItem = {

@@ -1,7 +1,8 @@
-import { useEffect } from "react";
 import { useColorMode } from "@docusaurus/theme-common";
+import type { ReactNode } from "react";
+import { useEffect } from "react";
 
-export default function ThemeFavicon() {
+export default function ThemeFavicon(): ReactNode {
   const { colorMode } = useColorMode();
 
   useEffect(() => {

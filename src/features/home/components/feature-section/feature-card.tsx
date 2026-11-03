@@ -1,12 +1,15 @@
-import { ReactNode } from "react";
-import { FeatureItem } from ".";
 import "./styles.css";
+
+import type { ReactNode } from "react";
+
+import type { FeatureItem } from ".";
 
 type FeatureCardProps = {
   feature: FeatureItem;
 };
 
 export default function FeatureCard({ feature }: FeatureCardProps): ReactNode {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
   const Icon = feature.Icon;
   return (
     <>

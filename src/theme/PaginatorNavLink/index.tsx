@@ -1,8 +1,8 @@
-import React, { type ReactNode } from "react";
-import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import { Icon } from "@iconify/react";
 import type { Props } from "@theme/PaginatorNavLink";
+import clsx from "clsx";
+import React, { type ReactNode } from "react";
 
 export default function PaginatorNavLink(props: Props): ReactNode {
   const { permalink, title, subLabel, isNext } = props;

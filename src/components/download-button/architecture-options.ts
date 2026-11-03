@@ -1,4 +1,4 @@
-import ArchitectureOption from "./architecture-option";
+import type ArchitectureOption from "./architecture-option";
 
 const architectureOptions: ArchitectureOption[] = [
   {
