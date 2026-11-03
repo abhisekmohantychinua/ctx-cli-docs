@@ -53,6 +53,16 @@ The generated site can then be served locally with:
 npm run serve
 ```
 
+Before the production build, run the code-quality checks:
+
+```bash
+npm run lint
+npm run typecheck
+```
+
+`npm run lint:fix` applies the autofixable ESLint changes. The rules live in
+`eslint.config.mjs`; ESLint covers JavaScript and TypeScript, not Markdown.
+
 The production build is important because versioned documentation, search indexes, `llms.txt`, `llms-full.txt`, Markdown endpoints, and other generated assets should be evaluated from the same output that will eventually be deployed.
 
 ---
@@ -827,19 +837,17 @@ B --> C[Setup Node.js]
 
 C --> D[Install Dependencies]
 
-D --> E[Type Check]
+D --> E[Docusaurus Build]
 
-E --> F[Docusaurus Build]
+E --> F{Pull Request?}
 
-F --> G{Pull Request?}
+F -->|Yes| G[CI Success]
 
-G -->|Yes| H[CI Success]
+F -->|No| H[Deploy Build]
 
-G -->|No| I[Deploy Build]
+H --> I[GitHub Pages]
 
-I --> J[GitHub Pages]
-
-J --> K[ctx.mohantyabhisek.com]
+I --> J[ctx.mohantyabhisek.com]
 ```
 
 The important part is that CI validates the same build process that deployment uses.
@@ -848,16 +856,17 @@ A documentation change should therefore not be considered valid merely because t
 
 The production build must also succeed.
 
-The basic build commands are:
+The build commands used by CI are:
 
 ```bash
 npm ci
 npm run build
 ```
 
-If a type-checking script is configured:
+Lint and typecheck are local checks and are not part of the CI workflow yet:
 
 ```bash
+npm run lint
 npm run typecheck
 ```
 

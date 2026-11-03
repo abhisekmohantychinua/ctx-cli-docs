@@ -17,17 +17,39 @@ content; never edit `build/` or `.docusaurus/` (both generated and gitignored).
 
 - `npm install` locally, or `npm ci` for the exact lockfile (CI uses Node 22).
 - `npm run start` — dev server. It does not catch broken links.
+- `npm run lint` — ESLint using the flat config in `eslint.config.mjs`. It
+  covers JavaScript and TypeScript, not Markdown.
+- `npm run lint:fix` — ESLint autofix for the rules that support it.
+- `npm run typecheck` — standalone `tsc`; the Docusaurus build does not
+  typecheck. Run it after editing `.ts`, `.tsx`, or config files.
 - `npm run build` — the real verification. `onBrokenLinks: "throw"` makes bad
   internal links fail the build. Also generates `build/llms.txt`,
   `build/llms-full.txt`, and a `.md` mirror of every docs page.
 - `npm run serve` — serve the last production build.
-- `npm run typecheck` — standalone `tsc`; the Docusaurus build does not
-  typecheck. Run it after editing `.ts`, `.tsx`, or config files.
 - `npm run clear` — clear the `.docusaurus` cache when builds look stale.
 
-There are no test or lint scripts. `.markdownlint.yaml` exists but is not wired
-into npm or CI. CI runs only `npm ci` + `npm run build` (despite the README
-diagram mentioning a type-check step).
+There is no test script. `.markdownlint.yaml` exists but is not wired into npm
+or CI, and ESLint only covers JavaScript and TypeScript. Run `npm run lint` and
+`npm run typecheck` before pushing; CI runs `npm ci` + `npm run build`.
+
+## Code conventions
+
+`eslint.config.mjs` is the source of truth. Keep this summary aligned with it
+rather than duplicating the full rule set.
+
+- Semicolons are required, and string literals use double quotes.
+- Imports and exports are sorted by `simple-import-sort`.
+- File and directory names use kebab-case. Docusaurus theme components under
+  `src/theme/` and vendored content under `.agents/` are exempt.
+- TypeScript forbids `any`, warns on missing function return types, and asks
+  for `import type` on type-only imports.
+- Functions use camelCase or PascalCase; variables use camelCase, UPPER_CASE,
+  or PascalCase; types use PascalCase.
+- Exported functions in `**/*-service.ts` and `**/route.ts` need JSDoc with
+  matching parameter names.
+
+Run `npm run lint` before committing, and use `npm run lint:fix` for the
+autofixable issues.
 
 ## Documentation layout and conventions
 
@@ -55,6 +77,9 @@ diagram mentioning a type-check step).
 
 - Shared skills live in `.agents/skills/` and are used by both OpenCode and
   VS Code Copilot. Do not create a duplicate `.github/skills/` tree.
+- Skills are vendored upstream content. Their code samples may not match this
+  repo's ESLint style; follow `eslint.config.mjs` when adapting an example, then
+  run `npm run lint`.
 - Install or inspect them with `npx skills ...`; `skills-lock.json` records the
   upstream sources. Run `npx skills list` to see the installed set.
 
@@ -82,10 +107,9 @@ diagram mentioning a type-check step).
 
 ## Git and deployment
 
-- Commits are not Conventional Commits. Use section headers `Feature:`,
-  `Refactor:`, `Fix:`, `Test:`, `Todo:`, and `Docs:`, each followed by
-  past-tense bullets such as `- Updated ...`. See
-  `.vscode/copilot/commit-message.md`.
+- Commit messages use an `(agent) summary` line followed by
+  `<category>/<domain>:` sections with past-tense bullets. Follow the format in
+  `.agents/commit-message.md`; do not use Conventional Commit prefixes.
 - PRs and pushes to `main` run CI. A successful `main` build is deployed to
   GitHub Pages by `.github/workflows/deploy.yml`; keep `static/CNAME` intact.
 - `.env` is gitignored and contains live API tokens. Do not print, commit, or
