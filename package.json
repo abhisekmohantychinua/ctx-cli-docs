@@ -52,6 +52,8 @@
     "eslint-plugin-unicorn": "^79.0.0",
     "globals": "^17.14.0",
     "postcss": "^8.5.32",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.72.1"
