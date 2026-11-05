@@ -1,8 +1,9 @@
-import React, { type ReactNode } from "react";
-import Layout from "@theme-original/Layout";
-import type LayoutType from "@theme/Layout";
 import type { WrapperProps } from "@docusaurus/types";
-import ThemeFavicon from "@site/src/components/ThemeFavicon";
+import type LayoutType from "@theme/Layout";
+import Layout from "@theme-original/Layout";
+import React, { type ReactNode } from "react";
+
+import ThemeFavicon from "@/src/components/theme-favicon";
 
 type Props = WrapperProps<typeof LayoutType>;
 

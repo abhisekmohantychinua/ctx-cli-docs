@@ -1,0 +1,65 @@
+@reference "../../../../css/custom.css";
+
+.hero-section {
+  @apply relative isolate bg-[radial-gradient(ellipse_70%_58%_at_50%_-8%,color-mix(in_srgb,var(--ctx-primary)_22%,transparent),transparent_68%),radial-gradient(ellipse_28%_62%_at_-4%_52%,color-mix(in_srgb,var(--ctx-primary)_13%,transparent),transparent_72%),radial-gradient(ellipse_28%_62%_at_104%_52%,color-mix(in_srgb,var(--ctx-primary)_13%,transparent),transparent_72%)] pt-[clamp(3.25rem,6.5vw,5rem)] pb-[clamp(2.5rem,5vw,4rem)]  after:absolute after:right-[max(-6rem,-7vw)];
+  @apply before:absolute before:left-[max(-6rem,-7vw)] before:top-[38%] before:z-[-1] before:aspect-[1.2/1] before:w-[clamp(9rem,22vw,18rem)] before:rotate-[-14deg] before:rounded-3xl before:border before:border-[color-mix(in_srgb,var(--ctx-primary)_16%,transparent)] before:bg-[linear-gradient(145deg,color-mix(in_srgb,var(--ctx-primary)_20%,transparent),color-mix(in_srgb,var(--ctx-primary)_5%,transparent))] before:opacity-75 before:content-[''];
+  @apply after:top-[30%] after:z-[-1] after:aspect-[1.2/1] after:w-[clamp(9rem,22vw,18rem)] after:rotate-14 after:rounded-3xl after:border after:border-[color-mix(in_srgb,var(--ctx-primary)_16%,transparent)] after:bg-[linear-gradient(145deg,color-mix(in_srgb,var(--ctx-primary)_20%,transparent),color-mix(in_srgb,var(--ctx-primary)_5%,transparent))] after:opacity-75 after:content-[''] max-[760px]:before:opacity-40 max-[760px]:after:opacity-40;
+}
+
+.hero-section__container {
+  @apply mx-auto w-[min(calc(100%-2*var(--ctx-page-gutter)),var(--ctx-content-max))];
+}
+
+.hero-section__content {
+  @apply mx-auto max-w-232 text-center;
+}
+
+.hero-section__heading {
+  @apply m-0 text-[clamp(2.25rem,5.6vw,var(--ctx-type-hero))] leading-(--ctx-leading-display) tracking-[-0.035em] text-balance;
+}
+.hero-section__subheading {
+  @apply mx-auto mb-0 mt-[0.85rem] max-w-184 text-[clamp(1rem,1.6vw,1.125rem)] leading-normal text-muted-foreground text-balance;
+}
+
+.hero-section__actions {
+  @apply mt-[1.45rem] flex flex-wrap justify-center gap-[0.65rem] max-[480px]:w-full max-[480px]:flex-col;
+}
+
+.hero-preview {
+  @apply relative mx-auto mt-[clamp(2.5rem,5vw,3.75rem)] w-full max-w-200;
+}
+
+.hero-preview__terminal {
+  @apply m-0 w-[82%] overflow-hidden rounded-ctx-terminal border border-home-border bg-[color-mix(in_srgb,var(--ctx-card)_88%,var(--ctx-background))] shadow-home max-[760px]:w-full;
+}
+
+.hero-preview__terminal-window {
+  @apply flex items-center gap-[0.4rem] border-b border-home-border bg-[color-mix(in_srgb,var(--ctx-primary)_4%,var(--ctx-card))] px-[0.9rem] py-[0.7rem];
+}
+.hero-preview__terminal-content {
+  @apply p-[clamp(0.9rem,2vw,1.35rem)];
+}
+
+.hero-preview__terminal-command {
+  @apply flex items-center gap-2 rounded-[0.4rem] border border-home-border bg-[color-mix(in_srgb,var(--ctx-background)_70%,var(--ctx-card))] px-[0.7rem] py-[0.55rem] font-mono text-[0.75rem] text-foreground;
+}
+
+.hero-preview__terminal-output {
+  @apply my-[0.9rem] overflow-hidden font-mono text-[clamp(0.3rem,1.45vw,0.6rem)] leading-[1.12] whitespace-pre text-[color-mix(in_srgb,var(--ctx-foreground)_16%,transparent)] [-webkit-text-stroke:1px_color-mix(in_srgb,var(--ctx-foreground)_26%,transparent)] select-none;
+}
+
+.hero-preview__context {
+  @apply absolute right-0 top-11 w-[min(37%,15.5rem)] overflow-hidden rounded-ctx-card border border-home-border bg-[color-mix(in_srgb,var(--ctx-card)_92%,var(--ctx-background))] shadow-home max-[760px]:relative max-[760px]:right-auto max-[760px]:top-auto max-[760px]:mx-auto max-[760px]:mt-4 max-[760px]:w-[min(100%,22rem)];
+}
+
+.hero-preview__context-window {
+  @apply flex items-center gap-[0.4rem] border-b border-home-border bg-[color-mix(in_srgb,var(--ctx-primary)_4%,var(--ctx-card))] px-[0.78rem] py-[0.62rem];
+}
+
+.hero-preview__context-files {
+  @apply m-0 grid list-none gap-[0.55rem] p-[0.85rem];
+}
+
+.hero-preview__context-file {
+  @apply flex items-center gap-2 font-mono text-ctx-fine text-ctx-foreground [&_svg]:shrink-0 [&_svg]:text-link;
+}

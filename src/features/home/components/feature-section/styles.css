@@ -1,0 +1,36 @@
+@reference "../../../../css/custom.css";
+
+.feature-section {
+  @apply pb-[clamp(3.25rem,6vw,5rem)] pt-[clamp(2.5rem,5vw,4rem)];
+}
+
+.feature-section__container {
+  @apply section-container;
+}
+
+.feature-section__eyebrow {
+  @apply eyebrow;
+}
+
+.feature-section__heading {
+  @apply section-heading;
+}
+
+.feature-section__features {
+  @apply m-0 grid list-none grid-cols-5 gap-[clamp(1rem,2.5vw,2rem)] p-0 max-[1100px]:grid-cols-3 max-[1100px]:gap-y-9 max-[680px]:grid-cols-2 max-[480px]:grid-cols-1;
+}
+.feature-section__feature {
+  @apply flex flex-col items-center text-center;
+}
+
+.feature-card__icon-circle {
+  @apply mb-[0.85rem] grid size-13 place-items-center rounded-full border border-[color-mix(in_srgb,var(--ifm-color-link)_42%,var(--ctx-border))] text-link;
+}
+
+.feature-card__title {
+  @apply mb-[0.45rem] mt-0 text-[0.875rem];
+}
+
+.feature-card__desc {
+  @apply m-0 text-ctx-card-copy leading-[1.55] text-muted-foreground;
+}

@@ -1,12 +1,7 @@
-import { useEffect, useState, type JSX } from "react";
 import clsx from "clsx";
-
 import { ChevronDownIcon } from "lucide-react";
-import type {
-  DownloadArchitecture,
-  DownloadExtension,
-} from "./architecture-option";
-import architectureOptions from "./architecture-options";
+import { type JSX, useEffect, useState, useSyncExternalStore } from "react";
+
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -15,6 +10,11 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import type {
+  DownloadArchitecture,
+  DownloadExtension,
+} from "./architecture-option";
+import architectureOptions from "./architecture-options";
 
 export interface DownloadButtonState {
   version?: string;
@@ -29,19 +29,34 @@ export interface DownloadButtonProps {
   onStateChange?: (state: DownloadButtonState) => void;
 }
 
+function subscribeToBrowserArchitecture(): () => void {
+  return () => {};
+}
+
+function getServerArchitecture(): DownloadArchitecture {
+  return "windows-amd64";
+}
+
 export default function DownloadButton({
   version,
   arch,
   onStateChange,
 }: DownloadButtonProps): JSX.Element {
-  const [selectedArchitecture, setSelectedArchitecture] =
-    useState<DownloadArchitecture>(arch ?? "windows-amd64");
+  const detectedArchitecture = useSyncExternalStore(
+    subscribeToBrowserArchitecture,
+    detectArchitecture,
+    getServerArchitecture,
+  );
 
-  useEffect(() => {
-    // Synchronize the internal architecture with the supplied prop.
-    // If no architecture is supplied, detect it on the client after hydration.
-    setSelectedArchitecture(arch ?? detectArchitecture());
-  }, [arch]);
+  const [selectedArchitecture, setSelectedArchitecture] =
+    useState<DownloadArchitecture>(arch ?? detectedArchitecture);
+
+  const [previousArch, setPreviousArch] = useState(arch);
+
+  if (previousArch !== arch) {
+    setPreviousArch(arch);
+    setSelectedArchitecture(arch ?? detectedArchitecture);
+  }
 
   // Find the complete metadata for the selected architecture.
   const selectedOption =

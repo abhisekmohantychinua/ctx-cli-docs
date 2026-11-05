@@ -12,7 +12,9 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",
@@ -38,11 +40,23 @@
     "@docusaurus/module-type-aliases": "3.10.2",
     "@docusaurus/tsconfig": "3.10.2",
     "@docusaurus/types": "3.10.2",
+    "@eslint-react/eslint-plugin": "^5.28.8",
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
     "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^19.0.0",
+    "eslint": "^10.14.0",
+    "eslint-plugin-jsdoc": "^65.4.2",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
+    "eslint-plugin-unicorn": "^79.0.0",
+    "globals": "^17.14.0",
     "postcss": "^8.5.32",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
-    "typescript": "~6.0.2"
+    "typescript": "~6.0.2",
+    "typescript-eslint": "^8.72.1"
   },
   "browserslist": {
     "production": [

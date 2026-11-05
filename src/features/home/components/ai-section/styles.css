@@ -1,0 +1,63 @@
+@reference "../../../../css/custom.css";
+
+.ai-section {
+  @apply relative isolate bg-background bg-[radial-gradient(ellipse_52%_58%_at_50%_72%,color-mix(in_srgb,var(--ctx-primary)_13%,transparent),transparent_72%)] py-[clamp(3.5rem,7vw,5.5rem)];
+}
+
+.ai-section__container {
+  @apply section-container;
+}
+
+.ai-section__header {
+  @apply mb-[clamp(2rem,4vw,3rem)];
+}
+.ai-section__eyebrow {
+  @apply eyebrow mb-[0.7rem];
+}
+.ai-section__heading {
+  @apply section-heading;
+}
+
+.ai-section__figure {
+  @apply mb-0;
+}
+.ai-section__figure-block {
+  @apply mx-auto grid max-w-216 grid-cols-[minmax(0,0.9fr)_minmax(2.5rem,4rem)_minmax(13rem,1.15fr)_minmax(2.5rem,4rem)_minmax(0,0.9fr)] items-center gap-2 max-[900px]:max-w-[24rem] max-[900px]:grid-cols-1 max-[900px]:gap-6;
+}
+
+.ai-section__consumer {
+  @apply flex flex-col items-center text-center;
+}
+
+.ai-section__consumer-icon-circle {
+  @apply mb-[0.8rem] grid size-20 place-items-center rounded-full bg-brand text-primary-foreground shadow-[0_0_0_10px_color-mix(in_srgb,var(--ifm-color-primary)_8%,transparent)];
+}
+.ai-section__consumer-title {
+  @apply mb-[0.6rem] mt-0 text-base;
+}
+.ai-section__consumer-lines {
+  @apply m-0 flex list-none flex-wrap justify-center gap-[0.3rem_0.75rem] p-0 text-ctx-fine leading-normal text-muted-foreground;
+  @apply [&>li]:relative [&>li]:pl-[0.6rem] [&>li]:before:absolute [&>li]:before:left-0 [&>li]:before:top-[0.55em] [&>li]:before:size-1 [&>li]:before:rounded-full [&>li]:before:bg-link [&>li]:before:content-[''];
+}
+
+.ai-section__context {
+  @apply rounded-ctx-card border border-[color-mix(in_srgb,var(--ifm-color-link)_55%,var(--ctx-border))] bg-[color-mix(in_srgb,var(--ctx-card)_76%,var(--ctx-background))] p-[0.85rem] text-center shadow-home;
+}
+
+.ai-section__context-heading {
+  @apply mb-3 mt-0 text-[0.875rem];
+}
+
+.ai-section__context-items {
+  @apply m-0 grid list-none grid-cols-2 gap-2 p-0;
+}
+
+.ai-section__context-item {
+  @apply flex min-h-[4.8rem] flex-col items-center justify-center gap-[0.35rem] rounded-ctx-panel border border-home-border bg-[color-mix(in_srgb,var(--ctx-primary)_7%,var(--ctx-card))] p-[0.6rem] text-ctx-fine font-medium text-foreground;
+}
+
+.ai-section__connector {
+  @apply relative h-px border-t-2 border-dashed border-home-connector;
+  @apply before:absolute before:left-0 before:top-1/2 before:size-2 before:-translate-y-1/2 before:rotate-[-135deg] before:border-r-2 before:border-t-2 before:border-home-connector before:content-[''];
+  @apply after:absolute after:right-0 after:top-1/2 after:size-2 after:-translate-y-1/2 after:rotate-45 after:border-r-2 after:border-t-2 after:border-home-connector after:content-[''] max-[900px]:mx-auto max-[900px]:h-8 max-[900px]:w-px max-[900px]:border-l-2 max-[900px]:border-t-0 max-[900px]:before:hidden max-[900px]:after:hidden;
+}

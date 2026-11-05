@@ -1,0 +1,77 @@
+@reference "../../../../css/custom.css";
+
+.working-section {
+  @apply pb-[clamp(3rem,6vw,5rem)] pt-[clamp(2.5rem,5vw,4rem)];
+}
+
+.working-section__container {
+  @apply section-container;
+}
+
+.working-section__content {
+  @apply mb-[clamp(2rem,4vw,3.25rem)] grid grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] items-start gap-[clamp(2rem,5vw,5rem)] max-[760px]:grid-cols-1 max-[760px]:gap-5;
+}
+
+.working-section__eyebrow {
+  @apply eyebrow mb-[0.7rem];
+}
+
+.working-section__heading {
+  @apply section-heading;
+}
+
+.working-section__description {
+  @apply mb-0 mt-[0.35rem] max-w-152 text-[0.9375rem] leading-[1.65] text-muted-foreground;
+}
+
+.working-section__figure {
+  @apply m-0;
+}
+
+.working-section__box {
+  @apply grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1.12fr)] items-center gap-[clamp(0.75rem,1.6vw,1.25rem)] max-[1100px]:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] max-[680px]:grid-cols-1 max-[680px]:justify-items-center max-[680px]:gap-3;
+}
+
+.working-section__project-box,
+.working-section__ctx-box {
+  @apply rounded-ctx-panel border border-home-border bg-[color-mix(in_srgb,var(--ctx-card)_78%,var(--ctx-background))] px-[0.95rem] py-[0.9rem] max-[680px]:w-[min(100%,22rem)];
+}
+.working-section__project-box-folder,
+.working-section__ctx-box-folder {
+  @apply mb-[0.7rem] mt-0 flex items-center gap-[0.45rem] text-[0.75rem] font-semibold text-foreground [&_svg]:text-link;
+}
+.working-section__project-box-files,
+.working-section__ctx-box-files {
+  @apply m-0 grid list-none gap-[0.15rem] p-0;
+}
+
+.working-section__project-box-file,
+.working-section__ctx-box-file {
+  @apply flex items-center gap-[0.45rem] rounded-[0.3rem] px-[0.35rem] py-[0.34rem] font-mono text-ctx-fine;
+}
+
+.working-section__project-box-file.idle {
+  @apply text-muted-foreground [&_svg]:text-[color-mix(in_srgb,var(--ctx-muted-foreground)_80%,transparent)];
+}
+.working-section__project-box-file.active {
+  @apply bg-[color-mix(in_srgb,var(--ctx-primary)_12%,var(--ctx-card))] text-link [&_svg]:text-link;
+}
+
+.working-section__users {
+  @apply m-0 grid list-none gap-[clamp(1.25rem,2.5vw,1.75rem)] p-0 max-[1100px]:col-span-full max-[1100px]:mt-2 max-[1100px]:grid-cols-2 max-[1100px]:gap-6 max-[680px]:mt-2 max-[680px]:w-[min(100%,22rem)] max-[680px]:grid-cols-1;
+}
+
+.working-section__user {
+  @apply flex items-start gap-[0.85rem];
+}
+.working-section__user-icon-circle {
+  @apply grid size-13 shrink-0 place-items-center rounded-full bg-accent-foreground text-accent;
+}
+
+.working-section__user-title {
+  @apply mb-1 mt-0 text-[0.875rem];
+}
+
+.working-section__user-desc {
+  @apply m-0 max-w-60 text-xs leading-[1.55] text-muted-foreground;
+}

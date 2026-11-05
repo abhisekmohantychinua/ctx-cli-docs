@@ -1,50 +1,31 @@
-import type { ReactNode } from "react";
-import clsx from "clsx";
-import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-import Heading from "@theme/Heading";
+import { type ReactNode } from "react";
 
-import styles from "./index.module.css";
-import HomepageFeatures from "../components/HomepageFeatures";
-import { Button } from "../components/ui/button";
-
-function HomepageHeader() {
-  const { siteConfig } = useDocusaurusContext();
-  return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/introduction"
-          >
-            Docusaurus Tutorial - 5min ⏱️
-          </Link>
-        </div>
-        <div className="bg-white">
-          <Button>Default</Button>
-        </div>
-      </div>
-    </header>
-  );
-}
+import AiSection from "../features/home/components/ai-section";
+import FeaturesSection from "../features/home/components/feature-section";
+import GetStartedSection from "../features/home/components/get-started-section";
+import HeroSection from "../features/home/components/hero-section";
+import ProblemSection from "../features/home/components/problem-section";
+import WorkingSection from "../features/home/components/working-section";
 
 export default function Home(): ReactNode {
-  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
-      description="Description will go into a meta tag in <head />"
+      title="Your Projects Remember"
+      description="Keep the context behind your work across sessions, tasks, decisions, and AI with CTX CLI."
     >
-      <HomepageHeader />
-      <main>
-        <HomepageFeatures />
-      </main>
+      <div className="overflow-hidden">
+        <HeroSection />
+        <main>
+          <div className="rounded-t-hero bg-home-band bg-[radial-gradient(ellipse_70%_32%_at_50%_0%,color-mix(in_srgb,var(--primary)_7%,transparent),transparent_72%)]">
+            <ProblemSection />
+            <WorkingSection />
+            <FeaturesSection />
+          </div>
+          <AiSection />
+          <GetStartedSection />
+        </main>
+      </div>
     </Layout>
   );
 }
