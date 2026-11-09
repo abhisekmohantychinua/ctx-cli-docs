@@ -1,5 +1,12 @@
 ---
 sidebar_position: 1
+description: Start a new project session.
+keywords:
+  - ctx session start
+  - session start
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx session start

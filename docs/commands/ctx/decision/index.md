@@ -1,7 +1,13 @@
 ---
 sidebar_position: 9
+description: Manage project decisions.
+keywords:
+  - ctx decision
+  - decision
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
-
 
 # ctx decision
 

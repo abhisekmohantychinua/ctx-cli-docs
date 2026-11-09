@@ -3,12 +3,20 @@ import type { Config } from "@docusaurus/types";
 import { themes as prismThemes } from "prism-react-renderer";
 
 import tailwindLoader from "./plugins/tailwind-loader.mjs";
+import {
+  buildSiteSchema,
+  SITE_NAME,
+  SITE_TAGLINE,
+  SITE_URL,
+  SOCIAL_IMAGE_ALT,
+  SOCIAL_IMAGE_PATH,
+} from "./src/components/seo/site-schema";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: "CTX CLI",
-  tagline: "Persistent project context for developers and AI",
+  title: SITE_NAME,
+  tagline: SITE_TAGLINE,
   headTags: [
     {
       tagName: "link",
@@ -39,6 +47,13 @@ const config: Config = {
         media: "(prefers-color-scheme: dark)",
       },
     },
+    {
+      tagName: "script",
+      attributes: {
+        type: "application/ld+json",
+      },
+      innerHTML: JSON.stringify(buildSiteSchema()),
+    },
   ],
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
@@ -47,7 +62,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: "https://ctx.mohantyabhisek.com",
+  url: SITE_URL,
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -73,23 +88,30 @@ const config: Config = {
         docs: {
           sidebarPath: "./sidebars.ts",
           exclude: ["**/_*.md", "**/_*.mdx"],
+          showLastUpdateTime: true,
+          editUrl:
+            "https://github.com/abhisekmohantychinua/ctx-cli-docs/tree/main/",
         },
         blog: {
           path: "articles",
           routeBasePath: "articles",
           showReadingTime: true,
+          showLastUpdateTime: true,
           feedOptions: {
             type: ["rss", "atom"],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
+            "https://github.com/abhisekmohantychinua/ctx-cli-docs/tree/main/",
           // Useful options to enforce blogging best practices
           onInlineTags: "warn",
           onInlineAuthors: "warn",
           onUntruncatedBlogPosts: "warn",
+        },
+        sitemap: {
+          lastmod: "date",
+          changefreq: "weekly",
+          priority: 0.5,
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -99,8 +121,14 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: "img/docusaurus-social-card.jpg",
+    image: SOCIAL_IMAGE_PATH,
+    metadata: [
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:image:alt", content: SOCIAL_IMAGE_ALT },
+      { name: "twitter:image:alt", content: SOCIAL_IMAGE_ALT },
+      { name: "application-name", content: SITE_NAME },
+      { name: "author", content: "Abhisek Mohanty" },
+    ],
     colorMode: {
       respectPrefersColorScheme: true,
     },
@@ -151,19 +179,19 @@ const config: Config = {
           ],
         },
         {
-          title: "Community",
+          title: "Project",
           items: [
             {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
+              label: "GitHub",
+              href: "https://github.com/abhisekmohantychinua/ctx-cli",
             },
             {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
+              label: "Releases",
+              href: "https://github.com/abhisekmohantychinua/ctx-cli/releases",
             },
             {
-              label: "X",
-              href: "https://x.com/docusaurus",
+              label: "CTX CLI Skills",
+              href: "https://github.com/abhisekmohantychinua/ctx-cli-skills",
             },
           ],
         },
@@ -175,8 +203,8 @@ const config: Config = {
               to: "/articles",
             },
             {
-              label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              label: "Author",
+              href: "https://mohantyabhisek.com",
             },
           ],
         },

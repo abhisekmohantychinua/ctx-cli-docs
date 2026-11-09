@@ -271,9 +271,7 @@ Whenever Docusaurus versioning is changed, the production output should be inspe
 
 # SEO
 
-SEO is handled primarily through Docusaurus configuration and the structure of the documentation itself.
-
-The site should provide meaningful page titles, descriptions, canonical URLs, semantic headings, internal links, and a sitemap.
+SEO is handled through Docusaurus configuration, page front matter, generated metadata, and structured data. The production build is the source of truth for validation.
 
 The production URL is configured in `docusaurus.config.ts`:
 
@@ -282,27 +280,69 @@ url: 'https://ctx.mohantyabhisek.com',
 baseUrl: '/',
 ```
 
-The custom domain is important because Docusaurus uses `url` and `baseUrl` when generating canonical URLs and other absolute links.
+The custom domain is important because Docusaurus uses `url` and `baseUrl` when generating canonical URLs, Open Graph URLs, and other absolute links.
+
+The social card is `static/img/ctx-cli-social-card.png`, referenced through `themeConfig.image`. Every page currently uses the same card, and the global `og:image:alt` and `twitter:image:alt` tags describe it.
 
 ## Page Metadata
 
-Documentation pages should provide useful metadata when the default generated title or description is not enough.
+Docusaurus generates the page title, description, canonical URL, Open Graph tags, and Twitter card tags from site configuration and front matter.
 
-For example:
+Every command page must provide `description` and `keywords` front matter:
 
 ```markdown
 ---
-id: installation
-title: Installation
-description: Install CTX CLI and verify that it is available in your terminal.
+sidebar_position: 1
+description: Create a new project task.
+keywords:
+  - ctx task create
+  - task create
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 ```
 
-The description should explain the page rather than simply repeat its title.
+The `description` must match the first paragraph after the H1. This keeps the visible page summary and the meta description consistent.
+
+For other documentation pages, a clear first paragraph is enough. Add an explicit `description` when the first paragraph is not a good search result summary.
+
+## Structured Data
+
+The site emits JSON-LD in three places:
+
+- `docusaurus.config.ts` injects the global `Organization`, `Person`, `WebSite`, and `SoftwareApplication` entities through `headTags`.
+- `src/pages/index.tsx` adds the homepage `WebPage` entity.
+- `src/theme/DocItem/Metadata/index.tsx` adds a `TechArticle` entity to every documentation and command page.
+
+Docusaurus also emits a `BreadcrumbList` for documentation pages. The schema builders live in `src/components/seo/site-schema.ts`.
+
+The global `Organization` and `Person` entities reference the same identities used on `https://mohantyabhisek.com`.
+
+## Robots
+
+`static/robots.txt` allows crawling and points search engines at the sitemap:
+
+```text
+User-agent: *
+Allow: /
+
+Sitemap: https://ctx.mohantyabhisek.com/sitemap.xml
+```
 
 ## Sitemap
 
-Docusaurus's classic preset provides sitemap generation.
+Docusaurus's classic preset provides sitemap generation. The preset is configured in `docusaurus.config.ts` with:
+
+```ts
+sitemap: {
+  lastmod: 'date',
+  changefreq: 'weekly',
+  priority: 0.5,
+},
+```
+
+`showLastUpdateTime` must stay enabled in the docs and blog options. The sitemap plugin only receives `lastUpdatedAt` route metadata when Docusaurus reads file update times.
 
 The production build generates:
 
@@ -312,13 +352,12 @@ sitemap.xml
 
 The sitemap should be treated as part of the static documentation output rather than as a separately maintained file.
 
-Docusaurus's SEO documentation covers sitemap generation and other SEO configuration.
-
 The resulting production structure is conceptually:
 
 ```text
 build/
 ├── index.html
+├── robots.txt
 ├── sitemap.xml
 ├── docs/
 └── ...

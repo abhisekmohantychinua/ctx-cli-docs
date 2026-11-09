@@ -1,5 +1,12 @@
 ---
 sidebar_position: 2
+description: Update an existing project decision.
+keywords:
+  - ctx decision update
+  - decision update
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx decision update

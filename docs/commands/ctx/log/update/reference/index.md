@@ -1,5 +1,12 @@
 ---
 sidebar_position: 1
+description: Update a log reference.
+keywords:
+  - ctx log update reference
+  - log update reference
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx log update reference

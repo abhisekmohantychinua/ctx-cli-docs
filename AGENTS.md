@@ -67,11 +67,30 @@ autofixable issues.
 - Command pages: H1 is the full command (`# ctx task create`), then an H2 with
   the command name/alias, Arguments/Options tables, subcommand links written as
   `./child/`, then `What it does`, `When to use it`, `How it works`, `Examples`.
+- Every command page must include `description` and `keywords` front matter.
+  The description must match the first paragraph after the H1. Follow
+  `docs/commands/_template.md` for the exact shape.
 - Use relative internal links with a trailing slash, e.g.
   `../../../../internals/identifier/`. The production build rejects broken
   links.
 - Blog posts belong in `articles/` (the blog path is overridden from `blog/` to
   `articles/` in `docusaurus.config.ts`); `articles/` is currently empty.
+
+## SEO and structured data
+
+- Site-wide constants and JSON-LD builders live in
+  `src/components/seo/site-schema.ts`. Change identity, profile URLs, or the
+  social card there first.
+- `docusaurus.config.ts` owns the global `headTags` JSON-LD, the sitemap
+  configuration, and `themeConfig.image`.
+- `src/pages/index.tsx` adds the homepage `WebPage` JSON-LD, and
+  `src/theme/DocItem/Metadata/index.tsx` adds the `TechArticle` JSON-LD to every
+  documentation and command page.
+- `static/robots.txt` allows crawling and points at the sitemap.
+- Keep `showLastUpdateTime` enabled for docs and blog content; the sitemap
+  `lastmod` value depends on it.
+- Validate changes against `npm run build`, not the development server, because
+  metadata, `robots.txt`, and `sitemap.xml` are production output.
 
 ## Agent skills
 

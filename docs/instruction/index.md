@@ -1,6 +1,8 @@
 ---
 sidebar_label: instruction
+title: CTX CLI Instructions
 hide_table_of_contents: true
+description: Instructions for AI agents using CTX CLI to retrieve and preserve project execution context.
 ---
 
 # CTX CLI

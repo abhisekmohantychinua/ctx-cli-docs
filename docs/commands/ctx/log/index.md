@@ -1,5 +1,12 @@
 ---
 sidebar_position: 7
+description: Manage project logs.
+keywords:
+  - ctx log
+  - log
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx log

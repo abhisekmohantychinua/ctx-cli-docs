@@ -1,7 +1,13 @@
 ---
 sidebar_position: 9
+description: List all project tasks.
+keywords:
+  - ctx task list
+  - task list
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
-
 
 # ctx task list
 

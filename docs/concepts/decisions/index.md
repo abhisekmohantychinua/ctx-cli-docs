@@ -1,5 +1,7 @@
 ---
 sidebar_position: 4
+title: Decisions
+description: A Decision records an explicit choice made during project execution and the reasoning or context behind it.
 ---
 
 {/*

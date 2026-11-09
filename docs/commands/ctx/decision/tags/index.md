@@ -1,7 +1,13 @@
 ---
 sidebar_position: 5
+description: Manage decision tags.
+keywords:
+  - ctx decision tags
+  - decision tags
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
-
 
 # ctx decision tags
 

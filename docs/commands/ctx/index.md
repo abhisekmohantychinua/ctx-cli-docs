@@ -1,5 +1,11 @@
 ---
 sidebar_position: 1
+description: CTX CLI keeps project execution context for developers and AI.
+keywords:
+  - ctx
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 # ctx
 

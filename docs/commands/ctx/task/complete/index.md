@@ -1,5 +1,12 @@
 ---
 sidebar_position: 3
+description: Complete a task.
+keywords:
+  - ctx task complete
+  - task complete
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx task complete
