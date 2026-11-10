@@ -1,7 +1,13 @@
 ---
 sidebar_position: 1
+description: Create a new project task.
+keywords:
+  - ctx task create
+  - task create
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
-
 
 # ctx task create
 

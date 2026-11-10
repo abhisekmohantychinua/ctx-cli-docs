@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Task, TaskReference, and ResolvedTask are the three task representations CTX uses to store work and task relationships.
 ---
 
 # Task

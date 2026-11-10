@@ -1,5 +1,7 @@
 ---
 sidebar_position: 3
+title: Logs
+description: A Log records a small, meaningful event, observation, issue, or attempt during project execution.
 ---
 
 {/*

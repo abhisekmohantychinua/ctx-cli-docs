@@ -1,5 +1,12 @@
 ---
 sidebar_position: 5
+description: Update an existing task.
+keywords:
+  - ctx task update
+  - task update
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx task update

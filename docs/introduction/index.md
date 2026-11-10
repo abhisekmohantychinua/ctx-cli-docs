@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: CTX CLI is a lightweight command-line tool that keeps a project's execution context available to developers and AI agents.
 ---
 
 # Introduction

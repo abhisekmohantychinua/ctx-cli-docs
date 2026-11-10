@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+description: Review the current project state, unfinished work, and earlier recorded context with CTX.
 ---
 
 # Project Review

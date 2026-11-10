@@ -1,5 +1,12 @@
 ---
 sidebar_position: 3
+description: Generate project artifacts.
+keywords:
+  - ctx generate
+  - generate
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 # ctx generate
 

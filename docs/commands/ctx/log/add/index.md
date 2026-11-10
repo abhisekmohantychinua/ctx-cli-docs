@@ -1,7 +1,13 @@
 ---
 sidebar_position: 1
+description: Add a new log.
+keywords:
+  - ctx log add
+  - log add
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
-
 
 # ctx log add
 

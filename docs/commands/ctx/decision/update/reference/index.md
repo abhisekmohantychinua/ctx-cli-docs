@@ -1,5 +1,12 @@
 ---
 sidebar_position: 1
+description: Update the reference associated with a decision.
+keywords:
+  - ctx decision update reference
+  - decision update reference
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx decision update reference

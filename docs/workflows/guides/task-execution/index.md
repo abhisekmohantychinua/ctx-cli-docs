@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Organize development work as tasks, track the active task, and preserve unfinished or blocked work.
 ---
 
 # Task Execution

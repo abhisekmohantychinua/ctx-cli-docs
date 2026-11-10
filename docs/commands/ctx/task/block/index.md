@@ -1,7 +1,13 @@
 ---
 sidebar_position: 4
+description: Mark a task as blocked.
+keywords:
+  - ctx task block
+  - task block
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
-
 
 # ctx task block
 

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Use CTX throughout a normal working period, from starting a session to reviewing progress and ending it.
 ---
 
 # Daily Work

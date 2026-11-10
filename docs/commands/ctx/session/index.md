@@ -1,5 +1,12 @@
 ---
 sidebar_position: 4
+description: Manage project sessions.
+keywords:
+  - ctx session
+  - session
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx session

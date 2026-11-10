@@ -1,5 +1,12 @@
 ---
 sidebar_position: 4
+description: Delete an inactive session.
+keywords:
+  - ctx session delete
+  - session delete
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx session delete

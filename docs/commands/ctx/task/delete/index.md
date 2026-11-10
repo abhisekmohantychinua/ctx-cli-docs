@@ -1,5 +1,12 @@
 ---
 sidebar_position: 6
+description: Delete a task.
+keywords:
+  - ctx task delete
+  - task delete
+  - CTX CLI
+  - CLI command
+  - command reference
 ---
 
 # ctx task delete

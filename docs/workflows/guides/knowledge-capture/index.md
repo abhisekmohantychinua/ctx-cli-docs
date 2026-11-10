@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: Preserve discoveries, problems, failed attempts, and decisions as project context while you work.
 ---
 
 # Knowledge Capture
