@@ -2,10 +2,12 @@ import Head from "@docusaurus/Head";
 import Layout from "@theme/Layout";
 import { type ReactNode } from "react";
 
+import { SITE_DESCRIPTION } from "../components/seo/constants";
 import {
-  buildHomePageSchema,
-  SITE_DESCRIPTION,
-} from "../components/seo/site-schema";
+  buildGlobalSchema,
+  buildJsonLdGraph,
+} from "../components/seo/global-schema";
+import { buildHomePageSchema } from "../components/seo/home-page-schema";
 import AiSection from "../features/home/components/ai-section";
 import FeaturesSection from "../features/home/components/feature-section";
 import GetStartedSection from "../features/home/components/get-started-section";
@@ -14,13 +16,12 @@ import ProblemSection from "../features/home/components/problem-section";
 import WorkingSection from "../features/home/components/working-section";
 
 export default function Home(): ReactNode {
+  const schema = buildJsonLdGraph(buildGlobalSchema(), buildHomePageSchema());
   return (
     <Layout title="Your Projects Remember" description={SITE_DESCRIPTION}>
       <Head>
         <meta property="og:type" content="website" />
-        <script type="application/ld+json">
-          {JSON.stringify(buildHomePageSchema())}
-        </script>
+        <script type="application/ld+json">{JSON.stringify(schema)}</script>
       </Head>
       <div className="overflow-hidden">
         <HeroSection />

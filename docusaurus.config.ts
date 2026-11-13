@@ -4,13 +4,16 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 import tailwindLoader from "./plugins/tailwind-loader.mjs";
 import {
-  buildSiteSchema,
   SITE_NAME,
   SITE_TAGLINE,
   SITE_URL,
   SOCIAL_IMAGE_ALT,
   SOCIAL_IMAGE_PATH,
-} from "./src/components/seo/site-schema";
+} from "./src/components/seo/constants";
+import {
+  buildGlobalSchema,
+  buildJsonLdGraph,
+} from "./src/components/seo/global-schema";
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
@@ -52,7 +55,7 @@ const config: Config = {
       attributes: {
         type: "application/ld+json",
       },
-      innerHTML: JSON.stringify(buildSiteSchema()),
+      innerHTML: JSON.stringify(buildJsonLdGraph(buildGlobalSchema())),
     },
   ],
 
