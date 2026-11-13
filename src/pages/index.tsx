@@ -3,7 +3,7 @@ import Layout from "@theme/Layout";
 import { type ReactNode } from "react";
 
 import {
-  buildHomePageSchema,
+  buildSiteSchema,
   SITE_DESCRIPTION,
 } from "../components/seo/site-schema";
 import AiSection from "../features/home/components/ai-section";
@@ -19,7 +19,7 @@ export default function Home(): ReactNode {
       <Head>
         <meta property="og:type" content="website" />
         <script type="application/ld+json">
-          {JSON.stringify(buildHomePageSchema())}
+          {JSON.stringify(buildSiteSchema())}
         </script>
       </Head>
       <div className="overflow-hidden">
