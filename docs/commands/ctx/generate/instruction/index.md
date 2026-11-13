@@ -1,12 +1,6 @@
 ---
 sidebar_position: 1
 description: Generate project instructions.
-keywords:
-  - ctx generate instruction
-  - generate instruction
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx generate instruction

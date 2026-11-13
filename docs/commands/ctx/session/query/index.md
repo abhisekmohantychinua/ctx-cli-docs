@@ -1,12 +1,6 @@
 ---
 sidebar_position: 5
 description: Search sessions using filters and sorting.
-keywords:
-  - ctx session query
-  - session query
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx session query

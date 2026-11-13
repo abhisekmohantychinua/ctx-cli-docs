@@ -1,12 +1,6 @@
 ---
 sidebar_position: 2
 description: Remove tags from a decision.
-keywords:
-  - ctx decision tags remove
-  - decision tags remove
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx decision tags remove

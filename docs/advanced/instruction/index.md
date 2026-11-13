@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Learn how CTX generates an instruction file that teaches AI agents to retrieve project context.
 ---
 
 # Instruction

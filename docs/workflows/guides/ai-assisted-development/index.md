@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+description: Learn how to prepare CTX so AI agents can access your project's execution context while they work.
 ---
 
 # AI-Assisted Development

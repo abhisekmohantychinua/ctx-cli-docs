@@ -1,12 +1,6 @@
 ---
 sidebar_position: 7
 description: CTX CLI commands are organized around the parts of project execution that CTX helps you capture and manage.
-keywords:
-  - CTX CLI commands
-  - CLI command reference
-  - CTX CLI
-  - command reference
-  - documentation
 ---
 
 # Commands

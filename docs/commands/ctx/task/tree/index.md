@@ -1,12 +1,6 @@
 ---
 sidebar_position: 10
 description: List project tasks as a tree.
-keywords:
-  - ctx task tree
-  - task tree
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx task tree

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 6
+description: "Advanced CTX capabilities for richer project context: AI instructions, record views, querying, and references."
 ---
 
 # Advanced

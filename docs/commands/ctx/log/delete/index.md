@@ -1,12 +1,6 @@
 ---
 sidebar_position: 4
 description: Delete a log.
-keywords:
-  - ctx log delete
-  - log delete
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx log delete

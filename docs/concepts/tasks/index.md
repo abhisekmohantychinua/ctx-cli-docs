@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Understand how CTX tasks represent units of work, including their status and hierarchy within a project.
 ---
 
 # Tasks

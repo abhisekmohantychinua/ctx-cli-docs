@@ -1,12 +1,6 @@
 ---
 sidebar_position: 2
 description: Initialize the project context.
-keywords:
-  - ctx init
-  - init
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx init

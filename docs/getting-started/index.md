@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: Install CTX, verify it from your terminal, and use it in a first project to record sessions, tasks, logs, and decisions.
 ---
 
 # Getting Started

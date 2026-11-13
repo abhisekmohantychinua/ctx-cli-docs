@@ -1,12 +1,6 @@
 ---
 sidebar_position: 3
 description: Update an existing log.
-keywords:
-  - ctx log update
-  - log update
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx log update

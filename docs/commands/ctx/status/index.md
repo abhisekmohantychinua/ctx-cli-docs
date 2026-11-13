@@ -1,12 +1,6 @@
 ---
 sidebar_position: 1
 description: Displays the current execution status.
-keywords:
-  - ctx status
-  - status
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx status

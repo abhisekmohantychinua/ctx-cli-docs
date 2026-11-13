@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: Learn how to search CTX sessions, tasks, logs, and decisions with field filters, expressions, pagination, and sorting.
 ---
 
 # Querying

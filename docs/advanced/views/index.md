@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Learn how CTX presents sessions, tasks, logs, and decisions in default, verbose, short, JSON, list, and tree views.
 ---
 
 # Views

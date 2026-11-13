@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: Reference for the CTX log data model, including its note, tag, timestamp, and reference fields.
 ---
 
 # Log

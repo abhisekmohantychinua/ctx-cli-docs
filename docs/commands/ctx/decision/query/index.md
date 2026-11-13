@@ -1,12 +1,6 @@
 ---
 sidebar_position: 4
 description: Search decisions using filters and sorting.
-keywords:
-  - ctx decision query
-  - decision query
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx decision query

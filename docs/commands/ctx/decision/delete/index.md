@@ -1,12 +1,6 @@
 ---
 sidebar_position: 3
 description: Delete a decision.
-keywords:
-  - ctx decision delete
-  - decision delete
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx decision delete

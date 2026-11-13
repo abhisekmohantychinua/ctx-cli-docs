@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Reference for the CTX session data model, including identity, notes, timestamps, and active status.
 ---
 
 # Session

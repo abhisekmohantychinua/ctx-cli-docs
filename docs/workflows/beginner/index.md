@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 sidebar_label: Beginner
+description: Follow a small, focused feature from goal and planning through implementation and review with CTX.
 ---
 
 # Beginner Development Workflow with CTX

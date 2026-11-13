@@ -288,22 +288,18 @@ The social card is `static/img/ctx-cli-social-card.png`, referenced through `the
 
 Docusaurus generates the page title, description, canonical URL, Open Graph tags, and Twitter card tags from site configuration and front matter.
 
-Every command page must provide `description` and `keywords` front matter:
+Every command page must provide `description` front matter:
 
 ```markdown
 ---
 sidebar_position: 1
 description: Create a new project task.
-keywords:
-  - ctx task create
-  - task create
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 ```
 
 The `description` must match the first paragraph after the H1. This keeps the visible page summary and the meta description consistent.
+
+Meta keywords are intentionally not used. Search engines ignore the `keywords` meta tag, so pages rely on their description, headings, and content instead.
 
 For other documentation pages, a clear first paragraph is enough. Add an explicit `description` when the first paragraph is not a good search result summary.
 

@@ -1,12 +1,6 @@
 ---
 sidebar_position: 8
 description: Move a task to the root or another task.
-keywords:
-  - ctx task move
-  - task move
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx task move

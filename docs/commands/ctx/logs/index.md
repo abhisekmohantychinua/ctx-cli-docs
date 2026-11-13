@@ -1,12 +1,6 @@
 ---
 sidebar_position: 8
 description: List recent logs.
-keywords:
-  - ctx logs
-  - logs
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx logs

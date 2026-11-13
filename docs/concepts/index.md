@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: The four core CTX concepts — sessions, tasks, logs, and decisions — and how they connect project execution context.
 ---
 
 # Concepts

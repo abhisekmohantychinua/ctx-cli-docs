@@ -1,12 +1,6 @@
 ---
 sidebar_position: 1
 description: Add tags to a decision.
-keywords:
-  - ctx decision tags add
-  - decision tags add
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx decision tags add

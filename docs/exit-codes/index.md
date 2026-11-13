@@ -1,5 +1,6 @@
 ---
 sidebar_position: 9
+description: Reference for CTX CLI exit codes, including success, validation failures, and known error codes.
 ---
 
 # Exit Codes

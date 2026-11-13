@@ -1,12 +1,6 @@
 ---
 sidebar_position: 5
 description: Search logs using filters and sorting.
-keywords:
-  - ctx log query
-  - log query
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx log query

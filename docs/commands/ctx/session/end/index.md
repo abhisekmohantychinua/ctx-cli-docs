@@ -1,12 +1,6 @@
 ---
 sidebar_position: 2
 description: End the active session.
-keywords:
-  - ctx session end
-  - session end
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx session end

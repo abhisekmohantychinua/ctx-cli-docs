@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: Practical CTX workflow guides for daily work, task execution, knowledge capture, project review, and AI-assisted development.
 ---
 
 # Guides

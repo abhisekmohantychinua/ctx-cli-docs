@@ -1,6 +1,7 @@
 ---
 sidebar_position: 3
 sidebar_label: Advanced
+description: Learn the advanced CTX workflow for maintaining a product across releases, incidents, and continuous change.
 ---
 
 # Advanced Workflow

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: Reference for the CTX decision data model, including its fields, identifiers, tags, and references.
 ---
 
 # Decision

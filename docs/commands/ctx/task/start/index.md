@@ -1,12 +1,6 @@
 ---
 sidebar_position: 2
 description: Start a project task.
-keywords:
-  - ctx task start
-  - task start
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx task start

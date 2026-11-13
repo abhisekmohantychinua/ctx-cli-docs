@@ -1,12 +1,6 @@
 ---
 sidebar_position: 3
 description: Update an existing session.
-keywords:
-  - ctx session update
-  - session update
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx session update

@@ -1,12 +1,6 @@
 ---
 sidebar_position: 1
 description: Create a new decision record.
-keywords:
-  - ctx decision create
-  - decision create
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx decision create

@@ -1,12 +1,6 @@
 ---
 sidebar_position: 1
 description: Create a new project task.
-keywords:
-  - ctx task create
-  - task create
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # [Full Command Name]
@@ -18,14 +12,12 @@ e.g.
 # ctx task create
  -->
 
-<!-- 
+<!--
 SEO front matter (required for every command page):
 1. `description` is the one-sentence summary used for the meta description
    and Open Graph description.
-2. `keywords` should contain the full command, the command without the
-   leading `ctx`, and the shared terms shown above.
-3. Keep the order: `sidebar_position`, `description`, `keywords`.
-4. The first paragraph after the H1 must match `description` so the rendered
+2. Keep the order: `sidebar_position`, `description`.
+3. The first paragraph after the H1 must match `description` so the rendered
    page and its metadata stay consistent.
  -->
 

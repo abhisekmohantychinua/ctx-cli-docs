@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: Reference for the CTX data models behind sessions, tasks, logs, and decisions.
 ---
 
 # Models

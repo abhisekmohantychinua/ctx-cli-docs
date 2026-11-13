@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 sidebar_label: Intermediate
+description: Use CTX to deliver a larger project in sections across multiple sessions, with dependent tasks and reviews.
 ---
 
 

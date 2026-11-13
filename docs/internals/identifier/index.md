@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Learn how CTX generates, formats, and validates identifiers for sessions, tasks, logs, and decisions.
 ---
 
 # Identifier

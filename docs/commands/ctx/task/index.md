@@ -1,12 +1,6 @@
 ---
 sidebar_position: 6
 description: Manage project tasks.
-keywords:
-  - ctx task
-  - task
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx task

@@ -1,12 +1,6 @@
 ---
 sidebar_position: 7
 description: Search tasks using filters and sorting.
-keywords:
-  - ctx task query
-  - task query
-  - CTX CLI
-  - CLI command
-  - command reference
 ---
 
 # ctx task query

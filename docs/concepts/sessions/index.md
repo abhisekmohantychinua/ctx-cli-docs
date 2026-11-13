@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: Understand how CTX sessions track continuous periods of work, with notes, timing, and active or inactive state.
 ---
 
 # Sessions
