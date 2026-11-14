@@ -4,6 +4,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 import tailwindLoader from "./plugins/tailwind-loader.mjs";
 import {
+  SITE_DESCRIPTION,
   SITE_NAME,
   SITE_TAGLINE,
   SITE_URL,
@@ -126,9 +127,18 @@ const config: Config = {
   themeConfig: {
     image: SOCIAL_IMAGE_PATH,
     metadata: [
+      // Open Graph
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:image:alt", content: SOCIAL_IMAGE_ALT },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+
+      // Twitter / X
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:description", content: SITE_DESCRIPTION },
       { name: "twitter:image:alt", content: SOCIAL_IMAGE_ALT },
+
+      // General
       { name: "application-name", content: SITE_NAME },
       { name: "author", content: "Abhisek Mohanty" },
     ],
