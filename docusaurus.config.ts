@@ -126,6 +126,16 @@ const config: Config = {
 
   themeConfig: {
     image: SOCIAL_IMAGE_PATH,
+
+    announcementBar: {
+      id: "ctx_cli_beta",
+      content:
+        'CTX CLI is currently in beta. Help shape its future! Try it out, share your feedback, or <a href="https://mohantyabhisek.com/?utm_source=ctx-cli-docs&amp;utm_medium=announcement_bar&amp;utm_campaign=ctx_cli_beta&amp;utm_content=feedback_cta" target="_blank" rel="noopener noreferrer">get in touch with the developer</a>.',
+      backgroundColor: "var(--ctx-primary)",
+      textColor: "var(--ctx-primary-foreground)",
+      isCloseable: true,
+    },
+
     metadata: [
       // Open Graph
       { property: "og:site_name", content: SITE_NAME },
