@@ -74,6 +74,27 @@ Tags make logs easier to understand when scanning history or retrieving specific
 
 A tag does not change the content of the log. It simply provides additional context about what the entry represents.
 
+## Recording Logs
+
+Logs are recorded with `ctx log add`, which takes the note with `--note` and the tag with `--tag`. When no tag is provided, `NOTE` is used.
+
+CTX also provides a shortcut command for each tag. Each shortcut takes the note directly as an argument and sets the matching tag, so you do not need to type `--tag` and `--note` for everyday entries:
+
+| Command | Tag |
+| --- | --- |
+| `ctx note "..."` | `NOTE` |
+| `ctx attempt "..."` | `ATTEMPT` |
+| `ctx issue "..."` | `ISSUE` |
+| `ctx idea "..."` | `IDEA` |
+
+For example:
+
+```bash
+ctx issue "OAuth provider returns 401 when the callback state is missing." --task
+```
+
+This is equivalent to `ctx log add --tag=ISSUE --note="OAuth provider returns 401 when the callback state is missing." --task`, but shorter to type. The shortcuts accept the same `--session` and `--task` references as `ctx log add`.
+
 ## Log References
 
 A log can optionally be associated with another part of the project's execution context.
@@ -249,6 +270,7 @@ A log:
 - Captures an event, observation, idea, issue, or attempt.
 - Is intentionally small and focused.
 - Can be tagged with `NOTE`, `IDEA`, `ISSUE`, or `ATTEMPT`.
+- Can be recorded with `ctx log add` or the matching `ctx note`, `ctx idea`, `ctx issue`, and `ctx attempt` shortcut.
 - Can optionally reference a `SESSION` or `TASK`.
 - Provides detailed context around tasks and sessions.
 - Complements decisions by preserving the events and observations behind them.

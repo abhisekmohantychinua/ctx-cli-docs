@@ -53,6 +53,7 @@ When a session starts, CTX:
 - Records the session start time.
 - Marks the session as `ACTIVE`.
 - Makes the session the project's active session.
+- Stores session notes when they are provided.
 
 ### Ending a Session
 
@@ -62,8 +63,22 @@ When a session ends, CTX:
 - Marks the session as `INACTIVE`.
 - Removes it as the project's active session.
 - Preserves the session as part of the project's history.
+- Stores or replaces session notes when they are provided.
 
 An ended session is not deleted.
+
+## Session Notes
+
+Session notes describe what a period of work was about. They are optional and can be recorded when the session starts or when it ends.
+
+- `ctx session start --notes="..."` records notes with the new session.
+- `ctx session end --notes="..."` records notes on the active session before ending it.
+- If the session already has notes, providing `--notes` when ending it overwrites them.
+- If `--notes` is omitted when ending a session, the existing notes are left unchanged.
+
+Notes can also be entered interactively by providing `--notes` without a value. CTX prompts for the text instead of reading it from the command line, so long or multi-word notes do not need shell quoting.
+
+Notes belong to the session itself. Events that occur during the session belong in logs, not in the session notes.
 
 ## Sessions and Tasks
 

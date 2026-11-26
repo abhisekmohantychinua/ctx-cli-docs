@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 5
 description: Search decisions using filters and sorting.
 ---
 
@@ -19,10 +19,7 @@ Search decisions using filters and sorting.
 | --sort | | | Sort direction (`ASC` or `DESC`). |
 | --page | | | Page number. |
 | --size | | | Page size. |
-| --short, --oneline | -s | | Show compact output. |
-| --verbose | -v | | Show detailed output. |
-| --json | | | Show output in JSON format. |
-| --pretty-json | | | Show formatted JSON output. |
+| --output | -o | | Output format: `default`, `verbose`, `short`, `json`, or `pretty-json`. Defaults to `default`. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |
 
@@ -48,13 +45,13 @@ Results are sorted by `timestamp` by default. A different sort field and directi
 
 Results are returned as pages. The page number and page size can be controlled with `--page` and `--size`.
 
-The result can be presented using different views:
+The result can be presented with `--output` (`-o`):
 
-- The default output provides a normal human-readable query result.
-- `--short` or `--oneline` shows a compact result.
-- `--verbose` shows detailed decision information.
-- `--json` returns the query result as JSON.
-- `--pretty-json` returns the JSON result with formatting.
+- `default` provides a normal human-readable query result.
+- `verbose` shows detailed decision information.
+- `short` shows a compact, single-line result.
+- `json` returns the query result as compact JSON.
+- `pretty-json` returns the JSON result with formatting.
 
 The query only retrieves matching decisions and does not modify them.
 
@@ -107,7 +104,7 @@ Returns matching decisions with the most recent decisions first.
 ### View query results as formatted JSON
 
 ```bash
-ctx decision query -f topic -x contains:database --pretty-json
+ctx decision query -f topic -x contains:database --output=pretty-json
 ```
 
 Displays the matching decisions as formatted JSON.

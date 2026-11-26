@@ -274,7 +274,7 @@ If the discovery affects another task, create or update the relevant task rather
 When the task is finished:
 
 ```bash
-ctx task complete <task-id>
+ctx task done <task-id>
 ```
 
 End the session when the work is complete or paused:

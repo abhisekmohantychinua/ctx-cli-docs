@@ -28,6 +28,16 @@ ctx task start <TASK-ID>
 
 The task becomes active and represents the work currently being performed.
 
+## Start a task immediately
+
+When a task is small and you want to begin right away, use `ctx task add`. It creates the task and starts it in one step.
+
+```bash
+ctx task add --task="Fix the login redirect"
+```
+
+It accepts the same name, description, and optional parent as `ctx task create`, but it only works when no task is in progress. The new task is created and marked as `IN_PROGRESS` immediately.
+
 ## Continue an unfinished task
 
 When returning to a project, review the active and recent tasks before continuing unfinished work.
@@ -66,6 +76,12 @@ Use a specific tag when the type of information matters.
 ctx log add --tag=ISSUE --note="The token validation fails for expired tokens"
 ```
 
+The tag shortcuts are shorter for everyday entries. They set the tag for you and take the note as an argument.
+
+```bash
+ctx issue "The token validation fails for expired tokens"
+```
+
 The log preserves the information in the project context so it can be reviewed when the task is resumed or handed over.
 
 ## Block a task
@@ -78,12 +94,12 @@ ctx task block <TASK-ID> --reason="Waiting for API credentials"
 
 CTX changes the task status to blocked and stores the reason. This makes the blocker visible when reviewing the task later.
 
-## Complete a task
+## Mark a task as done
 
-Complete a task when its work is finished.
+Mark a task as done when its work is finished.
 
 ```bash
-ctx task complete <TASK-ID>
+ctx task done <TASK-ID>
 ```
 
 CTX changes the task status to completed and records its completion time.
@@ -93,7 +109,7 @@ CTX changes the task status to completed and records its completion time.
 Query tasks when you need to search beyond the active and recent task view.
 
 ```bash
-ctx task query --expression=COMPLETED
+ctx task query -x equals:COMPLETED
 ```
 
 The query returns matching tasks with pagination and sorting information.

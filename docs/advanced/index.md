@@ -17,7 +17,7 @@ Learn how CTX gives AI agents a stable way to access project context. The genera
 
 ### [Views](./views/)
 
-Learn how CTX presents project records through different views. This section covers the views available for sessions, tasks, logs, and decisions, including the task-specific list and tree views. Each view supports a different level of detail and a different way of understanding project execution.
+Learn how CTX presents project records through different output formats, selected with `-o` or `--output`: `default`, `verbose`, `short`, `json`, and `pretty-json`. This section also covers the task-specific list and tree views, which are separate commands. Each format supports a different level of detail and a different way of understanding project execution.
 
 ### [Querying](./querying/)
 

@@ -143,7 +143,7 @@ python -m pytest
 Review the task and recent activity:
 
 ```bash
-ctx task view
+ctx task
 ```
 
 ```bash
@@ -255,12 +255,12 @@ After making changes, summarize:
 
 The AI agent can then use the project's execution context alongside the existing source code.
 
-## Complete the task
+## Mark the task as done
 
-Complete the task only after the implementation has been reviewed and the required verification is finished.
+Mark the task as done only after the implementation has been reviewed and the required verification is finished.
 
 ```bash
-ctx task complete <TASK-ID>
+ctx task done <TASK-ID>
 ```
 
 CTX changes the task status to completed and records its completion time.

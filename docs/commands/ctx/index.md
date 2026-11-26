@@ -27,6 +27,10 @@ The main entry point for CTX CLI.
 - [task, t](./task/) - Manage project tasks.
 - [log, l](./log/) - Manage project logs.
 - [logs](./logs/) - List recent logs.
+- [note](./note/) - Record a note in the project log.
+- [attempt](./attempt/) - Record an attempt in the project log.
+- [issue](./issue/) - Record an issue in the project log.
+- [idea](./idea/) - Record an idea in the project log.
 - [decision, dec](./decision/) - Manage project decisions.
 
 ## What it does
@@ -63,4 +67,4 @@ Displays the CTX banner, installed version, documentation location, and a short 
 ctx --help
 ```
 
-Displays the available top-level commands and global options.
+Displays the available top-level commands and their options.

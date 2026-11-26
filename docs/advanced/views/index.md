@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-description: Learn how CTX presents sessions, tasks, logs, and decisions in default, verbose, short, JSON, list, and tree views.
+description: Learn how CTX presents sessions, tasks, logs, and decisions in default, verbose, short, JSON, and pretty JSON output formats, plus the task list and tree views.
 ---
 
 # Views
@@ -9,18 +9,24 @@ CTX provides multiple view modes for displaying project context in the CLI.
 
 The same record can be presented with different levels of detail depending on what you are trying to accomplish. Everyday usage should remain concise and readable, while detailed inspection and machine-readable output are available when needed. These views do not change the underlying data; they only change how CTX presents it.
 
-CTX provides five general view modes:
+CTX provides five general output formats, selected with `-o` or `--output`:
 
-1. **Default View**
-2. **Verbose View**
-3. **Short View**
-4. **JSON View**
-5. **Pretty JSON View**
+| Output | Name | Description |
+| --- | --- | --- |
+| `default` | Default View | Concise human-readable output for everyday use |
+| `verbose` | Verbose View | Complete human-readable output with identifiers and metadata |
+| `short` | Short View | Compact single-line output for scanning |
+| `json` | JSON View | Compact structured output for tools and automation |
+| `pretty-json` | Pretty JSON View | Formatted structured output for human inspection |
+
+`--output` accepts one of these five values. When it is omitted, CTX uses the `default` format.
 
 Tasks additionally provide two structural views:
 
 - **List View**
 - **Tree View**
+
+These are separate task commands (`ctx task list` and `ctx task tree`), not values of `--output`.
 
 ## Default View
 
@@ -28,7 +34,7 @@ The default view is the primary presentation mode for everyday use.
 
 It provides the information that is most useful for understanding a record without exposing every available field. The output is structured for human reading and prioritizes situational awareness.
 
-It is used when no view option is explicitly provided.
+It is used when `--output` is omitted or set to `default`.
 
 ### Session
 
@@ -77,7 +83,7 @@ It includes information that may not be necessary during normal use, such as the
 
 Verbose output is useful when you need to inspect a specific record, identify it by its ID, debug a problem, or check fields that are omitted from the default view. The verbose view prioritizes completeness over brevity.
 
-It is used when the `-v` or `--verbose` option is explicitly provided.
+It is used when `--output=verbose` (`-o verbose`) is provided.
 
 ### Session
 
@@ -136,7 +142,7 @@ PostgreSQL provides strong relational integrity and transaction support, which f
 
 The short view provides a compact, single-line representation of a record. It is intended for situations where several records need to be scanned quickly. The short view prioritizes compactness, scanability, consistent single-line output.
 
-It is used when `-s`, `--short`, `--oneline` option is explicitly provided.
+It is used when `--output=short` (`-o short`) is provided.
 
 ### Session
 
@@ -170,7 +176,7 @@ JSON output represents the data itself rather than its human-view. This makes it
 
 JSON output does not use the human-readable default, verbose, or short presentation.
 
-It is used when `--json` option is explicitly provided.
+It is used when `--output=json` (`-o json`) is provided.
 
 ### Session
 
@@ -207,7 +213,7 @@ Pretty JSON is useful when JSON needs to be inspected or read by a person. The d
 | JSON | Compact structured output for tools and automation |
 | Pretty JSON | Formatted structured output for human inspection |
 
-It is used when `--pretty-json` option is explicitly provided.
+It is used when `--output=pretty-json` (`-o pretty-json`) is provided.
 
 ### Session
 
@@ -265,17 +271,17 @@ It is used when `--pretty-json` option is explicitly provided.
 
 ## Choosing a View
 
-The view mode should match the purpose of the command.
+The output format should match the purpose of the command.
 
-| View | Best for |
+| Output | Best for |
 | --- | --- |
-| Default | Everyday use and situational awareness |
-| Verbose | Inspecting complete record details |
-| Short | Quickly scanning multiple records |
-| JSON | Scripts, automation, and structured processing |
-| Pretty JSON | Reading structured data manually |
+| `default` | Everyday use and situational awareness |
+| `verbose` | Inspecting complete record details |
+| `short` | Quickly scanning multiple records |
+| `json` | Scripts, automation, and structured processing |
+| `pretty-json` | Reading structured data manually |
 
-The modes do not represent different versions of the data. They are different representations of the same underlying record.
+The formats do not represent different versions of the data. They are different representations of the same underlying record.
 
 ## Special Task Views
 
@@ -338,11 +344,15 @@ T1: Build Project Management System (PENDING)
 
 Query results are presented as a view of the matching records, along with the information needed to understand and navigate the result set. The view includes the records matching the query, the field and value used for filtering, current page and page size, total matching records and pages, sorting field and direction.  
 
-Query views are designed for inspection and exploration rather than the concise output used by everyday commands.
+Query views are designed for inspection and exploration rather than the concise output used by everyday commands. All five output formats are available:
 
-- **Default**
-- **JSON**
-- **Pretty JSON**
+| Output | Query result |
+| --- | --- |
+| `default` | Human-readable list of matching records with query metadata |
+| `verbose` | Full detailed view of each matching record with query metadata |
+| `short` | Compact single-line view of each matching record |
+| `json` | Compact JSON containing the records and metadata |
+| `pretty-json` | Formatted JSON containing the records and metadata |
 
 ### Default
 
@@ -356,6 +366,14 @@ Page 1/1
 Filter     status -> equals:COMPLETED
 Sort       createdAt (DESC)
 ```
+
+### Verbose
+
+Applies the verbose record view to each matching record, together with the query metadata. Use `--output=verbose` when identifiers and complete record details matter for the records you found.
+
+### Short
+
+Applies the short record view to each matching record. Use `--output=short` when you need to scan many matching records quickly.
 
 ### JSON
 

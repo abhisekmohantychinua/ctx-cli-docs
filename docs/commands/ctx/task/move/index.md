@@ -1,5 +1,5 @@
 ---
-sidebar_position: 8
+sidebar_position: 6
 description: Move a task to the root or another task.
 ---
 

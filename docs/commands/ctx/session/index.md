@@ -13,10 +13,7 @@ Manage project sessions.
 
 | options | shorthand | required | description |
 | --- | --- | --- | --- |
-| --json | | | Show output in JSON format. |
-| --pretty-json | | | Show formatted JSON output. |
-| --short, --oneline | -s | | Show compact output. |
-| --verbose | -v | | Show detailed output. |
+| --output | -o | | Output format: `default`, `verbose`, `short`, `json`, or `pretty-json`. Defaults to `default`. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |
 
@@ -46,7 +43,15 @@ Use the session subcommands when you need to manage or search individual session
 
 Without a subcommand, the command displays the most relevant session available.
 
-The view options only change how the session is presented and do not modify the session.
+The output can be changed with `--output` (`-o`):
+
+- `default` shows the session in a concise human-readable format.
+- `verbose` shows additional session details.
+- `short` shows a compact, single-line result.
+- `json` shows the session as compact JSON.
+- `pretty-json` shows the JSON output with formatting.
+
+The output option only changes how the session is presented and does not modify the session.
 
 ## Examples
 
@@ -61,10 +66,18 @@ Shows the active session, or the most recent session when none is active.
 ### View the session as formatted JSON
 
 ```bash
-ctx session --pretty-json
+ctx session --output=pretty-json
 ```
 
 Shows the selected session in formatted JSON.
+
+### Show a compact session summary
+
+```bash
+ctx session -o short
+```
+
+Shows the selected session on a single line.
 
 ### Show the available session commands
 

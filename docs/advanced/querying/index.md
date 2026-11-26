@@ -45,7 +45,7 @@ ctx log query
 ctx dec query
 ```
 
-The query command accepts the same common query controls and the same output view controls across these domains:
+The query command accepts the same common query controls and the same output controls across these domains:
 
 | Option | Purpose |
 | --- | --- |
@@ -55,10 +55,7 @@ The query command accepts the same common query controls and the same output vie
 | `--size` | Number of records in a page. Defaults to `10`. |
 | `--sort-by` | Field used to sort the matching records. Each domain provides its own default. |
 | `--sort` | Sort direction: `ASC` or `DESC`. Defaults to `DESC`. |
-| `-v`, `--verbose` | Display the full detailed record view for each result. |
-| `-s`, `--short`, `--oneline` | Display each matching record in the compact single-line view. |
-| `--json` | Output each matching record as compact JSON. |
-| `--pretty-json` | Output each matching record as formatted pretty JSON. |
+| `--output`, `-o` | Output format: `default`, `verbose`, `short`, `json`, or `pretty-json`. Defaults to `default`. |
 
 For example:
 
@@ -601,7 +598,7 @@ The exact human-readable arrangement of these values is intentionally documented
 
 Query results follow the same presentation model as other CTX records, with query-specific metadata layered on top. The query semantics remain the same; only the output format changes.
 
-See [Query Views](../views/index.md#query-views) for the default, JSON, and pretty JSON presentations of a query result.
+See [Query Views](../views/index.md#query-views) for the default, verbose, short, JSON, and pretty JSON presentations of a query result.
 
 ## When to Use Querying
 

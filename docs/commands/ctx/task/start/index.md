@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: Start a project task.
 ---
 
@@ -19,13 +19,13 @@ Start a project task.
 
 | options | shorthand | required | description |
 | --- | --- | --- | --- |
-| --end | -e | | Complete the task currently in progress before starting this task. |
+| --end | -e | | Mark the task currently in progress as done before starting this task. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |
 
 ## What it does
 
-Starts an existing task by changing its status to `IN PROGRESS`.
+Starts an existing task by changing its status to `IN_PROGRESS`.
 
 The command returns the identifier of the task that was started.
 
@@ -33,7 +33,7 @@ The command returns the identifier of the task that was started.
 
 Use `ctx task start` when you are ready to begin working on an existing task.
 
-Use `--end` when another task is already in progress and you want CTX to complete that task before starting the specified task.
+Use `--end` when another task is already in progress and you want CTX to mark that task as done before starting the specified task.
 
 ## How it works
 
@@ -41,7 +41,7 @@ The command requires the identifier of an existing task.
 
 Only one task can be `IN PROGRESS` at a time.
 
-When another task is already in progress, the command reports an error unless `--end` is provided. With `--end`, the task currently in progress is completed before the requested task is started.
+When another task is already in progress, the command reports an error unless `--end` is provided. With `--end`, the task currently in progress is marked done before the requested task is started.
 
 If the specified task does not exist, the command reports an error and does not modify any task.
 
@@ -53,15 +53,15 @@ If the specified task does not exist, the command reports an error and does not 
 ctx task start T7
 ```
 
-Starts task `T7` and changes its status to `IN PROGRESS`.
+Starts task `T7` and changes its status to `IN_PROGRESS`.
 
-### Complete the current task and start another
+### Mark the current task as done and start another
 
 ```bash
 ctx task start T7 --end
 ```
 
-Completes the task currently in progress and starts task `T7`.
+Marks the task currently in progress as done and starts task `T7`.
 
 ### Use the `st` alias
 

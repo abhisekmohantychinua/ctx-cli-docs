@@ -45,7 +45,7 @@ flowchart TD
     B -->|Start| C["IN_PROGRESS"]
     C -->|Block| D["BLOCKED"]
     D -->|Resume| C
-    C -->|Complete| E["COMPLETED"]
+    C -->|Done| E["COMPLETED"]
 ```
 
 ### Creating a Task
@@ -64,6 +64,12 @@ A task in this state represents work that is currently being performed. When a t
 - Marks the task as `IN_PROGRESS`.
 - Makes the task the project's task in progress.
 
+### Adding a Task Quickly
+
+Creating a task and then starting it are two separate steps. For a quick task, CTX provides `ctx task add`, which does both in one command.
+
+`ctx task add` accepts the same name, description, and optional parent as task creation, but it only succeeds when no task is in progress. The new task is created and immediately marked as `IN_PROGRESS`. This keeps a short piece of work from requiring two commands while preserving the rule that only one task can be in progress at a time.
+
 ### Blocking a Task
 
 When work on a task cannot continue because something is preventing progress, the task can be marked as `BLOCKED`.
@@ -72,12 +78,14 @@ CTX records the reason for the blockage in `blockReason`.
 
 A blocked task remains part of the project's active work. Once the blocking condition is resolved, the task can be started again and return to `IN_PROGRESS`.
 
-### Completing a Task
+### Marking a Task as Done
 
 When the work represented by a task is finished, CTX:
 
 - Marks the task as `COMPLETED`.
 - Records the completion time in `completedAt`.
+
+The command is `ctx task done`. The word "done" describes the action; the task's state remains `COMPLETED`, and the timestamp field remains `completedAt`.
 
 A completed task remains available as part of the project's execution history.
 

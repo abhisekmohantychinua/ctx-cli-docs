@@ -34,6 +34,8 @@ Use `ctx log add` when you want to capture a small piece of information about yo
 
 Use a session or task reference when the log is specifically related to a particular piece of work.
 
+For a quicker entry, use the matching shortcut: [`ctx note`](../../note/), [`ctx attempt`](../../attempt/), [`ctx issue`](../../issue/), or [`ctx idea`](../../idea/). Each shortcut takes the note as an argument and sets the tag for you.
+
 ## How it works
 
 The log note is required and can be provided with `--note=<note>`.

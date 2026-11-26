@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: Update an existing project decision.
 ---
 
@@ -19,7 +19,7 @@ Update an existing project decision.
 
 | options | shorthand | required | description |
 | --- | --- | --- | --- |
-| --topi | -t | | Decision topic. |
+| --topic | -t | | Decision topic. |
 | --reasoning | -r | | Decision reasoning. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |

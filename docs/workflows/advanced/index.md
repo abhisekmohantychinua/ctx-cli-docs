@@ -193,7 +193,7 @@ ctx log add \
 When a task is complete:
 
 ```bash
-ctx task complete <task-id>
+ctx task done <task-id>
 ```
 
 If work cannot continue:

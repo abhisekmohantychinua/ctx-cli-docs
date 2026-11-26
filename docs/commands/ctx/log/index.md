@@ -42,6 +42,8 @@ Use `ctx log` when you want to record a small event, observation, issue, idea, o
 
 Use the log subcommands when you need to list, update, delete, or search existing logs.
 
+For a quicker entry, use [`ctx note`](../note/), [`ctx attempt`](../attempt/), [`ctx issue`](../issue/), or [`ctx idea`](../idea/). Each one records a log with the matching tag and takes the note as an argument.
+
 ## How it works
 
 Without a subcommand, the command behaves as the log creation operation.

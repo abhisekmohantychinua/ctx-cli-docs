@@ -63,25 +63,21 @@ Manage project tasks and view the task currently in progress or most recently co
 
 Create a new project task and optionally place it under an existing task.
 
+### [ctx task add](./ctx/task/add/)
+
+Create a new task and start it immediately, when no task is in progress.
+
 ### [ctx task start](./ctx/task/start/)
 
 Start an existing task.
-
-### [ctx task complete](./ctx/task/complete/)
-
-Complete a task, with an option to complete its child tasks at the same time.
 
 ### [ctx task block](./ctx/task/block/)
 
 Mark a task as blocked and optionally record why it cannot proceed.
 
-### [ctx task update](./ctx/task/update/)
+### [ctx task done](./ctx/task/done/)
 
-Modify an existing task.
-
-### [ctx task delete](./ctx/task/delete/)
-
-Delete a task while preserving its subtasks.
+Mark a task as done, with an option to mark its child tasks done at the same time.
 
 ### [ctx task move](./ctx/task/move/)
 
@@ -94,6 +90,14 @@ List all project tasks in a flat view.
 ### [ctx task tree](./ctx/task/tree/)
 
 View project tasks as a hierarchy.
+
+### [ctx task update](./ctx/task/update/)
+
+Modify an existing task.
+
+### [ctx task delete](./ctx/task/delete/)
+
+Delete a task while preserving its subtasks.
 
 ### [ctx task query](./ctx/task/query/)
 
@@ -116,6 +120,22 @@ List recent project logs.
 ### [ctx logs](./ctx/logs/)
 
 Quickly list recent logs using the shorter `ctx logs` command.
+
+### [ctx note](./ctx/note/)
+
+Record a note with the shorter `ctx note "..."` command.
+
+### [ctx attempt](./ctx/attempt/)
+
+Record an attempt with the shorter `ctx attempt "..."` command.
+
+### [ctx issue](./ctx/issue/)
+
+Record an issue with the shorter `ctx issue "..."` command.
+
+### [ctx idea](./ctx/idea/)
+
+Record an idea with the shorter `ctx idea "..."` command.
 
 ### [ctx log update](./ctx/log/update/)
 
@@ -143,6 +163,18 @@ Manage project decisions.
 
 Create a decision record with its topic, reasoning, tags, and optional reference.
 
+### [ctx decision tags](./ctx/decision/tags/)
+
+Manage the tags associated with a decision.
+
+### [ctx decision tags add](./ctx/decision/tags/add/)
+
+Add one or more tags to a decision.
+
+### [ctx decision tags remove](./ctx/decision/tags/remove/)
+
+Remove one or more tags from a decision.
+
 ### [ctx decision update](./ctx/decision/update/)
 
 Modify an existing decision or manage its reference.
@@ -158,18 +190,6 @@ Delete an existing decision.
 ### [ctx decision query](./ctx/decision/query/)
 
 Search decision history using filters, sorting, and pagination.
-
-### [ctx decision tags](./ctx/decision/tags/)
-
-Manage the tags associated with a decision.
-
-### [ctx decision tags add](./ctx/decision/tags/add/)
-
-Add one or more tags to a decision.
-
-### [ctx decision tags remove](./ctx/decision/tags/remove/)
-
-Remove one or more tags from a decision.
 
 ## Generate
 

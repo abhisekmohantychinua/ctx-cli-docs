@@ -33,7 +33,7 @@ ctx decision query -x contains:authentication
 ctx session query -x equals:ACTIVE
 ```
 
-Queries are scoped to one record type. They use a field and a type-aware expression; use `--field` when the default field is not appropriate. Add `--pretty-json` when structured output would make inspection or automation clearer. Run `ctx <command> --help` for syntax or fields not covered here; do not guess command options.
+Queries are scoped to one record type. They use a field and a type-aware expression; use `--field` when the default field is not appropriate. Use `--output=pretty-json` when structured output would make inspection or automation clearer. Run `ctx <command> --help` for syntax or fields not covered here; do not guess command options.
 
 If CTX reports that no project context exists (exit code `103`), do not initialize or overwrite one automatically. Explain the condition and ask whether the user wants CTX initialized with `ctx init`. Initialization creates local project context; `ctx init --force` overwrites its configuration and requires explicit user approval.
 
@@ -59,6 +59,15 @@ ctx log add --tag=ISSUE --note="OAuth callback returns 401 when state is missing
 ctx log add --tag=ATTEMPT --note="Middleware validation did not resolve the production callback failure." --task=T12
 ```
 
+For quick entries, use the matching shortcuts. They behave like `ctx log add` with the tag already set, and take the note as an argument:
+
+```bash
+ctx note "Payment provider sandbox is reachable again." --task
+ctx attempt "Retried with exponential backoff; the timeout still occurs." --task=T12
+ctx issue "OAuth callback returns 401 when state is missing." --task
+ctx idea "Cache the provider token between retries." --task
+```
+
 Record a decision only when it establishes direction, resolves a material trade-off, or captures reasoning likely to matter later. Include the reasoning when it is known; a title alone is less useful. Use tags sparingly for durable categorization.
 
 ```bash
@@ -71,7 +80,7 @@ ctx decision create \
 
 Do not create tasks, start or end sessions, change task state, or alter CTX records merely because you are reading this file. These are project-state changes. Make them when the user asks, when they are clearly part of the assigned work, or when the project’s existing instructions explicitly delegate that responsibility.
 
-When managing task state, prefer the lifecycle commands: `ctx task start`, `ctx task block`, and `ctx task complete`. Use direct update or deletion only for correction and with clear intent. Deletion is destructive: deleting a task moves its subtasks to the root and removes references to it; deleting logs, decisions, or sessions removes project history. Ask before destructive operations unless the user has specifically requested the exact change.
+When managing task state, prefer the lifecycle commands: `ctx task start`, `ctx task block`, and `ctx task done`. Use direct update or deletion only for correction and with clear intent. Deletion is destructive: deleting a task moves its subtasks to the root and removes references to it; deleting logs, decisions, or sessions removes project history. Ask before destructive operations unless the user has specifically requested the exact change.
 
 ## Common workflows
 
@@ -83,11 +92,13 @@ ctx task create --task="Investigate payment retry failures"
 # Use the identifier returned by `ctx task create`.
 ctx task start <task-id>
 # Work; record only meaningful logs and decisions.
-ctx task complete <task-id>
+ctx task done <task-id>
 ctx session end
 ```
 
-If another session or task is active, do not silently replace it. `ctx start --end` ends the active session before starting a new one, and `ctx task start <task-id> --end` completes the current task before starting the requested one; use either only when that transition is intended.
+For a quick task that should start immediately, use `ctx task add` instead of `ctx task create` followed by `ctx task start`. It succeeds only when no task is in progress.
+
+If another session or task is active, do not silently replace it. `ctx start --end` ends the active session before starting a new one, and `ctx task start <task-id> --end` marks the current task done before starting the requested one; use either only when that transition is intended.
 
 For a blocked task, state the blocker and preserve the useful context:
 
@@ -98,7 +109,7 @@ ctx log add --tag=ISSUE --note="Sandbox access is required to reproduce the time
 
 ## Output and failures
 
-Default output is for quick human inspection. `--verbose` shows fuller record details, `--short` scans compactly, `--json` supports programs, and `--pretty-json` makes structured output readable.
+Use `--output` (`-o`) to choose how records are presented: `default` is for quick human inspection, `verbose` shows fuller record details, `short` scans compactly, `json` supports programs, and `pretty-json` makes structured output readable.
 
 Check CTX command failures before continuing. Exit code `0` means success; `2` means invalid command input; `1` is an unspecified business error; `100`–`999` identify stable known conditions. In particular, `103` means no project context, `200` an active session already exists, `201` no active session exists, `310` a task was not found, `360` another task is already in progress, and `363` a task is blocked. Use the error message and exit code to choose a safe next step instead of parsing or ignoring a failure.
 

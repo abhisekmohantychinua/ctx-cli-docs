@@ -44,6 +44,14 @@ Use the task information to select the work you need to continue. If the task is
 ctx task start <task-id>
 ```
 
+## Start a quick task
+
+When the next piece of work is small and no task is in progress, `ctx task add` creates it and starts it in one step.
+
+```bash
+ctx task add --task="Fix the authentication redirect"
+```
+
 ## Record progress during work
 
 Record useful observations, failed attempts, issues, or decisions while working. This preserves information that may be needed later or by another person or AI agent.
@@ -58,6 +66,8 @@ Use a more specific log tag when appropriate:
 ctx log add --tag=ISSUE --note="Authentication fails when the token expires"
 ```
 
+For quick entries, use the tag shortcuts: `ctx note "..."`, `ctx attempt "..."`, `ctx issue "..."`, or `ctx idea "..."`.
+
 The log is stored in the project context and can be reviewed or queried later.
 
 ## End a session
@@ -68,7 +78,7 @@ End the active session when you stop working on the project.
 ctx session end
 ```
 
-CTX records the session's end time and marks it as completed. Any unfinished work remains available through its associated tasks and recorded context.
+CTX records the session's end time and marks it as inactive. Any unfinished work remains available through its associated tasks and recorded context.
 
 ## Related documentation
 

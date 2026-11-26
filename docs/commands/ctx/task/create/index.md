@@ -36,6 +36,8 @@ Use `ctx task create` when you want to record a new piece of work in the project
 
 Create the task at the root level when it represents an independent piece of work. Provide a parent task when the new task belongs under an existing task.
 
+If you want to create the task and start it in one step, use [`ctx task add`](../add/) instead. It accepts the same arguments and options, but only works when no task is in progress.
+
 ## How it works
 
 The task name is required and can be provided directly with `--task=<task>` or entered interactively with `--task`.

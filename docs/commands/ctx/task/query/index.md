@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 11
 description: Search tasks using filters and sorting.
 ---
 
@@ -12,17 +12,14 @@ Search tasks using filters and sorting.
 ### Options
 
 | options | shorthand | required | description |
- | --- | --- | --- | --- |
+| --- | --- | --- | --- |
 | --field | -f | | Field used for filtering. Available fields: id, task, description, status, createdAt, completedAt, blockReason. Defaults to `status`. |
 | --expression | -x | Yes | Filter expression. |
 | --sort-by | | | Field used for sorting. Defaults to `createdAt`. |
 | --sort | | | Sort direction (`ASC` or `DESC`). |
 | --page | | | Page number. |
 | --size | | | Page size. |
-| --short, --oneline | -s | | Show compact output. |
-| --verbose | -v | | Show detailed output. |
-| --json | | | Show output in JSON format. |
-| --pretty-json | | | Show formatted JSON output. |
+| --output | -o | | Output format: `default`, `verbose`, `short`, `json`, or `pretty-json`. Defaults to `default`. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |
 
@@ -48,13 +45,13 @@ Results are sorted by `createdAt` by default. You can choose another field and s
 
 Results are returned as pages. The page number and page size can be controlled with `--page` and `--size`.
 
-The result can be presented using different views:
+The result can be presented with `--output` (`-o`):
 
-- The default output provides a normal human-readable query result.
-- `--short` or `--oneline` shows a compact result.
-- `--verbose` shows detailed task information.
-- `--json` returns the query result as JSON.
-- `--pretty-json` returns the JSON result with formatting.
+- `default` provides a normal human-readable query result.
+- `verbose` shows detailed task information.
+- `short` shows a compact, single-line result.
+- `json` returns the query result as compact JSON.
+- `pretty-json` returns the JSON result with formatting.
 
 The query does not modify any task data.
 
@@ -107,7 +104,7 @@ Returns completed tasks with the most recently completed tasks first.
 ### View query results as formatted JSON
 
 ```bash
-ctx task query -f status -x equals:COMPLETED --pretty-json
+ctx task query -f status -x equals:COMPLETED --output=pretty-json
 ```
 
 Displays the matching tasks as formatted JSON.

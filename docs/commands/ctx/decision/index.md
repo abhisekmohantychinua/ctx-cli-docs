@@ -1,5 +1,5 @@
 ---
-sidebar_position: 9
+sidebar_position: 13
 description: Manage project decisions.
 ---
 
@@ -19,10 +19,10 @@ Manage project decisions.
 ### Subcommands
 
 - [create, c](./create/) - Create a new decision record.
+- [tags, k](./tags/) - Manage decision tags.
 - [update, u](./update/) - Update an existing project decision.
 - [delete, d](./delete/) - Delete a decision.
 - [query, q](./query/) - Search decisions using filters and sorting.
-- [tags, k](./tags/) - Manage decision tags.
 
 ## What it does
 

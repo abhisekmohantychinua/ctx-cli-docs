@@ -302,10 +302,10 @@ ctx log add \
   --task
 ```
 
-Complete the task:
+Mark the task as done:
 
 ```bash
-ctx task complete T2
+ctx task done T2
 ```
 
 End the session:
@@ -510,10 +510,10 @@ ctx log add \
   --task
 ```
 
-Complete the task:
+Mark the task as done:
 
 ```bash
-ctx task complete T3
+ctx task done T3
 ```
 
 End the session:
@@ -608,11 +608,11 @@ ctx decision create \
   --task
 ```
 
-Complete the final task and the parent task:
+Mark the final task and the parent task as done:
 
 ```bash
-ctx task complete T4
-ctx task complete T1
+ctx task done T4
+ctx task done T1
 ```
 
 End the session:
@@ -692,32 +692,32 @@ ctx decision query \
 
 ### Export The History
 
-CTX commands support JSON and pretty JSON views for structured output.
+CTX commands support structured output through `--output` (`-o`). Use `--output=pretty-json` for readable JSON, or `--output=json` for compact JSON.
 
 Create a small project-history export with the documented query commands:
 
 ```bash
 ctx session query \
   -f status -x equals:INACTIVE \
-  --sort-by=createdAt --sort=ASC --pretty-json
+  --sort-by=createdAt --sort=ASC --output=pretty-json
 ```
 
 ```bash
 ctx task query \
   -f status -x equals:COMPLETED \
-  --sort-by=createdAt --sort=ASC --pretty-json
+  --sort-by=createdAt --sort=ASC --output=pretty-json
 ```
 
 ```bash
 ctx log query \
   -f timestamp -x before::now \
-  --sort-by=timestamp --sort=ASC --pretty-json
+  --sort-by=timestamp --sort=ASC --output=pretty-json
 ```
 
 ```bash
 ctx decision query \
   -f timestamp -x before::now \
-  --sort-by=timestamp --sort=ASC --pretty-json
+  --sort-by=timestamp --sort=ASC --output=pretty-json
 ```
 
 If you want to keep the complete CTX project context with the repository, preserve the `.ctx` directory according to your project policy.
@@ -737,7 +737,7 @@ ctx task create T1 --task="Scaffold the Python CLI"
 ctx task start T2
 ctx log add --tag=ATTEMPT --note="Asked AI to scaffold the CLI." --task
 ctx decision create --topic="Keep apiwatch v1 as a local Python CLI" --task
-ctx task complete T2
+ctx task done T2
 ctx session end
 ```
 
@@ -755,13 +755,13 @@ ctx log add --tag=NOTE --note="Resumed from CTX context before asking AI to cont
 And finished with review and history:
 
 ```bash
-ctx task complete T4
-ctx task complete T1
+ctx task done T4
+ctx task done T1
 ctx session end
-ctx session query -f status -x equals:INACTIVE --pretty-json
-ctx task query -f status -x equals:COMPLETED --pretty-json
-ctx log query -f timestamp -x before::now --pretty-json
-ctx decision query -f timestamp -x before::now --pretty-json
+ctx session query -f status -x equals:INACTIVE --output=pretty-json
+ctx task query -f status -x equals:COMPLETED --output=pretty-json
+ctx log query -f timestamp -x before::now --output=pretty-json
+ctx decision query -f timestamp -x before::now --output=pretty-json
 ```
 
 The project stayed small. The context became meaningful.

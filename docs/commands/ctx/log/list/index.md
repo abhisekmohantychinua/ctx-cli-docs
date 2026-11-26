@@ -14,10 +14,7 @@ List recent logs.
 | options | shorthand | required | description |
 | --- | --- | --- | --- |
 | --count | -c | | Number of logs to show. Defaults to `20`. |
-| --json | | | Show output in JSON format. |
-| --pretty-json | | | Show formatted JSON output. |
-| --short, --oneline | -s | | Show compact output. |
-| --verbose | -v | | Show detailed output. |
+| --output | -o | | Output format: `default`, `verbose`, `short`, `json`, or `pretty-json`. Defaults to `default`. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |
 
@@ -39,13 +36,13 @@ The command returns logs in recent-first order.
 
 The number of logs displayed can be changed with `--count`.
 
-The output can be presented using different views:
+The output can be changed with `--output` (`-o`):
 
-- The default view shows recent logs in a concise human-readable format.
-- `--short` or `--oneline` shows a compact result.
-- `--verbose` shows detailed log information.
-- `--json` returns the result as JSON.
-- `--pretty-json` returns the JSON result with formatting.
+- `default` shows recent logs in a concise human-readable format.
+- `verbose` shows detailed log information.
+- `short` shows a compact, single-line result.
+- `json` returns the result as compact JSON.
+- `pretty-json` returns the JSON result with formatting.
 
 The command only presents existing logs and does not modify them.
 
@@ -70,7 +67,7 @@ Shows the latest 50 logs.
 ### Show a compact list
 
 ```bash
-ctx log list --short
+ctx log list -o short
 ```
 
 Shows recent logs in a compact format.
@@ -78,7 +75,7 @@ Shows recent logs in a compact format.
 ### View recent logs as formatted JSON
 
 ```bash
-ctx log list --pretty-json
+ctx log list --output=pretty-json
 ```
 
 Shows the recent logs as formatted JSON.

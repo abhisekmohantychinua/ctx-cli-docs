@@ -153,4 +153,4 @@ The workflow is complete when the feature meets its intended goal, the implement
 
 Before finishing, preserve the important outcome in CTX. Completed tasks should reflect the actual result, while decisions and logs should retain the reasoning, discoveries, or limitations that may matter later.
 
-If the feature is not finished, leave it clearly paused instead of marking it complete. The remaining work and next useful action should be obvious when you return.
+If the feature is not finished, leave it clearly paused instead of marking it done. The remaining work and next useful action should be obvious when you return.

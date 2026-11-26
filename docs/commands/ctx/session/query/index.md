@@ -19,10 +19,7 @@ Search sessions using filters and sorting.
 | --sort | | | Sort direction (`ASC` or `DESC`). |
 | --page | | | Page number. |
 | --size | | | Page size. |
-| --short, --oneline | -s | | Show compact output. |
-| --verbose | -v | | Show detailed output. |
-| --json | | | Show output in JSON format. |
-| --pretty-json | | | Show formatted JSON output. |
+| --output | -o | | Output format: `default`, `verbose`, `short`, `json`, or `pretty-json`. Defaults to `default`. |
 | --help | -h | | Show this help message and exit. |
 | --version | -V | | Print version information and exit. |
 
@@ -48,13 +45,13 @@ Results are sorted by `createdAt` by default. You can choose another field and s
 
 Results are returned as pages. The page number and page size can be controlled with `--page` and `--size`.
 
-The result can be presented using different views:
+The result can be presented with `--output` (`-o`):
 
-- The default output provides a normal human-readable query result.
-- `--short` or `--oneline` shows a compact result.
-- `--verbose` shows detailed session information.
-- `--json` returns the query result as JSON.
-- `--pretty-json` returns the JSON result with formatting.
+- `default` provides a normal human-readable query result.
+- `verbose` shows detailed session information.
+- `short` shows a compact, single-line result.
+- `json` returns the query result as compact JSON.
+- `pretty-json` returns the JSON result with formatting.
 
 The query does not modify any session data.
 
@@ -99,7 +96,7 @@ Returns completed sessions with the most recently ended sessions first.
 ### View query results as formatted JSON
 
 ```bash
-ctx session query -f status -x equals:COMPLETED --pretty-json
+ctx session query -f status -x equals:COMPLETED --output=pretty-json
 ```
 
 Displays the matching sessions as formatted JSON.
